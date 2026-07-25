@@ -1,6 +1,6 @@
 # Redmun Digitech — Brand Design System & Guide
 
-This design guide defines the UI, color palette, typography hierarchy, and animation patterns for the Redmun Digitech platform. All custom components should adhere to these principles to maintain a premium, cohesive enterprise experience.
+This design guide defines the UI, color palette, typography hierarchy, and animation patterns for the Redmun Digitech platform. All custom components should adhere to these principles to maintain a premium, cohesive enterprise experience. Structure must be SEO optimized and mobile responsive.
 
 ---
 
@@ -73,3 +73,23 @@ Redmun Digitech leverages **GSAP (GreenSock Animation Platform)** for premium, s
    }, { scope: container });
    ```
 4. **Easing**: Use natural easing functions like `power2.out`, `power3.out`, or custom spring behaviors for interactive feel. Avoid linear transitions for structural changes.
+
+---
+
+## 5. React Server Components (RSC) Architecture & Interactivity Rules
+To maximize search engine optimization (SEO), initial load performance, and static optimization, we adhere strictly to the following directory and structural boundaries:
+
+1. **Pages Directory (`/pages`) = Server Components (RSC)**:
+   - All main page-level layouts (e.g. `HomePage`, `ProductsPage`, etc.) must be defined inside the `pages/` directory.
+   - These components **must not** contain the `"use client"` directive.
+   - They handle data fetching, static structure rendering, and SEO metadata layout.
+
+2. **App Directory (`/app`) = Routes Entries**:
+   - The route files (like `app/about/page.js`) simply import and render the corresponding page from `/pages`.
+   - Route parameters (such as `params` and `searchParams`) must be awaited asynchronously inside the route file and passed as props to the server-side page layout components.
+
+3. **Interactivity Isolation (`/components` with `"use client"`)**:
+   - Do **not** declare the entire page as `"use client"` simply to include a single slider, interactive form, drop-down button, or hover animation.
+   - Wrap interactive segments (such as contact forms, active tab filters, or GSAP entrance reveal wrappers) in dedicated components inside the `components/` folder and tag them with `"use client"`.
+   - Import these client-side widgets into the server-side pages as standard leaf-node components.
+

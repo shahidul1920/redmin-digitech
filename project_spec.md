@@ -87,9 +87,9 @@
 ### 3. Individual Product Pages (e.g., 1688 API)
 * **Hero:** Headline, Short Description, CTA.
 * **Business Problem:**
-  * Includes Bengali text: `"বর্তমানে ব্যবসায়ীরা কী সমস্যায় পড়ে"` (What problems do businessmen currently face).
+  * Includes: What problems do businessmen currently face.
 * **Our Solution:**
-  * Includes Bengali text: `"আমরা কীভাবে সমাধান করি"` (How we solve it).
+  * Includes text: How we solve it.
 * **Key Features:**
   * Large Icons, Feature Cards.
 * **Workflow Diagram:**
