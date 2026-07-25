@@ -98,6 +98,7 @@ export default function HomePage() {
     { name: "Restaurant & F&B", desc: "POS systems, kitchen displays & reservation engines", Icon: UtensilsCrossed },
     { name: "Retail & D2C", desc: "Omnichannel storefronts with analytics pipelines", Icon: Store },
     { name: "Manufacturing", desc: "Production planning, supply chain & ERP interfaces", Icon: Factory },
+    { name: "Healthcare & Pharma", desc: "Medical inventory control, pharma distribution & SLA compliance", Icon: Activity },
   ];
 
   const valueChecklist = [
@@ -456,22 +457,24 @@ export default function HomePage() {
       <section className="py-24 lg:py-36 bg-white border-y border-border relative overflow-hidden">
         <div className="absolute inset-0 dot-grid pointer-events-none opacity-40" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
 
-            {/* Sticky Left */}
-            <div className="lg:col-span-5 lg:sticky lg:top-28 self-start space-y-6">
-              <ScrollReveal>
-                <span className="sr-item opacity-0 text-xs font-bold uppercase tracking-widest text-brand block mb-3">Core Strengths</span>
-                <h2 className="sr-item opacity-0 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight mb-5">
-                  Why Enterprise Clients{" "}
-                  <span className="text-gradient-brand">Choose Redmun</span>
-                </h2>
-                <p className="sr-item opacity-0 text-text-secondary leading-relaxed text-base mb-8">
-                  We don't build simple brochure sites. We engineer secure, automated platforms that reduce operational overhead, integrate with your existing systems, and scale without limits.
-                </p>
+            {/* Left Column */}
+            <div className="lg:col-span-5 flex flex-col">
+              <ScrollReveal className="flex flex-col h-full justify-between space-y-6">
+                <div>
+                  <span className="sr-item opacity-0 text-xs font-bold uppercase tracking-widest text-brand block mb-3">Core Strengths</span>
+                  <h2 className="sr-item opacity-0 text-3xl md:text-4xl lg:text-5xl font-bold text-dark leading-tight mb-5">
+                    Why Enterprise Clients{" "}
+                    <span className="text-gradient-brand">Choose Redmun</span>
+                  </h2>
+                  <p className="sr-item opacity-0 text-text-secondary leading-relaxed text-base">
+                    We don't build simple brochure sites. We engineer secure, automated platforms that reduce operational overhead, integrate with your existing systems, and scale without limits.
+                  </p>
+                </div>
 
-                {/* Image placeholder for office/team */}
-                <div className="sr-item opacity-0 img-placeholder rounded-2xl aspect-[3/2] border border-border overflow-hidden shadow-sm">
+                {/* Image placeholder for office/team — flex-1 fills vertical height */}
+                <div className="sr-item opacity-0 img-placeholder rounded-2xl flex-1 min-h-[240px] border border-border overflow-hidden shadow-sm flex items-center justify-center p-6">
                   <span>[ Team / Office Image ]</span>
                 </div>
               </ScrollReveal>
@@ -525,23 +528,33 @@ export default function HomePage() {
             <ScrollReveal stagger={0.15} distance={40}>
               <div className="space-y-12 md:space-y-16">
                 {steps.map((step, idx) => {
-                  const isEven = idx % 2 === 0;
+                  const isLeft = idx % 2 === 0;
                   return (
-                    <div key={idx} className={`sr-item opacity-0 relative flex flex-col md:flex-row items-start ${isEven ? "" : "md:flex-row-reverse"}`}>
+                    <div key={idx} className="sr-item opacity-0 relative flex flex-col md:flex-row items-center">
                       {/* Step Dot */}
                       <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex items-center justify-center w-12 h-12 rounded-full bg-dark text-white font-bold text-sm border-4 border-white shadow-lg z-10">
                         {step.num}
                       </div>
 
-                      {/* Content */}
-                      <div className="w-full md:w-1/2 pl-20 md:pl-0 md:px-10">
-                        <div className={`p-6 rounded-2xl bg-white border border-border shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-500 ${isEven ? "md:text-right" : "md:text-left"}`}>
-                          <h3 className="text-lg font-bold text-dark mb-2">{step.name}</h3>
-                          <p className="text-sm text-text-secondary leading-relaxed">{step.desc}</p>
-                        </div>
+                      {/* Left Column */}
+                      <div className={`w-full md:w-1/2 pl-16 md:pl-0 md:pr-10 ${isLeft ? "block" : "hidden md:block opacity-0 pointer-events-none"}`}>
+                        {isLeft && (
+                          <div className="p-6 rounded-2xl bg-white border border-border shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-500 text-left md:text-right">
+                            <h3 className="text-lg font-bold text-dark mb-2">{step.name}</h3>
+                            <p className="text-sm text-text-secondary leading-relaxed">{step.desc}</p>
+                          </div>
+                        )}
                       </div>
 
-                      <div className="hidden md:block md:w-1/2" />
+                      {/* Right Column */}
+                      <div className={`w-full md:w-1/2 pl-16 md:pl-10 ${!isLeft ? "block" : "hidden md:block opacity-0 pointer-events-none"}`}>
+                        {!isLeft && (
+                          <div className="p-6 rounded-2xl bg-white border border-border shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-500 text-left">
+                            <h3 className="text-lg font-bold text-dark mb-2">{step.name}</h3>
+                            <p className="text-sm text-text-secondary leading-relaxed">{step.desc}</p>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   );
                 })}

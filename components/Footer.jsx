@@ -8,6 +8,12 @@ import Button from "./Button";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [showCookieModal, setShowCookieModal] = React.useState(false);
+  const [cookiePreferences, setCookiePreferences] = React.useState({
+    essential: true,
+    analytics: true,
+    performance: true,
+  });
 
   const productLinks = [
     { name: "News Portal", href: "/products/news-portal" },
@@ -169,9 +175,18 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {legalLinks.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href} className="text-sm text-text-muted hover:text-white transition-colors">
-                      {link.name}
-                    </Link>
+                    {link.name === "Cookie Settings" ? (
+                      <button
+                        onClick={() => setShowCookieModal(true)}
+                        className="text-sm text-text-muted hover:text-white transition-colors cursor-pointer text-left"
+                      >
+                        {link.name}
+                      </button>
+                    ) : (
+                      <Link href={link.href} className="text-sm text-text-muted hover:text-white transition-colors">
+                        {link.name}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -206,6 +221,70 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Cookie Preferences Modal */}
+      {showCookieModal && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-dark text-white rounded-3xl border border-white/10 p-6 md:p-8 max-w-md w-full space-y-6 shadow-2xl animate-float" style={{ animationDuration: "0.4s" }}>
+            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+              <h3 className="text-lg font-bold">Cookie Preferences</h3>
+              <button
+                onClick={() => setShowCookieModal(false)}
+                className="text-text-muted hover:text-white text-xs font-bold uppercase tracking-wider"
+              >
+                Close ✕
+              </button>
+            </div>
+
+            <div className="space-y-4 text-xs">
+              <div className="flex items-center justify-between p-3 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+                <div>
+                  <p className="font-bold text-white mb-0.5">Essential Session Cookies</p>
+                  <p className="text-text-muted text-[10px]">Required for login & security webhooks.</p>
+                </div>
+                <span className="text-[10px] font-bold text-brand uppercase tracking-wider bg-brand/20 px-2 py-1 rounded">Always On</span>
+              </div>
+
+              <div className="flex items-center justify-between p-3 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+                <div>
+                  <p className="font-bold text-white mb-0.5">Analytics Telemetry</p>
+                  <p className="text-text-muted text-[10px]">Anonymous page load & speed metrics.</p>
+                </div>
+                <input
+                  type="checkbox"
+                  checked={cookiePreferences.analytics}
+                  onChange={(e) => setCookiePreferences((p) => ({ ...p, analytics: e.target.checked }))}
+                  className="w-4 h-4 accent-brand cursor-pointer"
+                />
+              </div>
+
+              <div className="flex items-center justify-between p-3 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+                <div>
+                  <p className="font-bold text-white mb-0.5">Edge Speed Calibration</p>
+                  <p className="text-text-muted text-[10px]">Regional CDN caching preferences.</p>
+                </div>
+                <input
+                  type="checkbox"
+                  checked={cookiePreferences.performance}
+                  onChange={(e) => setCookiePreferences((p) => ({ ...p, performance: e.target.checked }))}
+                  className="w-4 h-4 accent-brand cursor-pointer"
+                />
+              </div>
+            </div>
+
+            <div className="pt-2 flex gap-3">
+              <Button
+                variant="brand"
+                size="sm"
+                className="w-full"
+                onClick={() => setShowCookieModal(false)}
+              >
+                Save Preferences
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </footer>
   );
 }
