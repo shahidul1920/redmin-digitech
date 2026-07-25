@@ -5,10 +5,10 @@
 * **Backend:** Headless WordPress (headless WP API integration)
 * **Brand/Company Name:** Redmun Digitech
 * **Color Palette / Theme:**
-  * **Primary:** `#0057FF`
-  * **Dark:** `#0B1220`
-  * **Accent:** `#FF0000`
-  * **Light:** `#F7F9FC`
+  * **Brand (Logo Red):** `#FF0000` — core identity color from the "Red" in RedMun logo
+  * **Primary (Action Blue):** `#0057FF` — CTAs, links, interactive elements
+  * **Dark:** `#0B1220` — from the "Mun." in the logo, used for text and dark backgrounds
+  * **Light:** `#F7F9FC` — page backgrounds and light surfaces
 
 ---
 

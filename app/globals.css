@@ -4,16 +4,19 @@
    REDMUN DIGITECH — Tailwind v4 Theme
    ======================================== */
 
-@theme inline {
-  /* — Brand Colors — */
+@theme {
+  /* — Brand Red (from logo) — */
+  --color-brand: #FF0000;
+  --color-brand-light: #FF3333;
+  --color-brand-dark: #CC0000;
+  --color-brand-deeper: #990000;
+
+  /* — Primary Blue (CTAs, links, interactive) — */
   --color-primary: #0057FF;
   --color-primary-light: #3378FF;
   --color-primary-dark: #0044CC;
-  --color-accent: #FF0000;
-  --color-accent-light: #FF3333;
-  --color-accent-dark: #CC0000;
 
-  /* — Neutrals — */
+  /* — Neutrals (from the black "Mun." in logo) — */
   --color-dark: #0B1220;
   --color-dark-secondary: #131C2E;
   --color-dark-tertiary: #1A2640;
@@ -42,8 +45,8 @@
   --font-heading: var(--font-plus-jakarta-sans), system-ui, sans-serif;
 
   /* — Shadows — */
+  --shadow-glow-brand: 0 0 24px rgba(255, 0, 0, 0.2);
   --shadow-glow-primary: 0 0 24px rgba(0, 87, 255, 0.25);
-  --shadow-glow-accent: 0 0 24px rgba(255, 0, 0, 0.2);
 }
 
 /* ========================================
@@ -73,9 +76,9 @@ a {
   text-decoration: none;
 }
 
-/* Selection highlight */
+/* Selection uses brand red */
 ::selection {
-  background: var(--color-primary);
+  background: var(--color-brand);
   color: white;
 }
 
@@ -86,10 +89,17 @@ a {
 ::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
 
 /* ========================================
-   Custom Utilities (things Tailwind doesn't have)
+   Custom Utilities
    ======================================== */
 
-.text-gradient {
+.text-gradient-brand {
+  background: linear-gradient(135deg, var(--color-brand), var(--color-brand-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-primary {
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
