@@ -3,7 +3,7 @@ export default function Home() {
     <main className="flex flex-1 flex-col items-center justify-center py-32 px-6">
       <div className="max-w-3xl text-center">
         <p className="inline-block text-sm font-semibold tracking-widest uppercase text-primary mb-6">
-          Redmun Digitech
+          Redmun Digitech ula
         </p>
 
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-dark mb-6">
