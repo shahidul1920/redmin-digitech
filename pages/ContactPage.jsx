@@ -1,4 +1,5 @@
 import React from "react";
+import { Phone, MapPin } from "@/components/Icons";
 import ContactForm from "@/components/ContactForm";
 import CTASection from "@/components/CTASection";
 
@@ -35,8 +36,10 @@ export default function ContactPage() {
           </div>
 
           <div className="space-y-6">
-            <div className="flex gap-4 p-4 rounded-xl bg-white border border-border">
-              <div className="text-xl">📞</div>
+            <div className="flex gap-4 p-4 rounded-xl bg-white border border-border items-start">
+              <div className="w-10 h-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center shrink-0">
+                <Phone className="w-5 h-5" />
+              </div>
               <div>
                 <h4 className="text-xs font-bold text-dark uppercase tracking-wider mb-1">Direct Call</h4>
                 <p className="text-sm text-text-secondary font-bold">+880 1700-000000</p>
@@ -44,8 +47,10 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="flex gap-4 p-4 rounded-xl bg-white border border-border">
-              <div className="text-xl">📍</div>
+            <div className="flex gap-4 p-4 rounded-xl bg-white border border-border items-start">
+              <div className="w-10 h-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center shrink-0">
+                <MapPin className="w-5 h-5" />
+              </div>
               <div>
                 <h4 className="text-xs font-bold text-dark uppercase tracking-wider mb-1">Office Address</h4>
                 <p className="text-sm text-text-secondary font-bold">Redmun Digitech HQ</p>
@@ -55,8 +60,9 @@ export default function ContactPage() {
           </div>
 
           {/* Map placeholder */}
-          <div className="h-64 bg-white border border-border rounded-3xl overflow-hidden shadow-sm flex items-center justify-center text-xs font-semibold text-text-muted">
-            [ Interactive Location Map Container ]
+          <div className="h-64 img-placeholder border border-border rounded-3xl overflow-hidden shadow-sm flex flex-col items-center justify-center text-xs font-semibold text-text-muted p-4">
+            <MapPin className="w-8 h-8 text-brand mb-2" />
+            <span>[ Interactive Location Map Container ]</span>
           </div>
 
         </div>

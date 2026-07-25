@@ -1,4 +1,5 @@
 import React from "react";
+import { ChevronDown, Check, Minus, ArrowRight } from "@/components/Icons";
 import Button from "@/components/Button";
 import CTASection from "@/components/CTASection";
 
@@ -56,12 +57,12 @@ export default function ProductsPage() {
   ];
 
   const featuresList = [
-    { name: "1688 Sourcing", api: "✓", shipping: "—", pos: "—", news: "—", ecom: "✓" },
-    { name: "Shipping Tracks", api: "✓", shipping: "✓", pos: "—", news: "—", ecom: "✓" },
-    { name: "POS Printer Hook", api: "—", shipping: "—", pos: "✓", news: "—", ecom: "—" },
-    { name: "Live Translations", api: "✓", shipping: "—", pos: "—", news: "✓", ecom: "✓" },
-    { name: "SEO Optimization", api: "✓", shipping: "✓", pos: "✓", news: "✓", ecom: "✓" },
-    { name: "AWS Edge Hosting", api: "✓", shipping: "✓", pos: "✓", news: "✓", ecom: "✓" },
+    { name: "1688 Sourcing", api: true, shipping: false, pos: false, news: false, ecom: true },
+    { name: "Shipping Tracks", api: true, shipping: true, pos: false, news: false, ecom: true },
+    { name: "POS Printer Hook", api: false, shipping: false, pos: true, news: false, ecom: false },
+    { name: "Live Translations", api: true, shipping: false, pos: false, news: true, ecom: true },
+    { name: "SEO Optimization", api: true, shipping: true, pos: true, news: true, ecom: true },
+    { name: "AWS Edge Hosting", api: true, shipping: true, pos: true, news: true, ecom: true },
   ];
 
   const faqs = [
@@ -121,7 +122,7 @@ export default function ProductsPage() {
                 </div>
               </div>
               <Button variant="brand" size="md" href={prod.href} className="w-full">
-                Explore Product Details
+                Explore Product Details <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
             </div>
           ))}
@@ -151,11 +152,11 @@ export default function ProductsPage() {
               {featuresList.map((row, idx) => (
                 <tr key={idx} className="border-b border-border hover:bg-light/30 transition-colors">
                   <td className="p-4 font-semibold text-text-secondary">{row.name}</td>
-                  <td className="p-4 text-center text-brand font-bold">{row.api}</td>
-                  <td className="p-4 text-center text-primary font-bold">{row.shipping}</td>
-                  <td className="p-4 text-center text-dark font-bold">{row.pos}</td>
-                  <td className="p-4 text-center text-brand font-bold">{row.news}</td>
-                  <td className="p-4 text-center text-primary font-bold">{row.ecom}</td>
+                  <td className="p-4 text-center">{row.api ? <Check className="w-4 h-4 text-brand mx-auto font-bold" /> : <Minus className="w-4 h-4 text-text-tertiary mx-auto" />}</td>
+                  <td className="p-4 text-center">{row.shipping ? <Check className="w-4 h-4 text-primary mx-auto font-bold" /> : <Minus className="w-4 h-4 text-text-tertiary mx-auto" />}</td>
+                  <td className="p-4 text-center">{row.pos ? <Check className="w-4 h-4 text-dark mx-auto font-bold" /> : <Minus className="w-4 h-4 text-text-tertiary mx-auto" />}</td>
+                  <td className="p-4 text-center">{row.news ? <Check className="w-4 h-4 text-brand mx-auto font-bold" /> : <Minus className="w-4 h-4 text-text-tertiary mx-auto" />}</td>
+                  <td className="p-4 text-center">{row.ecom ? <Check className="w-4 h-4 text-primary mx-auto font-bold" /> : <Minus className="w-4 h-4 text-text-tertiary mx-auto" />}</td>
                 </tr>
               ))}
             </tbody>
@@ -175,9 +176,7 @@ export default function ProductsPage() {
               <summary className="flex items-center justify-between p-6 font-semibold text-dark cursor-pointer select-none group-open:bg-light transition-colors">
                 <span>{faq.q}</span>
                 <span className="ml-4 flex-shrink-0 transition-transform duration-300 group-open:rotate-180">
-                  <svg className="w-5 h-5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                  </svg>
+                  <ChevronDown className="w-5 h-5 text-text-secondary" />
                 </span>
               </summary>
               <div className="p-6 border-t border-border text-sm text-text-secondary leading-relaxed bg-white">

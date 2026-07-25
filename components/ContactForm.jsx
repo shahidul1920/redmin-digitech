@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { Check, MessageSquare, Calendar } from "@/components/Icons";
 import Button from "./Button";
 
 export default function ContactForm() {
@@ -32,8 +33,8 @@ export default function ContactForm() {
     <div className="bg-white p-8 rounded-3xl border border-border shadow-sm space-y-8">
       {status === "success" ? (
         <div className="text-center py-12 space-y-4">
-          <div className="w-16 h-16 bg-brand/10 text-brand rounded-full flex items-center justify-center mx-auto text-2xl font-bold">
-            ✓
+          <div className="w-16 h-16 bg-brand/10 text-brand rounded-full flex items-center justify-center mx-auto">
+            <Check className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-bold text-dark">Message Dispatched!</h3>
           <p className="text-sm text-text-secondary max-w-sm mx-auto leading-relaxed">
@@ -130,7 +131,7 @@ export default function ContactForm() {
           rel="noopener noreferrer"
           className="flex flex-col items-center justify-center p-4 rounded-xl border border-border hover:border-brand bg-light-secondary/20 hover:bg-white text-center transition-all group"
         >
-          <span className="text-lg mb-1">💬</span>
+          <MessageSquare className="w-5 h-5 text-brand mb-1 group-hover:scale-110 transition-transform" />
           <span className="text-xs font-bold text-dark uppercase tracking-wider group-hover:text-brand transition-colors">WhatsApp</span>
           <span className="text-[10px] text-text-tertiary mt-1">Instant Support</span>
         </a>
@@ -140,7 +141,7 @@ export default function ContactForm() {
           rel="noopener noreferrer"
           className="flex flex-col items-center justify-center p-4 rounded-xl border border-border hover:border-brand bg-light-secondary/20 hover:bg-white text-center transition-all group"
         >
-          <span className="text-lg mb-1">📅</span>
+          <Calendar className="w-5 h-5 text-primary mb-1 group-hover:scale-110 transition-transform" />
           <span className="text-xs font-bold text-dark uppercase tracking-wider group-hover:text-brand transition-colors">Book Scoping</span>
           <span className="text-[10px] text-text-tertiary mt-1">15m Video Call</span>
         </a>

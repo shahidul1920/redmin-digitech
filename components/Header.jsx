@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ChevronDown, Menu, X } from "@/components/Icons";
 import Button from "./Button";
+import Image from "next/image";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -63,8 +65,15 @@ export default function Header() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between gap-4">
           {/* Brand Logo */}
-          <Link href="/" className="flex items-center gap-1 font-heading text-2xl font-bold tracking-tight text-dark select-none">
-            <span className="text-brand">Red</span>Mun<span className="text-brand text-3xl leading-none">.</span>
+          <Link href="/" className="flex items-center shrink-0 py-2">
+            <Image
+              src="/Redmun-final.svg"
+              alt="Redmun Digitech"
+              width={160}
+              height={40}
+              className="h-10 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop Main Navigation */}
@@ -80,30 +89,23 @@ export default function Header() {
                     onMouseLeave={handleDropdownLeave}
                   >
                     <button
-                      className={`inline-flex items-center gap-1 px-3 py-2 text-sm font-semibold rounded-md transition-colors cursor-pointer ${
-                        isActive(item.href) || isOpen
-                          ? "text-brand bg-light"
-                          : "text-text-secondary hover:text-dark hover:bg-light/60"
-                      }`}
+                      className={`inline-flex items-center gap-1 px-3 py-2 text-sm font-semibold rounded-md transition-colors cursor-pointer ${isActive(item.href) || isOpen
+                        ? "text-brand bg-light"
+                        : "text-text-secondary hover:text-dark hover:bg-light/60"
+                        }`}
                     >
                       {item.name}
-                      <svg
+                      <ChevronDown
                         className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                      </svg>
+                      />
                     </button>
 
                     {/* Desktop Dropdown Panel */}
                     <div
-                      className={`absolute left-1/2 -translate-x-1/2 top-full w-64 bg-white border border-border rounded-xl shadow-lg py-2 transition-all duration-200 origin-top ${
-                        isOpen
-                          ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
-                          : "opacity-0 -translate-y-2 scale-95 pointer-events-none"
-                      }`}
+                      className={`absolute left-1/2 -translate-x-1/2 top-full w-64 bg-white border border-border rounded-xl shadow-lg py-2 transition-all duration-200 origin-top ${isOpen
+                        ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
+                        : "opacity-0 -translate-y-2 scale-95 pointer-events-none"
+                        }`}
                     >
                       <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-2.5 h-2.5 rotate-45 bg-white border-t border-l border-border" />
                       {item.dropdown.map((subItem) => (
@@ -111,9 +113,8 @@ export default function Header() {
                           key={subItem.name}
                           href={subItem.href}
                           onClick={handleDropdownLeave}
-                          className={`block px-4 py-2 text-sm font-medium hover:bg-light transition-colors ${
-                            pathname === subItem.href ? "text-brand" : "text-text-secondary hover:text-dark"
-                          }`}
+                          className={`block px-4 py-2 text-sm font-medium hover:bg-light transition-colors ${pathname === subItem.href ? "text-brand" : "text-text-secondary hover:text-dark"
+                            }`}
                         >
                           {subItem.name}
                         </Link>
@@ -127,11 +128,10 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`px-3 py-2 text-sm font-semibold rounded-md transition-colors ${
-                    isActive(item.href)
-                      ? "text-brand bg-light"
-                      : "text-text-secondary hover:text-dark hover:bg-light/60"
-                  }`}
+                  className={`px-3 py-2 text-sm font-semibold rounded-md transition-colors ${isActive(item.href)
+                    ? "text-brand bg-light"
+                    : "text-text-secondary hover:text-dark hover:bg-light/60"
+                    }`}
                 >
                   {item.name}
                 </Link>
@@ -154,13 +154,9 @@ export default function Header() {
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? (
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <X className="h-6 w-6" />
               ) : (
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                <Menu className="h-6 w-6" />
               )}
             </button>
           </div>
@@ -169,9 +165,8 @@ export default function Header() {
 
       {/* Mobile Menu Panel */}
       <div
-        className={`lg:hidden border-t border-border bg-white transition-all duration-300 overflow-hidden ${
-          mobileMenuOpen ? "max-h-[85vh] opacity-100 visible" : "max-h-0 opacity-0 invisible"
-        }`}
+        className={`lg:hidden border-t border-border bg-white transition-all duration-300 overflow-hidden ${mobileMenuOpen ? "max-h-[85vh] opacity-100 visible" : "max-h-0 opacity-0 invisible"
+          }`}
       >
         <div className="px-4 py-6 space-y-3 overflow-y-auto max-h-[80vh]">
           {mainNav.map((item) => {
@@ -184,29 +179,22 @@ export default function Header() {
                     className="flex w-full items-center justify-between py-2 text-base font-bold text-text-secondary hover:text-dark"
                   >
                     {item.name}
-                    <svg
+                    <ChevronDown
                       className={`h-5 w-5 transition-transform duration-200 ${isSectionOpen ? "rotate-180" : ""}`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                    </svg>
+                    />
                   </button>
 
                   <div
-                    className={`pl-4 border-l-2 border-border space-y-1 overflow-hidden transition-all duration-200 ${
-                      isSectionOpen ? "max-h-96 opacity-100 py-1" : "max-h-0 opacity-0"
-                    }`}
+                    className={`pl-4 border-l-2 border-border space-y-1 overflow-hidden transition-all duration-200 ${isSectionOpen ? "max-h-96 opacity-100 py-1" : "max-h-0 opacity-0"
+                      }`}
                   >
                     {item.dropdown.map((subItem) => (
                       <Link
                         key={subItem.name}
                         href={subItem.href}
                         onClick={() => setMobileMenuOpen(false)}
-                        className={`block py-2 text-sm font-semibold ${
-                          pathname === subItem.href ? "text-brand" : "text-text-secondary hover:text-dark"
-                        }`}
+                        className={`block py-2 text-sm font-semibold ${pathname === subItem.href ? "text-brand" : "text-text-secondary hover:text-dark"
+                          }`}
                       >
                         {subItem.name}
                       </Link>
@@ -221,9 +209,8 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`block py-2 text-base font-bold transition-colors ${
-                  isActive(item.href) ? "text-brand" : "text-text-secondary hover:text-dark"
-                }`}
+                className={`block py-2 text-base font-bold transition-colors ${isActive(item.href) ? "text-brand" : "text-text-secondary hover:text-dark"
+                  }`}
               >
                 {item.name}
               </Link>

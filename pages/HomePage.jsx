@@ -1,4 +1,26 @@
 import React from "react";
+import {
+  Newspaper,
+  Building2,
+  ShoppingCart,
+  Globe,
+  Truck,
+  Gem,
+  UtensilsCrossed,
+  Radio,
+  Landmark,
+  Package,
+  Store,
+  Factory,
+  Check,
+  ArrowRight,
+  ChevronDown,
+  Activity,
+  Cpu,
+  Layers,
+  Sparkles,
+  Zap,
+} from "@/components/Icons";
 import Button from "@/components/Button";
 import CTASection from "@/components/CTASection";
 import HeroScrollReveal from "@/components/HeroScrollReveal";
@@ -22,60 +44,60 @@ export default function HomePage() {
       desc: "Multi-author editorial CMS built for high-traffic media outlets. Supports real-time content indexing, ad integration layers, and category-driven SEO structures.",
       href: "/products/news-portal",
       tag: "Media",
-      icon: "📰",
+      Icon: Newspaper,
     },
     {
       title: "Company Profile System",
       desc: "Lightning-fast multilingual corporate portals with headless CMS editing. Designed for enterprises requiring dynamic service pages and investor relations sections.",
       href: "/products/company-profile",
       tag: "Corporate",
-      icon: "🏢",
+      Icon: Building2,
     },
     {
       title: "General E-Commerce",
       desc: "Full-featured online stores with multi-currency checkout, inventory sync, abandoned cart recovery, and sub-second page loads across 50+ countries.",
       href: "/products/ecommerce",
       tag: "Retail",
-      icon: "🛒",
+      Icon: ShoppingCart,
     },
     {
       title: "1688 API Sourcing Portal",
       desc: "Automated China import platform. Pulls live wholesale catalogs, auto-translates product data, calculates weight-based margins, and syncs orders in real-time.",
       href: "/products/1688-api",
       tag: "Import",
-      icon: "🌏",
+      Icon: Globe,
     },
     {
       title: "Shipping Management System",
       desc: "Multi-carrier cargo tracking with automated manifest generation, customs documentation, customer status alerts, and warehouse dispatch coordination.",
       href: "/products/shipping-management",
       tag: "Logistics",
-      icon: "🚢",
+      Icon: Truck,
     },
     {
       title: "Custom Branded E-Commerce",
       desc: "White-label storefronts engineered for premium brands. Advanced cart optimization, unique checkout experiences, and deep analytics integrations.",
       href: "/products/branded-ecommerce",
       tag: "Retail",
-      icon: "💎",
+      Icon: Gem,
     },
     {
       title: "Restaurant Chain Management",
       desc: "Real-time kitchen display systems, QR-code table ordering, multi-location menu sync, thermal POS printing, and integrated billing dashboards.",
       href: "/products/restaurant-management",
       tag: "Hospitality",
-      icon: "🍽️",
+      Icon: UtensilsCrossed,
     },
   ];
 
   const industries = [
-    { name: "Media & Publishing", desc: "High-concurrency editorial tools for national outlets", icon: "📡" },
-    { name: "Corporate Enterprise", desc: "Secure portals, intranets, and investor dashboards", icon: "🏛️" },
-    { name: "Import & Wholesale", desc: "Cross-border sourcing & catalog automation", icon: "📦" },
-    { name: "Shipping & Freight", desc: "Fleet tracking, manifests & customs compliance", icon: "🚛" },
-    { name: "Restaurant & F&B", desc: "POS systems, kitchen displays & reservation engines", icon: "🍜" },
-    { name: "Retail & D2C", desc: "Omnichannel storefronts with analytics pipelines", icon: "🏪" },
-    { name: "Manufacturing", desc: "Production planning, supply chain & ERP interfaces", icon: "⚙️" },
+    { name: "Media & Publishing", desc: "High-concurrency editorial tools for national outlets", Icon: Radio },
+    { name: "Corporate Enterprise", desc: "Secure portals, intranets, and investor dashboards", Icon: Landmark },
+    { name: "Import & Wholesale", desc: "Cross-border sourcing & catalog automation", Icon: Package },
+    { name: "Shipping & Freight", desc: "Fleet tracking, manifests & customs compliance", Icon: Truck },
+    { name: "Restaurant & F&B", desc: "POS systems, kitchen displays & reservation engines", Icon: UtensilsCrossed },
+    { name: "Retail & D2C", desc: "Omnichannel storefronts with analytics pipelines", Icon: Store },
+    { name: "Manufacturing", desc: "Production planning, supply chain & ERP interfaces", Icon: Factory },
   ];
 
   const valueChecklist = [
@@ -186,13 +208,14 @@ export default function HomePage() {
                 <div className="relative">
                   {/* Main dashboard mockup placeholder */}
                   <div className="img-placeholder-dark rounded-2xl aspect-[4/3] border border-white/10 shadow-2xl overflow-hidden">
-                    {/* IMAGE: Dashboard screenshot or product mockup */}
                     <span className="text-white/30 text-sm">[ Dashboard Preview Image ]</span>
                   </div>
                   {/* Floating card */}
                   <div className="absolute -bottom-6 -left-6 glass rounded-xl p-4 animate-float shadow-xl">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-brand/20 flex items-center justify-center text-brand font-bold text-sm">API</div>
+                      <div className="w-10 h-10 rounded-lg bg-brand/20 flex items-center justify-center text-brand font-bold text-sm">
+                        <Cpu className="w-5 h-5" />
+                      </div>
                       <div>
                         <p className="text-xs font-bold text-white">1688 Sync Active</p>
                         <p className="text-[10px] text-text-muted">2,847 products synced</p>
@@ -257,39 +280,43 @@ export default function HomePage() {
 
           <ScrollReveal stagger={0.08} scale>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {products.map((prod, idx) => (
-                <div
-                  key={idx}
-                  className="sr-item opacity-0 group relative flex flex-col justify-between p-8 rounded-2xl border border-border bg-white hover:bg-light/50 transition-all duration-500 glow-border-primary"
-                >
-                  <div>
-                    {/* Icon + Tag Row */}
-                    <div className="flex items-center justify-between mb-6">
-                      <span className="text-3xl">{prod.icon}</span>
-                      <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/5 px-3 py-1 rounded-full">
-                        {prod.tag}
-                      </span>
+              {products.map((prod, idx) => {
+                const ProdIcon = prod.Icon;
+                return (
+                  <div
+                    key={idx}
+                    className="sr-item opacity-0 group relative flex flex-col justify-between p-8 rounded-2xl border border-border bg-white hover:bg-light/50 transition-all duration-500 glow-border-primary"
+                  >
+                    <div>
+                      {/* Icon + Tag Row */}
+                      <div className="flex items-center justify-between mb-6">
+                        <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <ProdIcon className="w-6 h-6" />
+                        </div>
+                        <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/5 px-3 py-1 rounded-full">
+                          {prod.tag}
+                        </span>
+                      </div>
+
+                      <h3 className="text-xl font-bold text-dark mb-3 group-hover:text-primary transition-colors duration-300">
+                        {prod.title}
+                      </h3>
+                      <p className="text-sm text-text-secondary leading-relaxed mb-8">
+                        {prod.desc}
+                      </p>
                     </div>
 
-                    <h3 className="text-xl font-bold text-dark mb-3 group-hover:text-primary transition-colors duration-300">
-                      {prod.title}
-                    </h3>
-                    <p className="text-sm text-text-secondary leading-relaxed mb-8">
-                      {prod.desc}
-                    </p>
-                  </div>
+                    {/* Image placeholder for product screenshot */}
+                    <div className="img-placeholder rounded-xl aspect-[16/9] mb-6 overflow-hidden border border-border">
+                      <span>[ {prod.title} Screenshot ]</span>
+                    </div>
 
-                  {/* Image placeholder for product screenshot */}
-                  <div className="img-placeholder rounded-xl aspect-[16/9] mb-6 overflow-hidden border border-border">
-                    {/* IMAGE: Product screenshot / UI preview */}
-                    <span>[ {prod.title} Screenshot ]</span>
+                    <Button variant="ghost" size="sm" href={prod.href} className="justify-start pl-0 text-primary font-bold">
+                      Explore Platform <ArrowRight className="w-4 h-4 ml-1" />
+                    </Button>
                   </div>
-
-                  <Button variant="ghost" size="sm" href={prod.href} className="justify-start pl-0 text-primary font-bold">
-                    Explore Platform →
-                  </Button>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </ScrollReveal>
         </div>
@@ -371,9 +398,7 @@ export default function HomePage() {
                           <p className="text-sm font-bold text-white">{item.label}</p>
                           <p className="text-[11px] text-text-muted">{item.detail}</p>
                         </div>
-                        <svg className="w-4 h-4 text-text-muted group-hover:text-white transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                        </svg>
+                        <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-white transition-colors shrink-0" />
                       </div>
                       );
                     })}
@@ -407,13 +432,18 @@ export default function HomePage() {
 
           <ScrollReveal stagger={0.06} direction="up" scale>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {industries.map((ind, idx) => (
-                <div key={idx} className="sr-item opacity-0 group p-6 rounded-2xl border border-border bg-white hover:border-primary/30 hover:shadow-lg transition-all duration-500">
-                  <span className="text-3xl block mb-4 group-hover:scale-110 transition-transform duration-300">{ind.icon}</span>
-                  <h3 className="font-bold text-dark mb-2 group-hover:text-primary transition-colors">{ind.name}</h3>
-                  <p className="text-xs text-text-secondary leading-relaxed">{ind.desc}</p>
-                </div>
-              ))}
+              {industries.map((ind, idx) => {
+                const IndIcon = ind.Icon;
+                return (
+                  <div key={idx} className="sr-item opacity-0 group p-6 rounded-2xl border border-border bg-white hover:border-primary/30 hover:shadow-lg transition-all duration-500">
+                    <div className="w-12 h-12 rounded-xl bg-light flex items-center justify-center text-primary mb-4 group-hover:scale-110 group-hover:bg-primary/10 transition-all duration-300">
+                      <IndIcon className="w-6 h-6" />
+                    </div>
+                    <h3 className="font-bold text-dark mb-2 group-hover:text-primary transition-colors">{ind.name}</h3>
+                    <p className="text-xs text-text-secondary leading-relaxed">{ind.desc}</p>
+                  </div>
+                );
+              })}
             </div>
           </ScrollReveal>
         </div>
@@ -442,7 +472,6 @@ export default function HomePage() {
 
                 {/* Image placeholder for office/team */}
                 <div className="sr-item opacity-0 img-placeholder rounded-2xl aspect-[3/2] border border-border overflow-hidden shadow-sm">
-                  {/* IMAGE: Team working / office shot */}
                   <span>[ Team / Office Image ]</span>
                 </div>
               </ScrollReveal>
@@ -455,10 +484,8 @@ export default function HomePage() {
                   {valueChecklist.map((item, idx) => (
                     <div key={idx} className="sr-item opacity-0 flex gap-4 p-5 rounded-xl border border-border bg-light/50 hover:bg-white hover:shadow-sm transition-all duration-300 group">
                       <div className="mt-0.5 flex-shrink-0">
-                        <div className="w-8 h-8 rounded-lg bg-brand/10 flex items-center justify-center group-hover:bg-brand group-hover:scale-110 transition-all duration-300">
-                          <svg className="w-4 h-4 text-brand group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
-                          </svg>
+                        <div className="w-8 h-8 rounded-lg bg-brand/10 text-brand flex items-center justify-center group-hover:bg-brand group-hover:text-white group-hover:scale-110 transition-all duration-300">
+                          <Check className="w-4 h-4" />
                         </div>
                       </div>
                       <div>
@@ -540,7 +567,7 @@ export default function HomePage() {
             </div>
             <div className="sr-item opacity-0">
               <Button variant="outline" size="md" href="/portfolio">
-                View All Projects →
+                View All Projects <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
             </div>
           </ScrollReveal>
@@ -555,7 +582,6 @@ export default function HomePage() {
                 <div key={idx} className="sr-item opacity-0 group rounded-2xl border border-border overflow-hidden bg-white hover:shadow-xl transition-all duration-500">
                   {/* Project Image Placeholder */}
                   <div className="img-placeholder aspect-[16/10] border-b border-border">
-                    {/* IMAGE: Project mockup / screenshot */}
                     <span>[ {project.title} Mockup ]</span>
                   </div>
                   <div className="p-6 space-y-3">
@@ -563,7 +589,7 @@ export default function HomePage() {
                     <h3 className="text-lg font-bold text-dark group-hover:text-primary transition-colors">{project.title}</h3>
                     <p className="text-sm text-text-secondary leading-relaxed">{project.desc}</p>
                     <Button variant="ghost" size="sm" href="/portfolio" className="pl-0 text-primary font-bold">
-                      View Case →
+                      View Case <ArrowRight className="w-4 h-4 ml-1" />
                     </Button>
                   </div>
                 </div>
@@ -633,9 +659,7 @@ export default function HomePage() {
                   <summary className="flex items-center justify-between p-6 font-semibold text-dark cursor-pointer select-none group-open:bg-light/60 transition-colors">
                     <span className="pr-4">{faq.q}</span>
                     <span className="ml-4 flex-shrink-0 w-8 h-8 rounded-full bg-light flex items-center justify-center group-open:bg-primary/10 transition-all duration-300">
-                      <svg className="w-4 h-4 text-text-secondary transition-transform duration-300 group-open:rotate-180 group-open:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                      </svg>
+                      <ChevronDown className="w-4 h-4 text-text-secondary transition-transform duration-300 group-open:rotate-180 group-open:text-primary" />
                     </span>
                   </summary>
                   <div className="px-6 pb-6 text-sm text-text-secondary leading-relaxed border-t border-border pt-4">

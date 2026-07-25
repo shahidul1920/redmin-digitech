@@ -1,4 +1,5 @@
 import React from "react";
+import { ArrowRight, BookOpen } from "@/components/Icons";
 import Button from "@/components/Button";
 import CTASection from "@/components/CTASection";
 
@@ -73,7 +74,7 @@ export default function BlogPage() {
                 <p className="text-xs text-text-secondary leading-relaxed mb-6">{cat.desc}</p>
               </div>
               <Button variant="ghost" size="sm" href="#" className="justify-start pl-0 text-brand text-xs font-bold">
-                View Articles &rarr;
+                View Articles <ArrowRight className="w-4 h-4 ml-1" />
               </Button>
             </div>
           ))}
@@ -104,7 +105,7 @@ export default function BlogPage() {
                 </p>
               </div>
               <Button variant="outline" size="sm" className="w-full">
-                Read Article
+                <BookOpen className="w-4 h-4 mr-2" /> Read Article
               </Button>
             </div>
           ))}

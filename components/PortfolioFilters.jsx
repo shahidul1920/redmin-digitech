@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { ArrowRight } from "@/components/Icons";
 import Button from "./Button";
 
 export default function PortfolioFilters() {
@@ -113,7 +114,7 @@ export default function PortfolioFilters() {
               </p>
             </div>
             <Button variant="outline" size="sm" className="w-full mt-4">
-              View Case Study
+              View Case Study <ArrowRight className="w-4 h-4 ml-1" />
             </Button>
           </div>
         ))}

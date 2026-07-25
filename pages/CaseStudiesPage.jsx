@@ -1,4 +1,5 @@
 import React from "react";
+import { Award } from "@/components/Icons";
 import Button from "@/components/Button";
 import CTASection from "@/components/CTASection";
 
@@ -40,8 +41,9 @@ export default function CaseStudiesPage() {
             <p className="text-text-muted text-base md:text-lg leading-relaxed">
               We believe in documenting real results. Below are detailed operational analyses of systems we have successfully deployed for logistics and retail brands.
             </p>
-            <div className="mt-8 p-4 rounded-xl bg-dark-secondary border border-border-dark inline-block text-xs font-semibold text-brand tracking-wide">
-              ★ Engineering Standard: We build robust, documented case studies for every system we launch.
+            <div className="mt-8 p-4 rounded-xl bg-dark-secondary border border-border-dark inline-flex items-center gap-2 text-xs font-semibold text-brand tracking-wide">
+              <Award className="w-4 h-4 text-brand" />
+              <span>Engineering Standard: We build robust, documented case studies for every system we launch.</span>
             </div>
           </div>
           <div className="absolute -bottom-16 -right-16 w-80 h-80 bg-primary opacity-15 rounded-full blur-3xl" />
