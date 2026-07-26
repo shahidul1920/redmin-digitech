@@ -1,19 +1,24 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, Calendar, BookOpen } from "@/components/Icons";
+import { ArrowRight, Calendar } from "@/components/Icons";
 
 export default function BlogCard({ post }) {
+  const [imgError, setImgError] = useState(false);
+
   if (!post) return null;
 
   const categoryName = post.categories?.nodes?.[0]?.name || "Articles";
   const categorySlug = post.categories?.nodes?.[0]?.slug || "general";
 
   // Extract image URL from WP post featuredImage or extraPostDetails.subImage
-  const imageUrl =
+  const rawImageUrl =
     post.featuredImage?.node?.sourceUrl ||
-    post.extraPostDetails?.subImage?.node?.sourceUrl ||
-    "/Redmun-final.svg";
+    post.extraPostDetails?.subImage?.node?.sourceUrl;
+
+  // Upgrade HTTP to HTTPS to prevent Vercel mixed-content blocking
+  const imageUrl = rawImageUrl ? rawImageUrl.replace(/^http:\/\//i, "https://") : null;
 
   const altText =
     post.featuredImage?.node?.altText ||
@@ -39,15 +44,16 @@ export default function BlogCard({ post }) {
       <div>
         {/* Post Image Container */}
         <div className="relative h-48 sm:h-56 w-full bg-dark/5 overflow-hidden border-b border-border">
-          {imageUrl && imageUrl.startsWith("http") ? (
+          {imageUrl && !imgError ? (
             <img
               src={imageUrl}
               alt={altText}
+              onError={() => setImgError(true)}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-dark to-dark-secondary flex items-center justify-center p-6 text-center">
+            <div className="w-full h-full bg-gradient-to-br from-dark via-dark-secondary to-dark/90 flex items-center justify-center p-6 text-center">
               <div className="space-y-2">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-brand block">
                   Redmun Engineering

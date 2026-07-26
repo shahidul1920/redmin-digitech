@@ -1,10 +1,14 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Calendar, User, Tag, Share2, ArrowRight } from "@/components/Icons";
+import { ArrowLeft, Calendar, User, Tag, ArrowRight } from "@/components/Icons";
 import CTASection from "@/components/CTASection";
 import BlogCard from "@/components/BlogCard";
 
 export default function BlogPostPage({ post, relatedPosts = [] }) {
+  const [imgError, setImgError] = useState(false);
+
   if (!post) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-24 text-center space-y-6">
@@ -23,9 +27,12 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
   }
 
   const category = post.categories?.nodes?.[0] || { name: "Engineering", slug: "engineering" };
-  const imageUrl =
+  const rawImageUrl =
     post.featuredImage?.node?.sourceUrl ||
     post.extraPostDetails?.subImage?.node?.sourceUrl;
+
+  // Upgrade HTTP to HTTPS to prevent Vercel mixed-content blocking
+  const imageUrl = rawImageUrl ? rawImageUrl.replace(/^http:\/\//i, "https://") : null;
 
   const altText =
     post.featuredImage?.node?.altText ||
@@ -42,7 +49,9 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
 
   const subTitle = post.extraPostDetails?.subTitle || "";
   const extendedContent = post.extraPostDetails?.extended || "";
-  const htmlContent = post.content || "";
+  const htmlContent = post.content
+    ? post.content.replace(/http:\/\/server\.redmun\.com/g, "https://server.redmun.com")
+    : "";
 
   return (
     <article className="bg-light-secondary/40 py-12">
@@ -89,10 +98,26 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
           )}
 
           {/* Featured Image */}
-          {imageUrl && (
+          {imageUrl && !imgError ? (
             <div className="pt-4">
               <div className="relative h-64 sm:h-96 w-full rounded-2xl overflow-hidden border border-border bg-dark/5">
-                <img src={imageUrl} alt={altText} className="w-full h-full object-cover" />
+                <img
+                  src={imageUrl}
+                  alt={altText}
+                  onError={() => setImgError(true)}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="pt-4">
+              <div className="h-48 sm:h-64 w-full rounded-2xl bg-gradient-to-br from-dark via-dark-secondary to-dark/90 flex items-center justify-center p-8 text-center border border-border-dark">
+                <div className="space-y-2">
+                  <span className="text-xs font-bold uppercase tracking-widest text-brand block">
+                    Redmun Official Publication
+                  </span>
+                  <span className="text-lg font-bold text-white max-w-lg block mx-auto">{post.title}</span>
+                </div>
               </div>
             </div>
           )}
