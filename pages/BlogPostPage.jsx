@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, Calendar, User, Tag, ArrowRight } from "@/components/Icons";
 import CTASection from "@/components/CTASection";
 import BlogCard from "@/components/BlogCard";
+import { getProxiedImageUrl } from "@/utils/media-proxy";
 
 export default function BlogPostPage({ post, relatedPosts = [] }) {
   const [imgError, setImgError] = useState(false);
@@ -35,8 +36,8 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
     post.extraPostDetails?.subImage?.node?.mediaItemUrl ||
     post.extraPostDetails?.subImage?.sourceUrl;
 
-  // Upgrade HTTP to HTTPS to prevent Vercel mixed-content blocking
-  const imageUrl = rawImageUrl ? rawImageUrl.replace(/^http:\/\//i, "https://") : null;
+  // Route featured image URL through /api/media proxy
+  const imageUrl = getProxiedImageUrl(rawImageUrl);
 
   const altText =
     post.featuredImage?.node?.altText ||
@@ -53,8 +54,13 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
 
   const subTitle = post.extraPostDetails?.subTitle || "";
   const extendedContent = post.extraPostDetails?.extended || "";
+
+  // Route in-body content WordPress images through /api/media proxy
   const htmlContent = post.content
-    ? post.content.replace(/http:\/\/server\.redmun\.com/g, "https://server.redmun.com")
+    ? post.content.replace(
+        /https?:\/\/server\.redmun\.com\/[^\s"']+/gi,
+        (matchedUrl) => `/api/media?url=${encodeURIComponent(matchedUrl.replace(/^http:\/\//i, "https://"))}`
+      )
     : "";
 
   return (
@@ -108,7 +114,6 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
                 <img
                   src={imageUrl}
                   alt={altText}
-                  referrerPolicy="no-referrer"
                   onError={() => setImgError(true)}
                   className="w-full h-full object-cover"
                 />

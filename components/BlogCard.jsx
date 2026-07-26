@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Calendar } from "@/components/Icons";
+import { getProxiedImageUrl } from "@/utils/media-proxy";
 
 export default function BlogCard({ post }) {
   const [imgError, setImgError] = useState(false);
@@ -21,8 +22,8 @@ export default function BlogCard({ post }) {
     post.extraPostDetails?.subImage?.node?.mediaItemUrl ||
     post.extraPostDetails?.subImage?.sourceUrl;
 
-  // Upgrade HTTP to HTTPS to prevent Vercel mixed-content blocking
-  const imageUrl = rawImageUrl ? rawImageUrl.replace(/^http:\/\//i, "https://") : null;
+  // Route server.redmun.com images through Next.js /api/media proxy
+  const imageUrl = getProxiedImageUrl(rawImageUrl);
 
   const altText =
     post.featuredImage?.node?.altText ||
@@ -52,7 +53,6 @@ export default function BlogCard({ post }) {
             <img
               src={imageUrl}
               alt={altText}
-              referrerPolicy="no-referrer"
               onError={() => setImgError(true)}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
