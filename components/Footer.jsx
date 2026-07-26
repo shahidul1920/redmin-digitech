@@ -1,19 +1,45 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Linkedin, Twitter, Github } from "@/components/Icons";
+import { Linkedin, Twitter, Github, Check } from "@/components/Icons";
 import Button from "./Button";
+import { subscribeNewsletter } from "@/utils/actions";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [showCookieModal, setShowCookieModal] = React.useState(false);
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [botHoneypot, setBotHoneypot] = useState("");
+  const [newsletterStatus, setNewsletterStatus] = useState("idle"); // 'idle' | 'submitting' | 'success'
   const [cookiePreferences, setCookiePreferences] = React.useState({
     essential: true,
     analytics: true,
     performance: true,
   });
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    if (!newsletterEmail) return;
+    setNewsletterStatus("submitting");
+
+    try {
+      const dataPayload = new FormData();
+      dataPayload.append("userEmail", newsletterEmail);
+      dataPayload.append("company_website_url", botHoneypot);
+
+      const res = await subscribeNewsletter(dataPayload);
+      if (res.success) {
+        setNewsletterStatus("success");
+        setNewsletterEmail("");
+      } else {
+        setNewsletterStatus("idle");
+      }
+    } catch {
+      setNewsletterStatus("idle");
+    }
+  };
 
   const productLinks = [
     { name: "News Portal", href: "/products/news-portal" },
@@ -32,12 +58,12 @@ export default function Footer() {
     { name: "Retail Automation", href: "/solutions/retail-automation" },
   ];
 
-  const resourceLinks = [
-    { name: "Import Business Blog", href: "/resources/import-business" },
-    { name: "SEO Optimization Guide", href: "/resources/seo" },
-    { name: "Ecommerce Insights", href: "/resources/ecommerce" },
-    { name: "1688 Integration Docs", href: "/resources/1688" },
-    { name: "Restaurant Tech Articles", href: "/resources/restaurant-tech" },
+  const blogLinks = [
+    { name: "Import Business Blog", href: "/blog" },
+    { name: "SEO Optimization Guide", href: "/blog" },
+    { name: "Ecommerce Insights", href: "/blog" },
+    { name: "1688 Integration Docs", href: "/blog" },
+    { name: "Restaurant Tech Articles", href: "/blog" },
   ];
 
   const companyLinks = [
@@ -97,17 +123,36 @@ export default function Footer() {
             {/* Subscription Form */}
             <div className="space-y-3 max-w-sm mt-2">
               <h4 className="text-xs font-bold uppercase tracking-widest text-brand">Stay Updated</h4>
-              <form onSubmit={(e) => e.preventDefault()} className="flex gap-2">
-                <input
-                  type="email"
-                  required
-                  placeholder="Enter work email"
-                  className="w-full px-4 py-2 text-sm rounded-lg bg-dark-secondary border border-border-dark text-white placeholder-text-muted focus:outline-none focus:border-brand transition-colors"
-                />
-                <Button variant="brand" size="sm" type="submit" className="shrink-0 px-4 py-2">
-                  Join
-                </Button>
-              </form>
+              {newsletterStatus === "success" ? (
+                <div className="flex items-center gap-2 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs">
+                  <Check className="w-4 h-4 shrink-0" />
+                  <span>Subscribed! Check your inbox for updates.</span>
+                </div>
+              ) : (
+                <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                  <input
+                    type="text"
+                    name="company_website_url"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={botHoneypot}
+                    onChange={(e) => setBotHoneypot(e.target.value)}
+                    className="hidden"
+                  />
+                  <input
+                    type="email"
+                    required
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    placeholder="Enter work email"
+                    disabled={newsletterStatus === "submitting"}
+                    className="w-full px-4 py-2 text-sm rounded-lg bg-dark-secondary border border-border-dark text-white placeholder-text-muted focus:outline-none focus:border-brand transition-colors"
+                  />
+                  <Button variant="brand" size="sm" type="submit" loading={newsletterStatus === "submitting"} className="shrink-0 px-4 py-2">
+                    Join
+                  </Button>
+                </form>
+              )}
             </div>
           </div>
 
@@ -141,11 +186,11 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Resources column */}
+            {/* Blog column */}
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-widest text-text-muted mb-4">Resources</h3>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-text-muted mb-4">Blog</h3>
               <ul className="space-y-2.5">
-                {resourceLinks.map((link) => (
+                {blogLinks.map((link) => (
                   <li key={link.name}>
                     <Link href={link.href} className="text-sm text-text-muted hover:text-white transition-colors">
                       {link.name}

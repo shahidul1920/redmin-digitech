@@ -49,8 +49,8 @@ export default function BlogPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <div className="bg-dark text-white rounded-3xl p-8 md:p-16 relative overflow-hidden border border-border-dark shadow-lg">
           <div className="relative z-10 max-w-3xl">
-            <span className="text-xs font-bold uppercase tracking-widest text-brand block mb-4">Redmun Resource Hub</span>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">Articles & Sourcing Guides</h1>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand block mb-4">Redmun Tech Blog</span>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">Blog & Technical Articles</h1>
             <p className="text-text-muted text-base md:text-lg leading-relaxed">
               Technical documentations, system blueprints, and digital supply guides written by our software developers and logistics architects.
             </p>
@@ -62,7 +62,7 @@ export default function BlogPage() {
       {/* 2. Categories Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
         <div className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-dark mb-2">Resource Categories</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-dark mb-2">Blog Categories</h2>
           <p className="text-text-secondary text-sm">Browse structured guides across our core integration fields.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

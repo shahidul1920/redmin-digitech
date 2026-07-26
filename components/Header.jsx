@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null); // 'products' | 'resources' | null
+  const [activeDropdown, setActiveDropdown] = useState(null); // 'products' | 'blog' | null
   const pathname = usePathname();
 
   const products = [
@@ -22,15 +22,15 @@ export default function Header() {
     { name: "Restaurant Chain Management", href: "/products/restaurant-management" },
   ];
 
-  const resources = [
-    { name: "News Portal Tech", href: "/resources/news-portal" },
-    { name: "Ecommerce Insights", href: "/resources/ecommerce" },
-    { name: "1688 Import Guides", href: "/resources/1688" },
-    { name: "Import Business", href: "/resources/import-business" },
-    { name: "Restaurant Tech", href: "/resources/restaurant-tech" },
-    { name: "SEO & Growth", href: "/resources/seo" },
-    { name: "Website Architecture", href: "/resources/website" },
-    { name: "Digital Business", href: "/resources/digital-business" },
+  const blogCategories = [
+    { name: "1688 Import Guides", href: "/blog" },
+    { name: "News Portal Tech", href: "/blog" },
+    { name: "Ecommerce Insights", href: "/blog" },
+    { name: "Import Business", href: "/blog" },
+    { name: "Restaurant Tech", href: "/blog" },
+    { name: "SEO & Growth", href: "/blog" },
+    { name: "Website Architecture", href: "/blog" },
+    { name: "Digital Business", href: "/blog" },
   ];
 
   const mainNav = [
@@ -40,7 +40,7 @@ export default function Header() {
     { name: "Portfolio", href: "/portfolio" },
     { name: "Case Studies", href: "/case-studies" },
     { name: "Pricing", href: "/pricing" },
-    { name: "Resources", href: "/resources", dropdown: resources, type: "resources" },
+    { name: "Blog", href: "/blog", dropdown: blogCategories, type: "blog" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
   ];

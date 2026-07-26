@@ -1,27 +1,56 @@
 "use client";
 
 import React, { useState } from "react";
-import { Check, MessageSquare, Calendar } from "@/components/Icons";
+import { Check, MessageSquare, Calendar, AlertCircle } from "@/components/Icons";
 import Button from "./Button";
+import { sendContactEmail } from "@/utils/actions";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    userName: "",
+    userEmail: "",
+    userPhone: "",
     subject: "1688-api",
-    message: "",
+    userMessage: "",
+    company_website_url: "", // Honeypot field for bot prevention
   });
   const [status, setStatus] = useState("idle"); // 'idle' | 'submitting' | 'success' | 'error'
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("submitting");
+    setErrorMessage("");
 
-    // Simulate database submit delay
-    setTimeout(() => {
-      setStatus("success");
-      setFormData({ name: "", email: "", subject: "1688-api", message: "" });
-    }, 1500);
+    try {
+      const dataPayload = new FormData();
+      dataPayload.append("userName", formData.userName);
+      dataPayload.append("userEmail", formData.userEmail);
+      dataPayload.append("userPhone", formData.userPhone);
+      dataPayload.append("subject", formData.subject);
+      dataPayload.append("userMessage", formData.userMessage);
+      dataPayload.append("company_website_url", formData.company_website_url);
+
+      const res = await sendContactEmail(dataPayload);
+      if (res.success) {
+        setStatus("success");
+        setFormData({
+          userName: "",
+          userEmail: "",
+          userPhone: "",
+          subject: "1688-api",
+          userMessage: "",
+          company_website_url: "",
+        });
+      } else {
+        setStatus("error");
+        setErrorMessage(res.error || "Something went wrong while sending your message.");
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+      setErrorMessage("An unexpected network error occurred.");
+    }
   };
 
   const handleChange = (e) => {
@@ -46,70 +75,112 @@ export default function ContactForm() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-1">
-            <label htmlFor="name" className="text-xs font-bold text-dark uppercase tracking-wider block">
-              Full Name
-            </label>
+          {/* Honeypot field - invisible to real human users */}
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="company_website_url">Leave this empty</label>
             <input
               type="text"
-              id="name"
-              name="name"
-              required
-              value={formData.name}
+              id="company_website_url"
+              name="company_website_url"
+              tabIndex={-1}
+              autoComplete="off"
+              value={formData.company_website_url}
               onChange={handleChange}
-              disabled={status === "submitting"}
-              placeholder="e.g. Rahat Chowdhury"
-              className="w-full px-4 py-3 text-sm rounded-xl bg-light-secondary border border-border text-dark placeholder-text-muted focus:outline-none focus:border-brand focus:bg-white transition-all"
             />
           </div>
 
-          <div className="space-y-1">
-            <label htmlFor="email" className="text-xs font-bold text-dark uppercase tracking-wider block">
-              Work Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              value={formData.email}
-              onChange={handleChange}
-              disabled={status === "submitting"}
-              placeholder="e.g. ops@company.com"
-              className="w-full px-4 py-3 text-sm rounded-xl bg-light-secondary border border-border text-dark placeholder-text-muted focus:outline-none focus:border-brand focus:bg-white transition-all"
-            />
+          {status === "error" && (
+            <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 shrink-0 text-red-600" />
+              <span>{errorMessage}</span>
+            </div>
+          )}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-1">
+              <label htmlFor="userName" className="text-xs font-bold text-dark uppercase tracking-wider block">
+                Full Name *
+              </label>
+              <input
+                type="text"
+                id="userName"
+                name="userName"
+                required
+                value={formData.userName}
+                onChange={handleChange}
+                disabled={status === "submitting"}
+                placeholder="e.g. Rahat Chowdhury"
+                className="w-full px-4 py-3 text-sm rounded-xl bg-light-secondary border border-border text-dark placeholder-text-muted focus:outline-none focus:border-brand focus:bg-white transition-all"
+              />
+            </div>
+
+            <div className="space-y-1">
+              <label htmlFor="userEmail" className="text-xs font-bold text-dark uppercase tracking-wider block">
+                Work Email *
+              </label>
+              <input
+                type="email"
+                id="userEmail"
+                name="userEmail"
+                required
+                value={formData.userEmail}
+                onChange={handleChange}
+                disabled={status === "submitting"}
+                placeholder="e.g. ops@company.com"
+                className="w-full px-4 py-3 text-sm rounded-xl bg-light-secondary border border-border text-dark placeholder-text-muted focus:outline-none focus:border-brand focus:bg-white transition-all"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-1">
+              <label htmlFor="userPhone" className="text-xs font-bold text-dark uppercase tracking-wider block">
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                id="userPhone"
+                name="userPhone"
+                value={formData.userPhone}
+                onChange={handleChange}
+                disabled={status === "submitting"}
+                placeholder="e.g. +880 1700-000000"
+                className="w-full px-4 py-3 text-sm rounded-xl bg-light-secondary border border-border text-dark placeholder-text-muted focus:outline-none focus:border-brand focus:bg-white transition-all"
+              />
+            </div>
+
+            <div className="space-y-1">
+              <label htmlFor="subject" className="text-xs font-bold text-dark uppercase tracking-wider block">
+                Inquiry Scope
+              </label>
+              <select
+                id="subject"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                disabled={status === "submitting"}
+                className="w-full px-4 py-3 text-sm rounded-xl bg-light-secondary border border-border text-dark focus:outline-none focus:border-brand focus:bg-white transition-all cursor-pointer"
+              >
+                <option value="1688-api">1688 API Sourcing Integration</option>
+                <option value="shipping">Shipping Manifest ERP</option>
+                <option value="restaurant">Restaurant POS Orders</option>
+                <option value="ecommerce">Headless E-Commerce System</option>
+                <option value="news-portal">High-Speed News Portal</option>
+                <option value="consulting">Custom Technical Consulting</option>
+              </select>
+            </div>
           </div>
 
           <div className="space-y-1">
-            <label htmlFor="subject" className="text-xs font-bold text-dark uppercase tracking-wider block">
-              Inquiry Scope
-            </label>
-            <select
-              id="subject"
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              disabled={status === "submitting"}
-              className="w-full px-4 py-3 text-sm rounded-xl bg-light-secondary border border-border text-dark focus:outline-none focus:border-brand focus:bg-white transition-all cursor-pointer"
-            >
-              <option value="1688-api">1688 API Sourcing Integration</option>
-              <option value="shipping">Shipping Manifest ERP</option>
-              <option value="restaurant">Restaurant POS Orders</option>
-              <option value="ecommerce">Headless E-Commerce System</option>
-              <option value="consulting">Custom Technical Consulting</option>
-            </select>
-          </div>
-
-          <div className="space-y-1">
-            <label htmlFor="message" className="text-xs font-bold text-dark uppercase tracking-wider block">
-              Project Brief
+            <label htmlFor="userMessage" className="text-xs font-bold text-dark uppercase tracking-wider block">
+              Project Brief *
             </label>
             <textarea
-              id="message"
-              name="message"
+              id="userMessage"
+              name="userMessage"
               required
               rows={4}
-              value={formData.message}
+              value={formData.userMessage}
               onChange={handleChange}
               disabled={status === "submitting"}
               placeholder="Please describe your operational requirements..."
