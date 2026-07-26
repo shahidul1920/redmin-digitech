@@ -104,6 +104,7 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
                 <img
                   src={imageUrl}
                   alt={altText}
+                  referrerPolicy="no-referrer"
                   onError={() => setImgError(true)}
                   className="w-full h-full object-cover"
                 />

@@ -48,6 +48,7 @@ export default function BlogCard({ post }) {
             <img
               src={imageUrl}
               alt={altText}
+              referrerPolicy="no-referrer"
               onError={() => setImgError(true)}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
