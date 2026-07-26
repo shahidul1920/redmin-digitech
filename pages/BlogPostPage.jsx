@@ -29,7 +29,11 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
   const category = post.categories?.nodes?.[0] || { name: "Engineering", slug: "engineering" };
   const rawImageUrl =
     post.featuredImage?.node?.sourceUrl ||
-    post.extraPostDetails?.subImage?.node?.sourceUrl;
+    post.featuredImage?.node?.mediaItemUrl ||
+    post.featuredImage?.sourceUrl ||
+    post.extraPostDetails?.subImage?.node?.sourceUrl ||
+    post.extraPostDetails?.subImage?.node?.mediaItemUrl ||
+    post.extraPostDetails?.subImage?.sourceUrl;
 
   // Upgrade HTTP to HTTPS to prevent Vercel mixed-content blocking
   const imageUrl = rawImageUrl ? rawImageUrl.replace(/^http:\/\//i, "https://") : null;
