@@ -23,14 +23,13 @@ export default function Header() {
   ];
 
   const blogCategories = [
-    { name: "1688 Import Guides", href: "/blog" },
-    { name: "News Portal Tech", href: "/blog" },
-    { name: "Ecommerce Insights", href: "/blog" },
-    { name: "Import Business", href: "/blog" },
-    { name: "Restaurant Tech", href: "/blog" },
-    { name: "SEO & Growth", href: "/blog" },
-    { name: "Website Architecture", href: "/blog" },
-    { name: "Digital Business", href: "/blog" },
+    { name: "1688 Sourcing", href: "/blog/category/1688" },
+    { name: "News Portal Tech", href: "/blog/category/news-portal" },
+    { name: "Ecommerce Insights", href: "/blog/category/ecommerce" },
+    { name: "Import Business", href: "/blog/category/import-business" },
+    { name: "Restaurant Tech", href: "/blog/category/restaurant-tech" },
+    { name: "SEO & Speed", href: "/blog/category/seo" },
+    { name: "Digital Business", href: "/blog/category/digital-business" },
   ];
 
   const mainNav = [

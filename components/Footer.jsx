@@ -59,11 +59,11 @@ export default function Footer() {
   ];
 
   const blogLinks = [
-    { name: "Import Business Blog", href: "/blog" },
-    { name: "SEO Optimization Guide", href: "/blog" },
-    { name: "Ecommerce Insights", href: "/blog" },
-    { name: "1688 Integration Docs", href: "/blog" },
-    { name: "Restaurant Tech Articles", href: "/blog" },
+    { name: "Import Business Blog", href: "/blog/category/import-business" },
+    { name: "SEO Optimization Guide", href: "/blog/category/seo" },
+    { name: "Ecommerce Insights", href: "/blog/category/ecommerce" },
+    { name: "1688 Integration Docs", href: "/blog/category/1688" },
+    { name: "Restaurant Tech Articles", href: "/blog/category/restaurant-tech" },
   ];
 
   const companyLinks = [
