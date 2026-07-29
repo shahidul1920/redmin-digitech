@@ -194,27 +194,19 @@ export default function ContactForm() {
         </form>
       )}
 
-      {/* WhatsApp & Meeting Quick Actions */}
-      <div className="border-t border-border pt-6 grid grid-cols-2 gap-4">
+      {/* WhatsApp Quick Action */}
+      <div className="border-t border-border pt-6">
         <a
           href="https://wa.me/8801711994608"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-col items-center justify-center p-4 rounded-xl border border-border hover:border-brand bg-light-secondary/20 hover:bg-white text-center transition-all group"
+          className="flex items-center justify-center gap-3 p-4 rounded-xl border border-border hover:border-brand bg-light-secondary/20 hover:bg-white text-center transition-all group w-full"
         >
-          <MessageSquare className="w-5 h-5 text-brand mb-1 group-hover:scale-110 transition-transform" />
-          <span className="text-xs font-bold text-dark uppercase tracking-wider group-hover:text-brand transition-colors">WhatsApp</span>
-          <span className="text-[10px] text-text-tertiary mt-1">Instant Support</span>
-        </a>
-        <a
-          href="https://calendly.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col items-center justify-center p-4 rounded-xl border border-border hover:border-brand bg-light-secondary/20 hover:bg-white text-center transition-all group"
-        >
-          <Calendar className="w-5 h-5 text-primary mb-1 group-hover:scale-110 transition-transform" />
-          <span className="text-xs font-bold text-dark uppercase tracking-wider group-hover:text-brand transition-colors">Book Scoping</span>
-          <span className="text-[10px] text-text-tertiary mt-1">15m Video Call</span>
+          <MessageSquare className="w-5 h-5 text-brand group-hover:scale-110 transition-transform" />
+          <div className="text-left">
+            <span className="text-xs font-bold text-dark uppercase tracking-wider group-hover:text-brand transition-colors block">Chat on WhatsApp</span>
+            <span className="text-[10px] text-text-tertiary">Instant Support & Project Inquiries</span>
+          </div>
         </a>
       </div>
     </div>
