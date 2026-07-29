@@ -391,16 +391,16 @@ export default function HomePage() {
                         ? "bg-brand/20 text-brand"
                         : "bg-primary/20 text-primary";
                       return (
-                      <div key={idx} className="flex items-center gap-4 p-4 rounded-xl bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.08] transition-all duration-300 group">
-                        <div className={`w-10 h-10 rounded-lg ${accentClasses} flex items-center justify-center font-bold text-sm shrink-0`}>
-                          {item.step}
+                        <div key={idx} className="flex items-center gap-4 p-4 rounded-xl bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.08] transition-all duration-300 group">
+                          <div className={`w-10 h-10 rounded-lg ${accentClasses} flex items-center justify-center font-bold text-sm shrink-0`}>
+                            {item.step}
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-sm font-bold text-white">{item.label}</p>
+                            <p className="text-[11px] text-text-muted">{item.detail}</p>
+                          </div>
+                          <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-white transition-colors shrink-0" />
                         </div>
-                        <div className="flex-1">
-                          <p className="text-sm font-bold text-white">{item.label}</p>
-                          <p className="text-[11px] text-text-muted">{item.detail}</p>
-                        </div>
-                        <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-white transition-colors shrink-0" />
-                      </div>
                       );
                     })}
                   </div>
