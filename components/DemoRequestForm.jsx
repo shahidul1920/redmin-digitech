@@ -152,7 +152,7 @@ export default function DemoRequestForm() {
                 value={formData.userPhone}
                 onChange={handleChange}
                 disabled={status === "submitting"}
-                placeholder="e.g. +880 1700-000000"
+                placeholder="e.g. +880 1711 994608"
                 className="w-full px-4 py-3 text-sm rounded-xl bg-light-secondary border border-border text-dark placeholder-text-muted focus:outline-none focus:border-primary focus:bg-white transition-all"
               />
             </div>

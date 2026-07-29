@@ -144,7 +144,7 @@ export default function ContactForm() {
                 value={formData.userPhone}
                 onChange={handleChange}
                 disabled={status === "submitting"}
-                placeholder="e.g. +880 1700-000000"
+                placeholder="e.g. +880 1711 994608"
                 className="w-full px-4 py-3 text-sm rounded-xl bg-light-secondary border border-border text-dark placeholder-text-muted focus:outline-none focus:border-brand focus:bg-white transition-all"
               />
             </div>
@@ -197,7 +197,7 @@ export default function ContactForm() {
       {/* WhatsApp & Meeting Quick Actions */}
       <div className="border-t border-border pt-6 grid grid-cols-2 gap-4">
         <a
-          href="https://wa.me/8801700000000"
+          href="https://wa.me/8801711994608"
           target="_blank"
           rel="noopener noreferrer"
           className="flex flex-col items-center justify-center p-4 rounded-xl border border-border hover:border-brand bg-light-secondary/20 hover:bg-white text-center transition-all group"

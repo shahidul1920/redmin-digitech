@@ -1,5 +1,5 @@
 import React from "react";
-import { Phone, MapPin } from "@/components/Icons";
+import { Phone, MapPin, Mail } from "@/components/Icons";
 import ContactForm from "@/components/ContactForm";
 import CTASection from "@/components/CTASection";
 
@@ -35,26 +35,37 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div className="space-y-6">
-            <div className="flex gap-4 p-4 rounded-xl bg-white border border-border items-start">
-              <div className="w-10 h-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center shrink-0">
+          <div className="space-y-4">
+            <div className="flex gap-4 p-5 rounded-2xl bg-white border border-border items-start shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-11 h-11 rounded-xl bg-brand/10 text-brand flex items-center justify-center shrink-0">
                 <Phone className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-xs font-bold text-dark uppercase tracking-wider mb-1">Direct Call</h4>
-                <p className="text-sm text-text-secondary font-bold">+880 1700-000000</p>
-                <p className="text-[10px] text-text-tertiary">Sunday to Thursday, 9:00 AM - 6:00 PM (GMT+6)</p>
+                <h4 className="text-xs font-bold text-dark uppercase tracking-wider mb-1">Direct Phone</h4>
+                <a href="tel:+8801711994608" className="text-base text-dark font-bold hover:text-brand transition-colors block">+880 1711 994608</a>
+                <p className="text-xs text-text-tertiary mt-0.5">11:00 AM - 8:00 PM (Saturday - Thursday)</p>
               </div>
             </div>
 
-            <div className="flex gap-4 p-4 rounded-xl bg-white border border-border items-start">
-              <div className="w-10 h-10 rounded-lg bg-brand/10 text-brand flex items-center justify-center shrink-0">
+            <div className="flex gap-4 p-5 rounded-2xl bg-white border border-border items-start shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-11 h-11 rounded-xl bg-brand/10 text-brand flex items-center justify-center shrink-0">
                 <MapPin className="w-5 h-5" />
               </div>
               <div>
                 <h4 className="text-xs font-bold text-dark uppercase tracking-wider mb-1">Office Address</h4>
-                <p className="text-sm text-text-secondary font-bold">Redmun Digitech HQ</p>
-                <p className="text-xs text-text-tertiary leading-relaxed">Sector 11, Uttara, Dhaka, Bangladesh</p>
+                <p className="text-base text-dark font-bold">Redmun Digitech HQ</p>
+                <p className="text-xs text-text-secondary leading-relaxed">Road 13, Sector 14, Uttara, Dhaka, Bangladesh</p>
+              </div>
+            </div>
+
+            <div className="flex gap-4 p-5 rounded-2xl bg-white border border-border items-start shadow-sm hover:shadow-md transition-shadow">
+              <div className="w-11 h-11 rounded-xl bg-brand/10 text-brand flex items-center justify-center shrink-0">
+                <Mail className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-dark uppercase tracking-wider mb-1">Email Desk</h4>
+                <a href="mailto:contact@redmun.com" className="text-base text-dark font-bold hover:text-brand transition-colors block">contact@redmun.com</a>
+                <p className="text-xs text-text-tertiary mt-0.5">Guaranteed 24-hour response SLA</p>
               </div>
             </div>
           </div>

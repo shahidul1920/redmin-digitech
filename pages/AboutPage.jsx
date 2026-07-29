@@ -428,19 +428,19 @@ export default function AboutPage() {
                     <span className="w-8 h-8 rounded-lg bg-light flex items-center justify-center text-brand">
                       <MapPin className="w-4 h-4" />
                     </span>
-                    <span>Sector 11, Uttara, Dhaka, Bangladesh</span>
+                    <span>Road 13, Sector 14, Uttara, Dhaka, Bangladesh</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="w-8 h-8 rounded-lg bg-light flex items-center justify-center text-brand">
                       <Mail className="w-4 h-4" />
                     </span>
-                    <span>ops@redmundigitech.com</span>
+                    <a href="mailto:contact@redmun.com" className="hover:text-brand transition-colors">contact@redmun.com</a>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="w-8 h-8 rounded-lg bg-light flex items-center justify-center text-brand">
                       <Phone className="w-4 h-4" />
                     </span>
-                    <span>+880 1700-000000</span>
+                    <a href="tel:+8801711994608" className="hover:text-brand transition-colors">+880 1711 994608</a>
                   </div>
                 </div>
                 <div className="pt-4">
@@ -454,9 +454,9 @@ export default function AboutPage() {
               <div className="w-full lg:w-[480px] h-80 img-placeholder rounded-2xl border border-border shadow-sm overflow-hidden flex flex-col items-center justify-center text-center p-6">
                 <MapPin className="w-8 h-8 text-brand mb-2" />
                 <span className="font-bold text-xs uppercase tracking-wider text-text-secondary">
-                  [ Interactive HQ Office Map Placeholder ]
+                  [ Interactive HQ Office Map Container ]
                 </span>
-                <span className="text-[10px] text-text-tertiary mt-1">Sector 11, Uttara, Dhaka</span>
+                <span className="text-[10px] text-text-tertiary mt-1">Road 13, Sector 14, Uttara, Dhaka | Open: 11AM-8PM (Sat-Thu)</span>
               </div>
             </div>
           </ScrollReveal>

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Linkedin, Twitter, Github, Check } from "@/components/Icons";
+import { Linkedin, Facebook, Instagram, Check, Phone, MapPin, Mail, Clock } from "@/components/Icons";
 import Button from "./Button";
 import { subscribeNewsletter } from "@/utils/actions";
 
@@ -83,19 +83,19 @@ export default function Footer() {
 
   const socialLinks = [
     {
+      name: "Facebook",
+      href: "https://www.facebook.com/redmundigitech",
+      Icon: Facebook,
+    },
+    {
       name: "LinkedIn",
-      href: "https://linkedin.com",
+      href: "https://www.linkedin.com/company/redmundigitech/",
       Icon: Linkedin,
     },
     {
-      name: "Twitter",
-      href: "https://twitter.com",
-      Icon: Twitter,
-    },
-    {
-      name: "GitHub",
-      href: "https://github.com",
-      Icon: Github,
+      name: "Instagram",
+      href: "https://www.instagram.com/redmun.dtc/",
+      Icon: Instagram,
     },
   ];
 
@@ -119,6 +119,26 @@ export default function Footer() {
             <p className="text-sm text-text-muted max-w-sm leading-relaxed">
               Enterprise management platforms built for growing businesses. Custom shipping modules, API automation portals, and high-performance architecture.
             </p>
+
+            {/* Office Contact Info */}
+            <div className="space-y-2 text-xs text-text-muted border-t border-border-dark pt-4">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-3.5 h-3.5 text-brand shrink-0" />
+                <span>Road 13, Sector 14, Uttara, Dhaka</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="w-3.5 h-3.5 text-brand shrink-0" />
+                <a href="tel:+8801711994608" className="hover:text-white transition-colors">+880 1711 994608</a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="w-3.5 h-3.5 text-brand shrink-0" />
+                <a href="mailto:contact@redmun.com" className="hover:text-white transition-colors">contact@redmun.com</a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-3.5 h-3.5 text-brand shrink-0" />
+                <span>11AM - 8PM [Sat - Thu] | Friday [Closed]</span>
+              </div>
+            </div>
             
             {/* Subscription Form */}
             <div className="space-y-3 max-w-sm mt-2">

@@ -72,7 +72,7 @@ export default function ProductsPage() {
 
   return (
     <div className="bg-light-secondary/40 py-12">
-      
+
       {/* 1. Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <div className="bg-dark text-white rounded-3xl p-8 md:p-16 relative overflow-hidden border border-border-dark shadow-lg">

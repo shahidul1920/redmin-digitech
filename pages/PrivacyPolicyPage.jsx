@@ -53,7 +53,7 @@ export default function PrivacyPolicyPage() {
       title: "6. Data Protection Officer Contact",
       icon: FileText,
       content:
-        "If you have inquiries regarding our data handling procedures or wish to exercise data subject rights, contact our Data Protection Office at privacy@redmundigitech.com or visit our Dhaka Operations HQ.",
+        "If you have inquiries regarding our data handling procedures or wish to exercise data subject rights, contact our Data Protection Office at contact@redmun.com or visit our Dhaka Operations HQ.",
     },
   ];
 

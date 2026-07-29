@@ -2,27 +2,47 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Calendar, User, Tag, ArrowRight } from "@/components/Icons";
+import {
+  ArrowLeft,
+  Calendar,
+  User,
+  Tag,
+  ArrowRight,
+  BookOpen,
+  Clock,
+  ShieldCheck,
+  Share2,
+  CheckCircle,
+  MessageSquare,
+  Sparkles,
+  Zap,
+  Globe,
+} from "@/components/Icons";
 import CTASection from "@/components/CTASection";
 import BlogCard from "@/components/BlogCard";
+import ScrollReveal from "@/components/ScrollReveal";
+import Button from "@/components/Button";
 import { getProxiedImageUrl } from "@/utils/media-proxy";
 
 export default function BlogPostPage({ post, relatedPosts = [] }) {
   const [imgError, setImgError] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   if (!post) {
     return (
-      <div className="max-w-7xl mx-auto px-4 py-24 text-center space-y-6">
-        <h1 className="text-3xl font-bold text-dark">Article Not Found</h1>
-        <p className="text-sm text-text-secondary">
-          The requested engineering writeup could not be located.
-        </p>
-        <Link
-          href="/blog"
-          className="inline-flex items-center px-6 py-2.5 rounded-xl bg-brand text-white text-xs font-bold"
-        >
-          Return to Blog Hub
-        </Link>
+      <div className="min-h-[70vh] flex items-center justify-center bg-light-secondary/40 px-4">
+        <div className="max-w-md w-full text-center space-y-6 bg-white p-10 rounded-3xl border border-border shadow-xl">
+          <div className="w-16 h-16 rounded-2xl bg-brand/10 border border-brand/20 flex items-center justify-center mx-auto">
+            <BookOpen className="w-8 h-8 text-brand" />
+          </div>
+          <h1 className="text-3xl font-bold text-dark">Article Not Found</h1>
+          <p className="text-sm text-text-secondary">
+            The requested technical guide or engineering writeup could not be located.
+          </p>
+          <Button variant="brand" size="md" href="/blog" className="w-full justify-center">
+            <ArrowLeft className="w-4 h-4 mr-2" /> Return to Blog Hub
+          </Button>
+        </div>
       </div>
     );
   }
@@ -36,13 +56,8 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
     post.extraPostDetails?.subImage?.node?.mediaItemUrl ||
     post.extraPostDetails?.subImage?.sourceUrl;
 
-  // Route featured image URL through /api/media proxy
   const imageUrl = getProxiedImageUrl(rawImageUrl);
-
-  const altText =
-    post.featuredImage?.node?.altText ||
-    post.extraPostDetails?.subImage?.node?.altText ||
-    post.title;
+  const altText = post.featuredImage?.node?.altText || post.extraPostDetails?.subImage?.node?.altText || post.title;
 
   const formattedDate = post.date
     ? new Date(post.date).toLocaleDateString("en-US", {
@@ -55,6 +70,11 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
   const subTitle = post.extraPostDetails?.subTitle || "";
   const extendedContent = post.extraPostDetails?.extended || "";
 
+  // Word count & reading time
+  const plainText = (post.content || "").replace(/<[^>]+>/g, "");
+  const wordCount = plainText.split(/\s+/).filter(Boolean).length;
+  const readingTime = Math.max(2, Math.ceil(wordCount / 200));
+
   // Route in-body content WordPress images through /api/media proxy
   const htmlContent = post.content
     ? post.content.replace(
@@ -63,151 +83,309 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
       )
     : "";
 
-  return (
-    <article className="bg-light-secondary/40 py-12">
-      {/* 1. Breadcrumb & Back Action */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <div className="flex items-center justify-between">
-          <Link
-            href="/blog"
-            className="inline-flex items-center text-xs font-bold text-brand hover:text-dark transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-1.5" /> Back to Blog
-          </Link>
+  const handleCopyLink = () => {
+    if (typeof window !== "undefined") {
+      navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
+  };
 
-          <Link
-            href={`/blog/category/${category.slug}`}
-            className="text-[10px] font-bold uppercase tracking-widest bg-brand/10 text-brand px-3 py-1 rounded-full hover:bg-brand hover:text-white transition-colors"
-          >
-            {category.name}
-          </Link>
+  return (
+    <div className="bg-light-secondary/30 min-h-screen">
+      
+      {/* ═══════ 1. DARK ENTERPRISE HERO HEADER ═══════ */}
+      <header className="relative bg-dark text-white pt-12 pb-20 overflow-hidden border-b border-border-dark">
+        {/* Glow Orbs & Dot Pattern */}
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-brand opacity-15 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+        <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-primary opacity-20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute inset-0 dot-grid-dark pointer-events-none opacity-60" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          {/* Breadcrumb Navigation */}
+          <div className="flex items-center justify-between gap-4 mb-8">
+            <Link
+              href="/blog"
+              className="inline-flex items-center text-xs font-bold text-text-muted hover:text-white transition-colors bg-dark-secondary px-3.5 py-1.5 rounded-full border border-border-dark hover:border-brand/40"
+            >
+              <ArrowLeft className="w-3.5 h-3.5 mr-1.5 text-brand" /> Back to Tech Blog
+            </Link>
+
+            <Link
+              href={`/blog/category/${category.slug}`}
+              className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest bg-brand/15 text-brand px-3.5 py-1.5 rounded-full border border-brand/30 hover:bg-brand hover:text-white transition-colors"
+            >
+              <Tag className="w-3 h-3" />
+              {category.name}
+            </Link>
+          </div>
+
+          {/* Main Hero Content */}
+          <div className="max-w-4xl space-y-6">
+            
+            {/* Meta Badges */}
+            <div className="flex flex-wrap items-center gap-3 text-xs text-text-muted">
+              <span className="inline-flex items-center gap-1.5 bg-dark-tertiary px-3 py-1 rounded-full border border-border-dark text-white font-medium">
+                <User className="w-3.5 h-3.5 text-brand" /> Redmun Engineering Team
+              </span>
+              <span className="inline-flex items-center gap-1.5 bg-dark-tertiary px-3 py-1 rounded-full border border-border-dark">
+                <Calendar className="w-3.5 h-3.5 text-primary-light" /> {formattedDate}
+              </span>
+              <span className="inline-flex items-center gap-1.5 bg-dark-tertiary px-3 py-1 rounded-full border border-border-dark">
+                <Clock className="w-3.5 h-3.5 text-brand" /> {readingTime} min read
+              </span>
+            </div>
+
+            {/* Article Title */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-snug md:leading-tight">
+              {post.title}
+            </h1>
+
+            {/* Subtitle / Excerpt Lead */}
+            {subTitle && (
+              <p className="text-base sm:text-xl text-text-muted leading-relaxed font-normal max-w-3xl">
+                {subTitle}
+              </p>
+            )}
+          </div>
+        </div>
+      </header>
+
+      {/* ═══════ 2. FEATURED IMAGE SHOWCASE ═══════ */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20 mb-16">
+        <div className="bg-white rounded-3xl p-3 sm:p-4 border border-border shadow-2xl overflow-hidden">
+          {imageUrl && !imgError ? (
+            <div className="relative h-72 sm:h-[420px] md:h-[500px] w-full rounded-2xl overflow-hidden bg-dark/5">
+              <img
+                src={imageUrl}
+                alt={altText}
+                onError={() => setImgError(true)}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark/40 via-transparent to-transparent" />
+            </div>
+          ) : (
+            <div className="h-64 sm:h-96 w-full rounded-2xl bg-gradient-to-br from-dark via-dark-secondary to-dark-tertiary flex items-center justify-center p-8 text-center relative overflow-hidden border border-border-dark">
+              <div className="absolute inset-0 dot-grid-dark opacity-40 pointer-events-none" />
+              <div className="space-y-3 relative z-10 max-w-xl">
+                <span className="inline-block text-xs font-bold uppercase tracking-widest text-brand bg-brand/10 px-3 py-1 rounded-full border border-brand/20">
+                  Redmun Engineering Technical Paper
+                </span>
+                <span className="text-2xl font-bold text-white block leading-snug">{post.title}</span>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* 2. Article Header */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-        <div className="bg-white rounded-3xl p-8 sm:p-12 border border-border shadow-sm space-y-6">
-          <div className="flex flex-wrap items-center gap-4 text-xs text-text-tertiary border-b border-border pb-6">
-            <span className="flex items-center gap-1.5 font-semibold text-dark">
-              <User className="w-3.5 h-3.5 text-brand" /> Redmun Engineering Team
-            </span>
-            <span>•</span>
-            <span className="flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-primary" /> {formattedDate}
-            </span>
-          </div>
-
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-dark leading-tight">
-            {post.title}
-          </h1>
-
-          {subTitle && (
-            <p className="text-base sm:text-lg text-text-secondary leading-relaxed font-medium">
-              {subTitle}
-            </p>
-          )}
-
-          {/* Featured Image */}
-          {imageUrl && !imgError ? (
-            <div className="pt-4">
-              <div className="relative h-64 sm:h-96 w-full rounded-2xl overflow-hidden border border-border bg-dark/5">
-                <img
-                  src={imageUrl}
-                  alt={altText}
-                  onError={() => setImgError(true)}
-                  className="w-full h-full object-cover"
-                />
+      {/* ═══════ 3. MAIN ARTICLE LAYOUT (2-COLUMN GRID) ═══════ */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* ── LEFT COLUMN: ARTICLE CONTENT (8 cols) ── */}
+          <article className="lg:col-span-8 space-y-8">
+            
+            {/* Key Technical Takeaway Box */}
+            {extendedContent && (
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border-l-4 border-l-brand border border-border shadow-sm relative overflow-hidden">
+                <div className="flex items-center gap-2 mb-3 text-brand">
+                  <ShieldCheck className="w-5 h-5" />
+                  <span className="text-xs font-extrabold uppercase tracking-widest">Key Technical Takeaway</span>
+                </div>
+                <p className="text-sm sm:text-base text-dark font-medium leading-relaxed">
+                  {extendedContent}
+                </p>
               </div>
-            </div>
-          ) : (
-            <div className="pt-4">
-              <div className="h-48 sm:h-64 w-full rounded-2xl bg-gradient-to-br from-dark via-dark-secondary to-dark/90 flex items-center justify-center p-8 text-center border border-border-dark">
-                <div className="space-y-2">
-                  <span className="text-xs font-bold uppercase tracking-widest text-brand block">
-                    Redmun Official Publication
-                  </span>
-                  <span className="text-lg font-bold text-white max-w-lg block mx-auto">{post.title}</span>
+            )}
+
+            {/* Main Content Body Card */}
+            <div className="bg-white rounded-3xl p-6 sm:p-10 md:p-12 border border-border shadow-sm space-y-6">
+              
+              {htmlContent ? (
+                <div
+                  className="prose prose-lg max-w-none text-dark leading-relaxed font-sans
+                    [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-bold [&_h2]:text-dark [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:pb-2 [&_h2]:border-b [&_h2]:border-border
+                    [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-dark [&_h3]:mt-8 [&_h3]:mb-3
+                    [&_p]:text-base [&_p]:text-text-secondary [&_p]:leading-relaxed [&_p]:mb-6
+                    [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ul]:mb-6 [&_ul]:text-text-secondary
+                    [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_ol]:mb-6 [&_ol]:text-text-secondary
+                    [&_blockquote]:border-l-4 [&_blockquote]:border-brand [&_blockquote]:bg-light [&_blockquote]:p-4 [&_blockquote]:rounded-r-xl [&_blockquote]:italic [&_blockquote]:my-6
+                    [&_img]:rounded-2xl [&_img]:border [&_img]:border-border [&_img]:shadow-md [&_img]:my-6"
+                  dangerouslySetInnerHTML={{ __html: htmlContent }}
+                />
+              ) : (
+                <div className="space-y-6 text-base text-text-secondary leading-relaxed">
+                  <p className="text-lg text-dark font-medium leading-relaxed">
+                    In high-concurrency enterprise applications, decoupling frontend web nodes from backend database management systems is critical for delivering sub-second page loads and zero-downtime reliability.
+                  </p>
+                  <p>
+                    By deploying Next.js Incremental Static Regeneration (ISR) alongside Headless WordPress API integrations, public traffic queries bypass monolithic server threads during major traffic spikes.
+                  </p>
+                  <div className="p-6 rounded-2xl bg-dark text-white border border-border-dark my-6 space-y-3">
+                    <span className="text-xs font-bold text-brand uppercase tracking-wider block">Engineering Rule</span>
+                    <p className="text-sm text-text-muted">
+                      Always isolate user-facing interactive elements into Client Components while keeping core layout rendering on the Server (RSC) for maximum SEO indexation and Core Web Vitals performance.
+                    </p>
+                  </div>
+                  <p>
+                    Whether managing live 1688 product sourcing feeds, automated customs freight manifests, thermal receipt printer hooks, or real-time breaking news portals, our decoupled architecture ensures 99.9% availability and sub-50ms global latency.
+                  </p>
+                </div>
+              )}
+
+              {/* Share & Actions Footer */}
+              <div className="pt-8 mt-8 border-t border-border flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-bold text-dark uppercase tracking-wider">Share Article:</span>
+                  <button
+                    onClick={handleCopyLink}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold bg-light hover:bg-brand hover:text-white px-3.5 py-2 rounded-xl border border-border transition-colors text-dark"
+                  >
+                    <Share2 className="w-3.5 h-3.5" />
+                    {copied ? "Link Copied!" : "Copy Link"}
+                  </button>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-text-tertiary">Category:</span>
+                  <Link
+                    href={`/blog/category/${category.slug}`}
+                    className="text-xs font-bold text-brand hover:underline"
+                  >
+                    {category.name}
+                  </Link>
                 </div>
               </div>
             </div>
-          )}
-        </div>
-      </section>
 
-      {/* 3. Main Article Body */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
-        <div className="bg-white rounded-3xl p-8 sm:p-12 border border-border shadow-sm space-y-8 leading-relaxed text-text-secondary">
-          {extendedContent && (
-            <div className="p-6 rounded-2xl bg-light-secondary border border-border text-dark text-sm sm:text-base font-medium space-y-3">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-brand">
-                Key Technical Takeaway
+            {/* Author Bio Box */}
+            <div className="bg-white rounded-3xl p-8 border border-border shadow-sm flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
+              <div className="w-16 h-16 rounded-2xl bg-dark text-white font-extrabold text-xl flex items-center justify-center shrink-0 border border-border-dark shadow-sm">
+                RD
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center justify-center sm:justify-start gap-2">
+                  <h3 className="font-bold text-dark text-lg">Redmun Engineering Team</h3>
+                  <span className="bg-brand/10 text-brand text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-md">
+                    Verified Author
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
+                  Our software architects, logistics specialists, and full-stack developers build enterprise-grade Headless WordPress and Next.js applications for growing businesses across Asia and beyond.
+                </p>
+              </div>
+            </div>
+
+          </article>
+
+          {/* ── RIGHT COLUMN: STICKY SIDEBAR (4 cols) ── */}
+          <aside className="lg:col-span-4 space-y-8 sticky top-24">
+            
+            {/* 1. Request Demo CTA Widget */}
+            <div className="bg-dark text-white rounded-3xl p-8 border border-border-dark shadow-xl relative overflow-hidden text-center">
+              <div className="absolute inset-0 dot-grid-dark pointer-events-none" />
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand opacity-15 rounded-full blur-2xl pointer-events-none" />
+
+              <div className="relative z-10 space-y-4">
+                <div className="w-12 h-12 rounded-xl bg-brand/15 border border-brand/30 flex items-center justify-center mx-auto text-brand">
+                  <Zap className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold text-white leading-snug">Need a Custom Digital System?</h3>
+                <p className="text-xs text-text-muted leading-relaxed">
+                  Partner with Redmun Digitech to build automated 1688 sourcing portals, shipping software, or high-performance e-commerce platforms.
+                </p>
+                <Button variant="brand" size="md" href="/contact" className="w-full justify-center">
+                  Request Consultation <ArrowRight className="w-4 h-4 ml-1.5" />
+                </Button>
+              </div>
+            </div>
+
+            {/* 2. Technical Stack Highlight */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-border shadow-sm space-y-4">
+              <h3 className="text-sm font-bold text-dark uppercase tracking-wider border-b border-border pb-3 flex items-center gap-2">
+                <Globe className="w-4 h-4 text-brand" /> Architecture Stack
               </h3>
-              <p className="leading-relaxed">{extendedContent}</p>
-            </div>
-          )}
-
-          {htmlContent ? (
-            <div
-              className="prose prose-lg max-w-none text-dark space-y-6"
-              dangerouslySetInnerHTML={{ __html: htmlContent }}
-            />
-          ) : (
-            <div className="space-y-6 text-sm sm:text-base text-text-secondary leading-relaxed">
-              <p>
-                In high-concurrency enterprise applications, decouples between frontend web nodes and database backends are critical for sub-second user experience. By deploying Next.js Incremental Static Regeneration (ISR) alongside Headless WordPress caching APIs, data requests bypass legacy PHP execution threads during peak traffic spikes.
-              </p>
-              <p>
-                Whether managing 1688 product search feeds, bulk customs manifest entries, or thermal receipt printer WebSocket bridges, our engineering pipeline ensures zero latency and 99.9% uptime compliance.
-              </p>
-            </div>
-          )}
-
-          {/* Share Footer */}
-          <div className="border-t border-border pt-8 flex items-center justify-between flex-wrap gap-4">
-            <div className="flex items-center gap-2">
-              <Tag className="w-4 h-4 text-brand" />
-              <span className="text-xs font-bold text-dark uppercase tracking-wider">
-                Category: {category.name}
-              </span>
+              <ul className="space-y-3 text-xs text-text-secondary">
+                <li className="flex items-center justify-between py-1 border-b border-border-light">
+                  <span className="font-semibold text-dark">Frontend Framework</span>
+                  <span className="font-mono text-brand bg-brand/5 px-2 py-0.5 rounded">Next.js 16</span>
+                </li>
+                <li className="flex items-center justify-between py-1 border-b border-border-light">
+                  <span className="font-semibold text-dark">Headless CMS</span>
+                  <span className="font-mono text-primary bg-primary/5 px-2 py-0.5 rounded">WordPress WP-GraphQL</span>
+                </li>
+                <li className="flex items-center justify-between py-1 border-b border-border-light">
+                  <span className="font-semibold text-dark">Animation Engine</span>
+                  <span className="font-mono text-dark bg-light px-2 py-0.5 rounded">GSAP & @gsap/react</span>
+                </li>
+                <li className="flex items-center justify-between py-1">
+                  <span className="font-semibold text-dark">Edge Deployment</span>
+                  <span className="font-mono text-brand bg-brand/5 px-2 py-0.5 rounded">AWS Cloudflare Edge</span>
+                </li>
+              </ul>
             </div>
 
-            <Link
-              href="/request-demo"
-              className="inline-flex items-center px-4 py-2 rounded-xl bg-brand text-white text-xs font-bold hover:bg-brand/90 transition-colors shadow-sm"
-            >
-              Discuss Technical Specs <ArrowRight className="w-4 h-4 ml-1.5" />
-            </Link>
-          </div>
+            {/* 3. Quick Browse Categories */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-border shadow-sm space-y-4">
+              <h3 className="text-sm font-bold text-dark uppercase tracking-wider border-b border-border pb-3">
+                Explore Engineering Topics
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { name: "1688 Sourcing", slug: "1688" },
+                  { name: "E-Commerce", slug: "ecommerce" },
+                  { name: "Shipping Logistics", slug: "import-business" },
+                  { name: "News Editorial", slug: "news-portal" },
+                  { name: "Restaurant Tech", slug: "restaurant-tech" },
+                  { name: "SEO Schema", slug: "seo" },
+                ].map((tag) => (
+                  <Link
+                    key={tag.slug}
+                    href={`/blog/category/${tag.slug}`}
+                    className="text-xs font-semibold text-text-secondary bg-light hover:bg-brand hover:text-white px-3 py-1.5 rounded-full border border-border transition-colors"
+                  >
+                    {tag.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+          </aside>
+
         </div>
-      </section>
+      </main>
 
-      {/* 4. Related Posts Section */}
+      {/* ═══════ 4. RELATED TECHNICAL ARTICLES ═══════ */}
       {relatedPosts && relatedPosts.length > 0 && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 space-y-8">
-          <div className="flex justify-between items-end">
+        <ScrollReveal className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 space-y-8">
+          <div className="sr-item opacity-0 flex justify-between items-end">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-brand block mb-1">
-                More Engineering Insights
+                Keep Reading
               </span>
-              <h2 className="text-2xl font-bold text-dark">Related Technical Articles</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-dark">Related Engineering Writeups</h2>
             </div>
             <Link href="/blog" className="text-xs font-bold text-brand hover:text-dark transition-colors">
-              View All <ArrowRight className="w-4 h-4 inline ml-1" />
+              View All Articles <ArrowRight className="w-4 h-4 inline ml-1" />
             </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {relatedPosts.map((rPost) => (
-              <BlogCard key={rPost.id || rPost.slug} post={rPost} />
+              <div key={rPost.id || rPost.slug} className="sr-item opacity-0">
+                <BlogCard post={rPost} />
+              </div>
             ))}
           </div>
-        </section>
+        </ScrollReveal>
       )}
 
-      {/* 5. CTA Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ═══════ 5. CLOSING CTA ═══════ */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <CTASection />
       </section>
-    </article>
+
+    </div>
   );
 }

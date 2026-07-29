@@ -112,7 +112,7 @@ export async function sendDemoRequestEmail(formData) {
 
     const data = await sendViaResend({
       from: "Astha Creatives <no-reply@mail.asthacreatives.com>",
-      to: ["murtaza@redmun.com", "shahidul1920shakil@gmail.com"],
+      to: ["redwan@redmun.com", "shahidul1920shakil@gmail.com"],
       subject: `🔥 High Priority Demo Request: ${name} (${company})`,
       reply_to: email,
       html: `
@@ -158,7 +158,7 @@ export async function subscribeNewsletter(formData) {
 
     const data = await sendViaResend({
       from: "Astha Creatives <no-reply@mail.asthacreatives.com>",
-      to: ["murtaza@redmun.com", "shahidul1920shakil@gmail.com"],
+      to: ["redwan@redmun.com", "shahidul1920shakil@gmail.com"],
       subject: `New Newsletter Subscriber: ${email}`,
       reply_to: email,
       html: `
