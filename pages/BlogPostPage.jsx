@@ -22,6 +22,7 @@ import CTASection from "@/components/CTASection";
 import BlogCard from "@/components/BlogCard";
 import ScrollReveal from "@/components/ScrollReveal";
 import Button from "@/components/Button";
+import PostContent from "@/components/PostContent";
 import { getProxiedImageUrl } from "@/utils/media-proxy";
 
 export default function BlogPostPage({ post, relatedPosts = [] }) {
@@ -185,35 +186,11 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
           
           {/* ── LEFT COLUMN: ARTICLE CONTENT (8 cols) ── */}
           <article className="lg:col-span-8 space-y-8">
-            
-            {/* Key Technical Takeaway Box */}
-            {extendedContent && (
-              <div className="bg-white rounded-3xl p-6 sm:p-8 border-l-4 border-l-brand border border-border shadow-sm relative overflow-hidden">
-                <div className="flex items-center gap-2 mb-3 text-brand">
-                  <ShieldCheck className="w-5 h-5" />
-                  <span className="text-xs font-extrabold uppercase tracking-widest">Key Technical Takeaway</span>
-                </div>
-                <p className="text-sm sm:text-base text-dark font-medium leading-relaxed">
-                  {extendedContent}
-                </p>
-              </div>
-            )}
-
             {/* Main Content Body Card */}
             <div className="bg-white rounded-3xl p-6 sm:p-10 md:p-12 border border-border shadow-sm space-y-6">
               
               {htmlContent ? (
-                <div
-                  className="prose prose-lg max-w-none text-dark leading-relaxed font-sans
-                    [&_h2]:text-2xl [&_h2]:md:text-3xl [&_h2]:font-bold [&_h2]:text-dark [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:pb-2 [&_h2]:border-b [&_h2]:border-border
-                    [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-dark [&_h3]:mt-8 [&_h3]:mb-3
-                    [&_p]:text-base [&_p]:text-text-secondary [&_p]:leading-relaxed [&_p]:mb-6
-                    [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ul]:mb-6 [&_ul]:text-text-secondary
-                    [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_ol]:mb-6 [&_ol]:text-text-secondary
-                    [&_blockquote]:border-l-4 [&_blockquote]:border-brand [&_blockquote]:bg-light [&_blockquote]:p-4 [&_blockquote]:rounded-r-xl [&_blockquote]:italic [&_blockquote]:my-6
-                    [&_img]:rounded-2xl [&_img]:border [&_img]:border-border [&_img]:shadow-md [&_img]:my-6"
-                  dangerouslySetInnerHTML={{ __html: htmlContent }}
-                />
+                <PostContent content={htmlContent} />
               ) : (
                 <div className="space-y-6 text-base text-text-secondary leading-relaxed">
                   <p className="text-lg text-dark font-medium leading-relaxed">

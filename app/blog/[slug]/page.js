@@ -11,23 +11,32 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const metaTitle = `${post.title} — Redmun Digitech Blog`;
-  const metaDesc =
-    post.extraPostDetails?.subTitle ||
-    post.excerpt?.replace(/<[^>]+>/g, "").slice(0, 160) ||
-    `Read the complete article ${post.title} on Redmun Digitech Blog.`;
+  const { seo, title, excerpt, featuredImage } = post;
 
+  const metaTitle = seo?.title || `${title} — Redmun Digitech Blog`;
+  const metaDesc =
+    seo?.metaDesc ||
+    excerpt?.replace(/<[^>]+>/g, "").slice(0, 160) ||
+    `Read the complete article ${title} on Redmun Digitech Blog.`;
+
+  const canonicalUrl = seo?.canonical || `https://redmun.com/blog/${slug}`;
+  const ogTitle = seo?.opengraphTitle || metaTitle;
+  const ogDesc = seo?.opengraphDescription || metaDesc;
   const ogImage =
-    post.featuredImage?.node?.sourceUrl ||
-    post.extraPostDetails?.subImage?.node?.sourceUrl ||
+    seo?.opengraphImage?.sourceUrl ||
+    featuredImage?.node?.sourceUrl ||
     "/Redmun-final.svg";
 
   return {
     title: metaTitle,
     description: metaDesc,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
-      title: metaTitle,
-      description: metaDesc,
+      title: ogTitle,
+      description: ogDesc,
+      url: canonicalUrl,
       type: "article",
       images: [{ url: ogImage }],
     },
