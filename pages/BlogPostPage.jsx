@@ -117,10 +117,20 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
   const subTitle = post.extraPostDetails?.subTitle || "";
   const extendedContent = post.extraPostDetails?.extended || "";
 
-  // Word count & reading time
+  // Dynamic reading time from ACF (readingTime) or word-count calculation fallback
+  const acfReadingTime = post.extraPostDetails?.readingTime;
   const plainText = (post.content || "").replace(/<[^>]+>/g, "");
   const wordCount = plainText.split(/\s+/).filter(Boolean).length;
-  const readingTime = Math.max(2, Math.ceil(wordCount / 200));
+  const calculatedReadingTime = Math.max(2, Math.ceil(wordCount / 200));
+
+  const formatReadingTime = (val) => {
+    if (!val) return `${calculatedReadingTime} min read`;
+    const str = String(val).trim();
+    if (/min|minute/i.test(str)) return str;
+    return `${str} min read`;
+  };
+
+  const readingTimeText = formatReadingTime(acfReadingTime);
 
   // Route in-body content WordPress images through /api/media proxy and parse headings for TOC
   const rawHtml = post.content
@@ -182,7 +192,7 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
                 <Calendar className="w-3.5 h-3.5 text-primary-light" /> {formattedDate}
               </span>
               <span className="inline-flex items-center gap-1.5 bg-dark-tertiary px-3 py-1 rounded-full border border-border-dark">
-                <Clock className="w-3.5 h-3.5 text-brand" /> {readingTime} min read
+                <Clock className="w-3.5 h-3.5 text-brand" /> {readingTimeText}
               </span>
             </div>
 
@@ -277,7 +287,7 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
                   <span className="font-semibold text-text-secondary flex items-center gap-1.5">
                     <Clock className="w-3.5 h-3.5 text-primary" /> Reading Time
                   </span>
-                  <span className="text-dark font-medium">{readingTime} min read</span>
+                  <span className="text-dark font-medium">{readingTimeText}</span>
                 </li>
               </ul>
             </div>
