@@ -28,6 +28,7 @@ import HeroScrollReveal from "@/components/HeroScrollReveal";
 import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import ParallaxSection from "@/components/ParallaxSection";
+import ProjectLifecycle from "@/components/ProjectLifecycle";
 
 export default function HomePage() {
   /* ──────────────────── Data ──────────────────── */
@@ -160,16 +161,6 @@ export default function HomePage() {
     { title: "Infinite Scalability", desc: "Serverless deployments on Vercel and AWS. Auto-scale to handle traffic spikes without infrastructure management." },
     { title: "ERP & CRM Integration", desc: "Pre-built connectors for inventory systems, SAP modules, billing engines, and custom internal tools." },
     { title: "Open API Architecture", desc: "RESTful endpoints and webhook hooks for seamless third-party integrations and data exchange pipelines." },
-  ];
-
-  const steps = [
-    { num: "01", name: "Discovery & Scoping", desc: "We map your operational processes, pain points, and automation opportunities through structured scoping sessions." },
-    { num: "02", name: "Architecture Blueprint", desc: "Database models, API route structures, and infrastructure plans are documented before a single line of code is written." },
-    { num: "03", name: "Interface Design", desc: "High-fidelity responsive prototypes with premium aesthetics, micro-interactions, and brand-aligned visual systems." },
-    { num: "04", name: "Headless Development", desc: "WordPress CMS backend and Next.js frontend built in parallel with continuous integration and staging environments." },
-    { num: "05", name: "QA & Load Testing", desc: "Unit tests, end-to-end user path validation, performance benchmarks, and security penetration testing." },
-    { num: "06", name: "Launch & Migration", desc: "Zero-downtime deployment via CDN edge networks with database migration scripts and DNS cutover coordination." },
-    { num: "07", name: "SLA Support & Iteration", desc: "Ongoing monitoring, performance optimization, feature iterations, and 24/7 incident response under SLA agreements." },
   ];
 
   const techStack = [
@@ -604,61 +595,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════
           SECTION 7 — DEVELOPMENT PROCESS (TIMELINE)
           ═══════════════════════════════════════════ */}
-      <section className="py-24 lg:py-36 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal className="mb-20 text-center max-w-3xl mx-auto">
-            <span className="sr-item opacity-0 text-xs font-bold uppercase tracking-widest text-primary block mb-3">Project Lifecycle</span>
-            <h2 className="sr-item opacity-0 text-3xl md:text-5xl font-bold text-dark mb-5 leading-tight">
-              From Discovery to{" "}
-              <span className="text-gradient-primary">Deployment</span>
-            </h2>
-            <p className="sr-item opacity-0 text-text-secondary text-base md:text-lg leading-relaxed">
-              A structured, transparent workflow designed to minimize delays, establish accountability, and deliver production-ready platforms on schedule.
-            </p>
-          </ScrollReveal>
-
-          <div className="relative max-w-4xl mx-auto">
-            {/* Vertical Connector Line */}
-            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-brand via-primary to-brand/30 -translate-x-1/2 pointer-events-none" />
-
-            <ScrollReveal stagger={0.15} distance={40}>
-              <div className="space-y-12 md:space-y-16">
-                {steps.map((step, idx) => {
-                  const isLeft = idx % 2 === 0;
-                  return (
-                    <div key={idx} className="sr-item opacity-0 relative flex flex-col md:flex-row items-center">
-                      {/* Step Dot */}
-                      <div className="absolute left-6 md:left-1/2 -translate-x-1/2 flex items-center justify-center w-12 h-12 rounded-full bg-dark text-white font-bold text-sm border-4 border-white shadow-lg z-10">
-                        {step.num}
-                      </div>
-
-                      {/* Left Column */}
-                      <div className={`w-full md:w-1/2 pl-16 md:pl-0 md:pr-10 ${isLeft ? "block" : "hidden md:block opacity-0 pointer-events-none"}`}>
-                        {isLeft && (
-                          <div className="p-6 rounded-2xl bg-white border border-border shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-500 text-left md:text-right">
-                            <h3 className="text-lg font-bold text-dark mb-2">{step.name}</h3>
-                            <p className="text-sm text-text-secondary leading-relaxed">{step.desc}</p>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Right Column */}
-                      <div className={`w-full md:w-1/2 pl-16 md:pl-10 ${!isLeft ? "block" : "hidden md:block opacity-0 pointer-events-none"}`}>
-                        {!isLeft && (
-                          <div className="p-6 rounded-2xl bg-white border border-border shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-500 text-left">
-                            <h3 className="text-lg font-bold text-dark mb-2">{step.name}</h3>
-                            <p className="text-sm text-text-secondary leading-relaxed">{step.desc}</p>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
+      <ProjectLifecycle />
 
 
       {/* ═══════════════════════════════════════════

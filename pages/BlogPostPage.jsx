@@ -62,10 +62,10 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
 
   const formattedDate = post.date
     ? new Date(post.date).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
     : "July 2026";
 
   const subTitle = post.extraPostDetails?.subTitle || "";
@@ -79,9 +79,9 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
   // Route in-body content WordPress images through /api/media proxy
   const htmlContent = post.content
     ? post.content.replace(
-        /https?:\/\/server\.redmun\.com\/[^\s"']+/gi,
-        (matchedUrl) => `/api/media?url=${encodeURIComponent(matchedUrl.replace(/^http:\/\//i, "https://"))}`
-      )
+      /https?:\/\/server\.redmun\.com\/[^\s"']+/gi,
+      (matchedUrl) => `/api/media?url=${encodeURIComponent(matchedUrl.replace(/^http:\/\//i, "https://"))}`
+    )
     : "";
 
   const handleCopyLink = () => {
@@ -94,7 +94,7 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
 
   return (
     <div className="bg-light-secondary/30 min-h-screen">
-      
+
       {/* ═══════ 1. DARK ENTERPRISE HERO HEADER ═══════ */}
       <header className="relative bg-dark text-white pt-12 pb-20 overflow-hidden border-b border-border-dark">
         {/* Glow Orbs & Dot Pattern */}
@@ -103,7 +103,7 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
         <div className="absolute inset-0 dot-grid-dark pointer-events-none opacity-60" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
+
           {/* Breadcrumb Navigation */}
           <div className="flex items-center justify-between gap-4 mb-8">
             <Link
@@ -124,7 +124,7 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
 
           {/* Main Hero Content */}
           <div className="max-w-4xl space-y-6">
-            
+
             {/* Meta Badges */}
             <div className="flex flex-wrap items-center gap-3 text-xs text-text-muted">
               <span className="inline-flex items-center gap-1.5 bg-dark-tertiary px-3 py-1 rounded-full border border-border-dark text-white font-medium">
@@ -183,12 +183,12 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
       {/* ═══════ 3. MAIN ARTICLE LAYOUT (2-COLUMN GRID) ═══════ */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
+
           {/* ── LEFT COLUMN: ARTICLE CONTENT (8 cols) ── */}
           <article className="lg:col-span-8 space-y-8">
             {/* Main Content Body Card */}
             <div className="bg-white rounded-3xl p-6 sm:p-10 md:p-12 border border-border shadow-sm space-y-6">
-              
+
               {htmlContent ? (
                 <PostContent content={htmlContent} />
               ) : (
@@ -237,9 +237,13 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
             </div>
 
             {/* Author Bio Box */}
-            <div className="bg-white rounded-3xl p-8 border border-border shadow-sm flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
-              <div className="w-16 h-16 rounded-2xl bg-dark text-white font-extrabold text-xl flex items-center justify-center shrink-0 border border-border-dark shadow-sm">
-                RD
+            <div className="bg-white rounded-3xl p-8 border border-border shadow-sm flex flex-col sm:flex-row items-center justify-center sm:items-start gap-6 text-center sm:text-left">
+              <div className="w-16 h-16 rounded-2xl bg-dark overflow-hidden shrink-0 border border-border-dark shadow-sm flex items-center justify-center p-2">
+                <img
+                  src="/redmun0-icon.png"
+                  alt="Redmun Engineering Team"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div className="space-y-2">
                 <div className="flex items-center justify-center sm:justify-start gap-2">
@@ -258,7 +262,7 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
 
           {/* ── RIGHT COLUMN: STICKY SIDEBAR (4 cols) ── */}
           <aside className="lg:col-span-4 space-y-8 sticky top-24">
-            
+
             {/* 1. Request Demo CTA Widget */}
             <div className="bg-dark text-white rounded-3xl p-8 border border-border-dark shadow-xl relative overflow-hidden text-center">
               <div className="absolute inset-0 dot-grid-dark pointer-events-none" />
@@ -278,27 +282,44 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
               </div>
             </div>
 
-            {/* 2. Technical Stack Highlight */}
+            {/* 2. Post Details Sidebar Widget */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-border shadow-sm space-y-4">
               <h3 className="text-sm font-bold text-dark uppercase tracking-wider border-b border-border pb-3 flex items-center gap-2">
-                <Globe className="w-4 h-4 text-brand" /> Architecture Stack
+                <BookOpen className="w-4 h-4 text-brand" /> Article Details
               </h3>
-              <ul className="space-y-3 text-xs text-text-secondary">
-                <li className="flex items-center justify-between py-1 border-b border-border-light">
-                  <span className="font-semibold text-dark">Frontend Framework</span>
-                  <span className="font-mono text-brand bg-brand/5 px-2 py-0.5 rounded">Next.js 16</span>
+              <ul className="space-y-3.5 text-xs">
+                <li className="flex items-center justify-between py-1.5 border-b border-border-light">
+                  <span className="font-semibold text-text-secondary flex items-center gap-1.5">
+                    <Tag className="w-3.5 h-3.5 text-brand" /> Category
+                  </span>
+                  <Link
+                    href={`/blog/category/${category.slug}`}
+                    className="font-bold text-brand hover:underline"
+                  >
+                    {category.name}
+                  </Link>
                 </li>
-                <li className="flex items-center justify-between py-1 border-b border-border-light">
-                  <span className="font-semibold text-dark">Headless CMS</span>
-                  <span className="font-mono text-primary bg-primary/5 px-2 py-0.5 rounded">WordPress WP-GraphQL</span>
+                <li className="flex items-center justify-between py-1.5 border-b border-border-light">
+                  <span className="font-semibold text-text-secondary flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-primary" /> Published
+                  </span>
+                  <span className="text-dark font-medium">{formattedDate}</span>
                 </li>
-                <li className="flex items-center justify-between py-1 border-b border-border-light">
-                  <span className="font-semibold text-dark">Animation Engine</span>
-                  <span className="font-mono text-dark bg-light px-2 py-0.5 rounded">GSAP & @gsap/react</span>
+                <li className="flex items-center justify-between py-1.5 border-b border-border-light">
+                  <span className="font-semibold text-text-secondary flex items-center gap-1.5">
+                    <User className="w-3.5 h-3.5 text-brand" /> Author
+                  </span>
+                  <span className="text-dark font-medium">
+                    {!post.author?.node?.name || post.author?.node?.name.toLowerCase() === "admin"
+                      ? "Redmun Engineering Team"
+                      : post.author.node.name}
+                  </span>
                 </li>
-                <li className="flex items-center justify-between py-1">
-                  <span className="font-semibold text-dark">Edge Deployment</span>
-                  <span className="font-mono text-brand bg-brand/5 px-2 py-0.5 rounded">AWS Cloudflare Edge</span>
+                <li className="flex items-center justify-between py-1.5">
+                  <span className="font-semibold text-text-secondary flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5 text-primary" /> Reading Time
+                  </span>
+                  <span className="text-dark font-medium">{readingTime} min read</span>
                 </li>
               </ul>
             </div>

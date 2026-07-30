@@ -88,13 +88,15 @@ export default function Header() {
                     onMouseEnter={() => handleDropdownHover(item.type)}
                     onMouseLeave={handleDropdownLeave}
                   >
-                    <div className="inline-flex items-center gap-0.5">
+                    <div className={`inline-flex items-center rounded-md transition-colors ${
+                      isOpen ? "bg-light" : "hover:bg-light/60"
+                    }`}>
                       <Link
                         href={item.href}
-                        className={`px-3 py-2 text-sm font-semibold rounded-md transition-colors ${
+                        className={`pl-3 pr-1 py-2 text-sm font-semibold transition-colors rounded-l-md ${
                           isActive(item.href) || isOpen
-                            ? "text-brand bg-light"
-                            : "text-text-secondary hover:text-dark hover:bg-light/60"
+                            ? "text-brand"
+                            : "text-text-secondary hover:text-dark"
                         }`}
                       >
                         {item.name}
@@ -105,12 +107,12 @@ export default function Header() {
                           setActiveDropdown(isOpen ? null : item.type);
                         }}
                         aria-label={`Toggle ${item.name} menu`}
-                        className={`p-1 rounded-md transition-colors cursor-pointer ${
+                        className={`pl-0.5 pr-3 py-2.5 transition-colors rounded-r-md cursor-pointer ${
                           isOpen ? "text-brand" : "text-text-secondary hover:text-dark"
                         }`}
                       >
                         <ChevronDown
-                          className={`h-4 w-4 transition-transform duration-200 ${
+                          className={`h-3.5 w-3.5 transition-transform duration-200 ${
                             isOpen ? "rotate-180" : ""
                           }`}
                         />
