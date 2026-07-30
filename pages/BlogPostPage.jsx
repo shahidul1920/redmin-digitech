@@ -23,7 +23,53 @@ import BlogCard from "@/components/BlogCard";
 import ScrollReveal from "@/components/ScrollReveal";
 import Button from "@/components/Button";
 import PostContent from "@/components/PostContent";
+import TableOfContents from "@/components/TableOfContents";
 import { getProxiedImageUrl } from "@/utils/media-proxy";
+
+function processArticleHeadings(rawHtml) {
+  if (!rawHtml) return { processedHtml: "", headings: [] };
+
+  const headings = [];
+  const headingCounts = {};
+
+  const headingRegex = /<h([2-4])([^>]*)>([\s\S]*?)<\/h\1>/gi;
+
+  const processedHtml = rawHtml.replace(headingRegex, (match, levelStr, attrs, innerHtml) => {
+    const level = parseInt(levelStr, 10);
+    const cleanText = innerHtml.replace(/<[^>]+>/g, "").trim();
+
+    if (!cleanText) return match;
+
+    const idMatch = attrs.match(/id=["']([^"']+)["']/i);
+    let id = idMatch ? idMatch[1] : null;
+
+    if (!id) {
+      let baseSlug = cleanText
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .substring(0, 50);
+
+      if (!baseSlug) baseSlug = `section-${headings.length + 1}`;
+
+      if (headingCounts[baseSlug]) {
+        headingCounts[baseSlug] += 1;
+        id = `${baseSlug}-${headingCounts[baseSlug]}`;
+      } else {
+        headingCounts[baseSlug] = 1;
+        id = baseSlug;
+      }
+
+      attrs = ` id="${id}"${attrs}`;
+    }
+
+    headings.push({ id, text: cleanText, level });
+
+    return `<h${level}${attrs}>${innerHtml}</h${level}>`;
+  });
+
+  return { processedHtml, headings };
+}
 
 export default function BlogPostPage({ post, relatedPosts = [] }) {
   const [imgError, setImgError] = useState(false);
@@ -76,13 +122,15 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
   const wordCount = plainText.split(/\s+/).filter(Boolean).length;
   const readingTime = Math.max(2, Math.ceil(wordCount / 200));
 
-  // Route in-body content WordPress images through /api/media proxy
-  const htmlContent = post.content
+  // Route in-body content WordPress images through /api/media proxy and parse headings for TOC
+  const rawHtml = post.content
     ? post.content.replace(
       /https?:\/\/server\.redmun\.com\/[^\s"']+/gi,
       (matchedUrl) => `/api/media?url=${encodeURIComponent(matchedUrl.replace(/^http:\/\//i, "https://"))}`
     )
     : "";
+
+  const { processedHtml: htmlContent, headings } = processArticleHeadings(rawHtml);
 
   const handleCopyLink = () => {
     if (typeof window !== "undefined") {
@@ -180,12 +228,64 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
         </div>
       </section>
 
-      {/* ═══════ 3. MAIN ARTICLE LAYOUT (2-COLUMN GRID) ═══════ */}
+      {/* ═══════ 3. MAIN ARTICLE LAYOUT (SINGLE LEFT-SIDEBAR GRID) ═══════ */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
-          {/* ── LEFT COLUMN: ARTICLE CONTENT (8 cols) ── */}
+          {/* ── LEFT COLUMN: STICKY SIDEBAR (TOC + ARTICLE DETAILS) (4 cols) ── */}
+          <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
+            
+            {/* 1. Table of Contents */}
+            {headings.length > 0 && (
+              <TableOfContents headings={headings} />
+            )}
+
+            {/* 2. Article Details Widget */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-border shadow-sm space-y-4">
+              <h3 className="text-sm font-bold text-dark uppercase tracking-wider border-b border-border pb-3 flex items-center gap-2">
+                <BookOpen className="w-4 h-4 text-brand" /> Article Details
+              </h3>
+              <ul className="space-y-3.5 text-xs">
+                <li className="flex items-center justify-between py-1.5 border-b border-border-light">
+                  <span className="font-semibold text-text-secondary flex items-center gap-1.5">
+                    <Tag className="w-3.5 h-3.5 text-brand" /> Category
+                  </span>
+                  <Link
+                    href={`/blog/category/${category.slug}`}
+                    className="font-bold text-brand hover:underline"
+                  >
+                    {category.name}
+                  </Link>
+                </li>
+                <li className="flex items-center justify-between py-1.5 border-b border-border-light">
+                  <span className="font-semibold text-text-secondary flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-primary" /> Published
+                  </span>
+                  <span className="text-dark font-medium">{formattedDate}</span>
+                </li>
+                <li className="flex items-center justify-between py-1.5 border-b border-border-light">
+                  <span className="font-semibold text-text-secondary flex items-center gap-1.5">
+                    <User className="w-3.5 h-3.5 text-brand" /> Author
+                  </span>
+                  <span className="text-dark font-medium">
+                    {!post.author?.node?.name || post.author?.node?.name.toLowerCase() === "admin"
+                      ? "Redmun Engineering Team"
+                      : post.author.node.name}
+                  </span>
+                </li>
+                <li className="flex items-center justify-between py-1.5">
+                  <span className="font-semibold text-text-secondary flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5 text-primary" /> Reading Time
+                  </span>
+                  <span className="text-dark font-medium">{readingTime} min read</span>
+                </li>
+              </ul>
+            </div>
+          </aside>
+
+          {/* ── RIGHT/MAIN COLUMN: ARTICLE CONTENT & BOTTOM WIDGETS (8 cols) ── */}
           <article className="lg:col-span-8 space-y-8">
+
             {/* Main Content Body Card */}
             <div className="bg-white rounded-3xl p-6 sm:p-10 md:p-12 border border-border shadow-sm space-y-6">
 
@@ -258,98 +358,61 @@ export default function BlogPostPage({ post, relatedPosts = [] }) {
               </div>
             </div>
 
-          </article>
+            {/* ── BELOW POST BODY: ADDITIONAL WIDGETS ── */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+              {/* Request Demo CTA Widget */}
+              <div className="bg-dark text-white rounded-3xl p-8 border border-border-dark shadow-xl relative overflow-hidden text-center flex flex-col justify-between">
+                <div className="absolute inset-0 dot-grid-dark pointer-events-none" />
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand opacity-15 rounded-full blur-2xl pointer-events-none" />
 
-          {/* ── RIGHT COLUMN: STICKY SIDEBAR (4 cols) ── */}
-          <aside className="lg:col-span-4 space-y-8 sticky top-24">
-
-            {/* 1. Request Demo CTA Widget */}
-            <div className="bg-dark text-white rounded-3xl p-8 border border-border-dark shadow-xl relative overflow-hidden text-center">
-              <div className="absolute inset-0 dot-grid-dark pointer-events-none" />
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand opacity-15 rounded-full blur-2xl pointer-events-none" />
-
-              <div className="relative z-10 space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-brand/15 border border-brand/30 flex items-center justify-center mx-auto text-brand">
-                  <Zap className="w-6 h-6" />
+                <div className="relative z-10 space-y-4">
+                  <div className="w-12 h-12 rounded-xl bg-brand/15 border border-brand/30 flex items-center justify-center mx-auto text-brand">
+                    <Zap className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white leading-snug">Need a Custom Digital System?</h3>
+                  <p className="text-xs text-text-muted leading-relaxed">
+                    Partner with Redmun Digitech to build automated 1688 sourcing portals, shipping software, or high-performance e-commerce platforms.
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold text-white leading-snug">Need a Custom Digital System?</h3>
-                <p className="text-xs text-text-muted leading-relaxed">
-                  Partner with Redmun Digitech to build automated 1688 sourcing portals, shipping software, or high-performance e-commerce platforms.
+                <div className="relative z-10 pt-4">
+                  <Button variant="brand" size="md" href="/contact" className="w-full justify-center">
+                    Request Consultation <ArrowRight className="w-4 h-4 ml-1.5" />
+                  </Button>
+                </div>
+              </div>
+
+              {/* Quick Browse Categories Widget */}
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-border shadow-sm space-y-4 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-sm font-bold text-dark uppercase tracking-wider border-b border-border pb-3 mb-4">
+                    Explore Engineering Topics
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      { name: "1688 Sourcing", slug: "1688" },
+                      { name: "E-Commerce", slug: "ecommerce" },
+                      { name: "Shipping Logistics", slug: "import-business" },
+                      { name: "News Editorial", slug: "news-portal" },
+                      { name: "Restaurant Tech", slug: "restaurant-tech" },
+                      { name: "SEO Schema", slug: "seo" },
+                    ].map((tag) => (
+                      <Link
+                        key={tag.slug}
+                        href={`/blog/category/${tag.slug}`}
+                        className="text-xs font-semibold bg-light hover:bg-brand hover:text-white px-3 py-1.5 rounded-full border border-border transition-colors text-text-secondary"
+                      >
+                        {tag.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+                <p className="text-xs text-text-tertiary pt-4 border-t border-border-light">
+                  Browse specialized architectural guides and case studies across core industries.
                 </p>
-                <Button variant="brand" size="md" href="/contact" className="w-full justify-center">
-                  Request Consultation <ArrowRight className="w-4 h-4 ml-1.5" />
-                </Button>
               </div>
             </div>
 
-            {/* 2. Post Details Sidebar Widget */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-border shadow-sm space-y-4">
-              <h3 className="text-sm font-bold text-dark uppercase tracking-wider border-b border-border pb-3 flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-brand" /> Article Details
-              </h3>
-              <ul className="space-y-3.5 text-xs">
-                <li className="flex items-center justify-between py-1.5 border-b border-border-light">
-                  <span className="font-semibold text-text-secondary flex items-center gap-1.5">
-                    <Tag className="w-3.5 h-3.5 text-brand" /> Category
-                  </span>
-                  <Link
-                    href={`/blog/category/${category.slug}`}
-                    className="font-bold text-brand hover:underline"
-                  >
-                    {category.name}
-                  </Link>
-                </li>
-                <li className="flex items-center justify-between py-1.5 border-b border-border-light">
-                  <span className="font-semibold text-text-secondary flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-primary" /> Published
-                  </span>
-                  <span className="text-dark font-medium">{formattedDate}</span>
-                </li>
-                <li className="flex items-center justify-between py-1.5 border-b border-border-light">
-                  <span className="font-semibold text-text-secondary flex items-center gap-1.5">
-                    <User className="w-3.5 h-3.5 text-brand" /> Author
-                  </span>
-                  <span className="text-dark font-medium">
-                    {!post.author?.node?.name || post.author?.node?.name.toLowerCase() === "admin"
-                      ? "Redmun Engineering Team"
-                      : post.author.node.name}
-                  </span>
-                </li>
-                <li className="flex items-center justify-between py-1.5">
-                  <span className="font-semibold text-text-secondary flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-primary" /> Reading Time
-                  </span>
-                  <span className="text-dark font-medium">{readingTime} min read</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* 3. Quick Browse Categories */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-border shadow-sm space-y-4">
-              <h3 className="text-sm font-bold text-dark uppercase tracking-wider border-b border-border pb-3">
-                Explore Engineering Topics
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  { name: "1688 Sourcing", slug: "1688" },
-                  { name: "E-Commerce", slug: "ecommerce" },
-                  { name: "Shipping Logistics", slug: "import-business" },
-                  { name: "News Editorial", slug: "news-portal" },
-                  { name: "Restaurant Tech", slug: "restaurant-tech" },
-                  { name: "SEO Schema", slug: "seo" },
-                ].map((tag) => (
-                  <Link
-                    key={tag.slug}
-                    href={`/blog/category/${tag.slug}`}
-                    className="text-xs font-semibold text-text-secondary bg-light hover:bg-brand hover:text-white px-3 py-1.5 rounded-full border border-border transition-colors"
-                  >
-                    {tag.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-          </aside>
+          </article>
 
         </div>
       </main>
