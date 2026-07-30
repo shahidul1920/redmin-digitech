@@ -42,52 +42,101 @@ export default function HomePage() {
   const products = [
     {
       title: "News Portal Platform",
-      desc: "Multi-author editorial CMS built for high-traffic media outlets. Supports real-time content indexing, ad integration layers, and category-driven SEO structures.",
+      desc: "Engage your audience with fast, modern and SEO-optimized news portals.",
       href: "/products/news-portal",
+      solutionTag: "Content Solution",
       tag: "Media",
       Icon: Newspaper,
+      features: [
+        "Real-time News Management",
+        "SEO Optimized & Fast",
+        "Multi-category & Author System",
+        "Responsive & Ad Ready",
+      ],
     },
     {
       title: "Company Profile System",
-      desc: "Lightning-fast multilingual corporate portals with headless CMS editing. Designed for enterprises requiring dynamic service pages and investor relations sections.",
+      desc: "Professional websites that represent your brand and build trust instantly.",
       href: "/products/company-profile",
+      solutionTag: "Brand Solution",
       tag: "Corporate",
       Icon: Building2,
+      features: [
+        "Modern & Unique Design",
+        "SEO & Speed Optimized",
+        "Company, Team & Career Pages",
+        "Multi-language Support",
+      ],
     },
     {
       title: "General E-Commerce",
-      desc: "Full-featured online stores with multi-currency checkout, inventory sync, abandoned cart recovery, and sub-second page loads across 50+ countries.",
+      desc: "Fully functional e-commerce platforms to sell anything, anywhere.",
       href: "/products/ecommerce",
+      solutionTag: "Ecommerce Solution",
       tag: "Retail",
       Icon: ShoppingCart,
+      features: [
+        "Product & Inventory Management",
+        "Multiple Payment Gateway",
+        "Customer & Order Management",
+        "Discount, Coupon & Tax System",
+      ],
     },
     {
       title: "1688 API Sourcing Portal",
-      desc: "Automated China import platform. Pulls live wholesale catalogs, auto-translates product data, calculates weight-based margins, and syncs orders in real-time.",
+      desc: "Automate sourcing from 1688 with real-time data, orders, and tracking.",
       href: "/products/1688-api",
+      solutionTag: "China Sourcing Solution",
       tag: "Import",
       Icon: Globe,
+      features: [
+        "1688 API Real-time Integration",
+        "Product Import & Auto Update",
+        "Order & Tracking Management",
+        "Supplier & Price Management",
+      ],
     },
     {
       title: "Shipping Management System",
-      desc: "Multi-carrier cargo tracking with automated manifest generation, customs documentation, customer status alerts, and warehouse dispatch coordination.",
+      desc: "Streamline your logistics, shipments, and deliveries in one platform.",
       href: "/products/shipping-management",
+      solutionTag: "Logistics Solution",
       tag: "Logistics",
       Icon: Truck,
+      features: [
+        "Shipment & Tracking Management",
+        "Courier & Route Optimization",
+        "Real-time Tracking & Notifications",
+        "Reports & Performance Analytics",
+      ],
     },
     {
       title: "Custom Branded E-Commerce",
-      desc: "White-label storefronts engineered for premium brands. Advanced cart optimization, unique checkout experiences, and deep analytics integrations.",
+      desc: "White-label e-commerce platform tailored to your brand and business model.",
       href: "/products/branded-ecommerce",
+      solutionTag: "Custom Solution",
       tag: "Retail",
       Icon: Gem,
+      features: [
+        "Custom Design & Branding",
+        "Multi-vendor Support",
+        "Advanced Analytics",
+        "Scalable & Secure Architecture",
+      ],
     },
     {
       title: "Restaurant Chain Management",
-      desc: "Real-time kitchen display systems, QR-code table ordering, multi-location menu sync, thermal POS printing, and integrated billing dashboards.",
+      desc: "Manage outlets, orders, menus, and customers from a single digital platform.",
       href: "/products/restaurant-management",
+      solutionTag: "Restaurant Solution",
       tag: "Hospitality",
       Icon: UtensilsCrossed,
+      features: [
+        "Multi-outlet Management",
+        "Digital Menu & Ordering",
+        "Kitchen & Inventory Management",
+        "Sales & Performance Reports",
+      ],
     },
   ];
 
@@ -166,8 +215,8 @@ export default function HomePage() {
 
             {/* Left — Copy */}
             <HeroScrollReveal className="lg:col-span-6 space-y-8">
-              <span className="reveal-item opacity-0 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest bg-white/5 border border-white/10 text-brand">
-                <span className="w-2 h-2 rounded-full bg-brand animate-pulse" />
+              <span className="reveal-item opacity-0 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest bg-white/5 border border-white/10 text-primary">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 Next-Gen Enterprise Software
               </span>
 
@@ -215,7 +264,7 @@ export default function HomePage() {
                   {/* Large Showcase Image */}
                   <div className="relative z-10 w-full lg:w-[115%] xl:w-[130%] lg:-ml-6 xl:-ml-12 overflow-visible">
                     <Image
-                      src="/heroImage.png"
+                      src="/heroImageN.png"
                       alt="Dashboard Preview"
                       width={1200}
                       height={800}
@@ -227,7 +276,7 @@ export default function HomePage() {
                   {/* Floating card */}
                   <div className="absolute -bottom-4 left-2 sm:-bottom-6 sm:-left-6 bg-dark-secondary/95 border border-white/10 rounded-xl p-2.5 sm:p-3.5 shadow-2xl animate-float z-20 backdrop-blur-md">
                     <div className="flex items-center gap-2.5 sm:gap-3">
-                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-brand/20 flex items-center justify-center text-brand font-bold text-xs sm:text-sm">
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-primary/20 flex items-center justify-center text-primary-light font-bold text-xs sm:text-sm">
                         <Cpu className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                       </div>
                       <div>
@@ -293,47 +342,80 @@ export default function HomePage() {
             </p>
           </ScrollReveal>
 
-          <ScrollReveal stagger={0.08} scale>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {products.map((prod, idx) => {
-                const ProdIcon = prod.Icon;
-                return (
-                  <div
-                    key={idx}
-                    className="sr-item opacity-0 group relative flex flex-col justify-between p-8 rounded-2xl border border-border bg-white hover:bg-light/50 transition-all duration-500 glow-border-primary"
-                  >
-                    <div>
-                      {/* Icon + Tag Row */}
-                      <div className="flex items-center justify-between mb-6">
-                        <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <ProdIcon className="w-6 h-6" />
-                        </div>
-                        <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/5 px-3 py-1 rounded-full">
-                          {prod.tag}
+          {/* Product Card — reusable renderer */}
+          {(() => {
+            const renderCard = (prod, idx) => {
+              const ProdIcon = prod.Icon;
+              return (
+                <div
+                  key={idx}
+                  className="sr-item opacity-0 group relative flex flex-col p-6 rounded-2xl border border-border bg-white hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                >
+                  {/* Row 1: Icon badge + Solution tag */}
+                  <div className="flex items-start justify-between gap-3 mb-5">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <ProdIcon className="w-6 h-6" />
+                    </div>
+                    <span className="inline-block text-[9px] font-extrabold uppercase tracking-widest text-primary bg-primary/8 px-3 py-1.5 rounded-full whitespace-nowrap">
+                      {prod.solutionTag}
+                    </span>
+                  </div>
+
+                  {/* Illustration mockup area */}
+                  <div className="img-placeholder rounded-xl aspect-[16/10] mb-5 overflow-hidden border border-border relative">
+                    <span className="text-text-muted text-[11px]">[ {prod.title} ]</span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-lg font-bold text-dark mb-2 leading-snug group-hover:text-primary transition-colors duration-300">
+                    {prod.title}
+                  </h3>
+
+                  {/* Short description */}
+                  <p className="text-xs text-text-secondary leading-relaxed mb-5">
+                    {prod.desc}
+                  </p>
+
+                  {/* Feature checklist */}
+                  <ul className="space-y-2.5 mb-6">
+                    {prod.features.map((feat, fIdx) => (
+                      <li key={fIdx} className="flex items-start gap-2 text-xs text-dark">
+                        <span className="w-4 h-4 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5" />
                         </span>
-                      </div>
+                        <span className="font-medium">{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-                      <h3 className="text-xl font-bold text-dark mb-3 group-hover:text-primary transition-colors duration-300">
-                        {prod.title}
-                      </h3>
-                      <p className="text-sm text-text-secondary leading-relaxed mb-8">
-                        {prod.desc}
-                      </p>
-                    </div>
-
-                    {/* Image placeholder for product screenshot */}
-                    <div className="img-placeholder rounded-xl aspect-[16/9] mb-6 overflow-hidden border border-border">
-                      <span>[ {prod.title} Screenshot ]</span>
-                    </div>
-
-                    <Button variant="ghost" size="sm" href={prod.href} className="justify-start pl-0 text-primary font-bold">
-                      Explore Platform <ArrowRight className="w-4 h-4 ml-1" />
+                  {/* Learn More link */}
+                  <div className="mt-auto">
+                    <Button variant="ghost" size="sm" href={prod.href} className="justify-start pl-0 text-primary font-bold text-xs group-hover:translate-x-1 transition-transform duration-200">
+                      Learn More <ArrowRight className="w-3.5 h-3.5 ml-1" />
                     </Button>
                   </div>
-                );
-              })}
-            </div>
-          </ScrollReveal>
+                </div>
+              );
+            };
+
+            return (
+              <>
+                {/* Row 1 — Top 4 cards */}
+                <ScrollReveal stagger={0.08} scale>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                    {products.slice(0, 4).map(renderCard)}
+                  </div>
+                </ScrollReveal>
+
+                {/* Row 2 — Bottom 3 cards, centered */}
+                <ScrollReveal stagger={0.08} scale>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[900px] lg:max-w-none mx-auto">
+                    {products.slice(4, 7).map((prod, idx) => renderCard(prod, idx + 4))}
+                  </div>
+                </ScrollReveal>
+              </>
+            );
+          })()}
         </div>
       </section>
 
