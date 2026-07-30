@@ -23,13 +23,14 @@ export default function Header() {
   ];
 
   const blogCategories = [
-    { name: "1688 Sourcing", href: "/blog/category/1688" },
-    { name: "News Portal Tech", href: "/blog/category/news-portal" },
-    { name: "Ecommerce Insights", href: "/blog/category/ecommerce" },
-    { name: "Import Business", href: "/blog/category/import-business" },
-    { name: "Restaurant Tech", href: "/blog/category/restaurant-tech" },
-    { name: "SEO & Speed", href: "/blog/category/seo" },
+    { name: "1688", href: "/blog/category/1688" },
     { name: "Digital Business", href: "/blog/category/digital-business" },
+    { name: "Ecommerce", href: "/blog/category/ecommerce" },
+    { name: "Import Business", href: "/blog/category/import-business" },
+    { name: "News Portal", href: "/blog/category/news-portal" },
+    { name: "Restaurant Tech", href: "/blog/category/restaurant-tech" },
+    { name: "SEO", href: "/blog/category/seo" },
+    { name: "Website", href: "/blog/category/website" },
   ];
 
   const mainNav = [
@@ -87,24 +88,42 @@ export default function Header() {
                     onMouseEnter={() => handleDropdownHover(item.type)}
                     onMouseLeave={handleDropdownLeave}
                   >
-                    <button
-                      className={`inline-flex items-center gap-1 px-3 py-2 text-sm font-semibold rounded-md transition-colors cursor-pointer ${isActive(item.href) || isOpen
-                        ? "text-brand bg-light"
-                        : "text-text-secondary hover:text-dark hover:bg-light/60"
+                    <div className="inline-flex items-center gap-0.5">
+                      <Link
+                        href={item.href}
+                        className={`px-3 py-2 text-sm font-semibold rounded-md transition-colors ${
+                          isActive(item.href) || isOpen
+                            ? "text-brand bg-light"
+                            : "text-text-secondary hover:text-dark hover:bg-light/60"
                         }`}
-                    >
-                      {item.name}
-                      <ChevronDown
-                        className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-                      />
-                    </button>
+                      >
+                        {item.name}
+                      </Link>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setActiveDropdown(isOpen ? null : item.type);
+                        }}
+                        aria-label={`Toggle ${item.name} menu`}
+                        className={`p-1 rounded-md transition-colors cursor-pointer ${
+                          isOpen ? "text-brand" : "text-text-secondary hover:text-dark"
+                        }`}
+                      >
+                        <ChevronDown
+                          className={`h-4 w-4 transition-transform duration-200 ${
+                            isOpen ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                    </div>
 
                     {/* Desktop Dropdown Panel */}
                     <div
-                      className={`absolute left-1/2 -translate-x-1/2 top-full w-64 bg-white border border-border rounded-xl shadow-lg py-2 transition-all duration-200 origin-top ${isOpen
-                        ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
-                        : "opacity-0 -translate-y-2 scale-95 pointer-events-none"
-                        }`}
+                      className={`absolute left-1/2 -translate-x-1/2 top-full w-64 bg-white border border-border rounded-xl shadow-lg py-2 transition-all duration-200 origin-top ${
+                        isOpen
+                          ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
+                          : "opacity-0 -translate-y-2 scale-95 pointer-events-none"
+                      }`}
                     >
                       <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1 w-2.5 h-2.5 rotate-45 bg-white border-t border-l border-border" />
                       {item.dropdown.map((subItem) => (
@@ -112,8 +131,11 @@ export default function Header() {
                           key={subItem.name}
                           href={subItem.href}
                           onClick={handleDropdownLeave}
-                          className={`block px-4 py-2 text-sm font-medium hover:bg-light transition-colors ${pathname === subItem.href ? "text-brand" : "text-text-secondary hover:text-dark"
-                            }`}
+                          className={`block px-4 py-2 text-sm font-medium hover:bg-light transition-colors ${
+                            pathname === subItem.href
+                              ? "text-brand"
+                              : "text-text-secondary hover:text-dark"
+                          }`}
                         >
                           {subItem.name}
                         </Link>
@@ -127,10 +149,11 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`px-3 py-2 text-sm font-semibold rounded-md transition-colors ${isActive(item.href)
-                    ? "text-brand bg-light"
-                    : "text-text-secondary hover:text-dark hover:bg-light/60"
-                    }`}
+                  className={`px-3 py-2 text-sm font-semibold rounded-md transition-colors ${
+                    isActive(item.href)
+                      ? "text-brand bg-light"
+                      : "text-text-secondary hover:text-dark hover:bg-light/60"
+                  }`}
                 >
                   {item.name}
                 </Link>
@@ -164,8 +187,9 @@ export default function Header() {
 
       {/* Mobile Menu Panel */}
       <div
-        className={`lg:hidden border-t border-border bg-white transition-all duration-300 overflow-hidden ${mobileMenuOpen ? "max-h-[85vh] opacity-100 visible" : "max-h-0 opacity-0 invisible"
-          }`}
+        className={`lg:hidden border-t border-border bg-white transition-all duration-300 overflow-hidden ${
+          mobileMenuOpen ? "max-h-[85vh] opacity-100 visible" : "max-h-0 opacity-0 invisible"
+        }`}
       >
         <div className="px-4 py-6 space-y-3 overflow-y-auto max-h-[80vh]">
           {mainNav.map((item) => {
@@ -173,15 +197,30 @@ export default function Header() {
               const isSectionOpen = activeDropdown === item.type;
               return (
                 <div key={item.name} className="space-y-1">
-                  <button
-                    onClick={() => setActiveDropdown(isSectionOpen ? null : item.type)}
-                    className="flex w-full items-center justify-between py-2 text-base font-bold text-text-secondary hover:text-dark"
-                  >
-                    {item.name}
-                    <ChevronDown
-                      className={`h-5 w-5 transition-transform duration-200 ${isSectionOpen ? "rotate-180" : ""}`}
-                    />
-                  </button>
+                  <div className="flex items-center justify-between py-2">
+                    <Link
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`text-base font-bold transition-colors ${
+                        isActive(item.href)
+                          ? "text-brand"
+                          : "text-text-secondary hover:text-dark"
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                    <button
+                      onClick={() => setActiveDropdown(isSectionOpen ? null : item.type)}
+                      className="p-1 rounded-md text-text-secondary hover:text-dark"
+                      aria-label={`Toggle ${item.name} submenu`}
+                    >
+                      <ChevronDown
+                        className={`h-5 w-5 transition-transform duration-200 ${
+                          isSectionOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                  </div>
 
                   <div
                     className={`pl-4 border-l-2 border-border space-y-1 overflow-hidden transition-all duration-200 ${isSectionOpen ? "max-h-96 opacity-100 py-1" : "max-h-0 opacity-0"

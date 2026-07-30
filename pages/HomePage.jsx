@@ -21,6 +21,7 @@ import {
   Sparkles,
   Zap,
 } from "@/components/Icons";
+import Image from "next/image";
 import Button from "@/components/Button";
 import CTASection from "@/components/CTASection";
 import HeroScrollReveal from "@/components/HeroScrollReveal";
@@ -164,17 +165,17 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
             {/* Left — Copy */}
-            <HeroScrollReveal className="lg:col-span-7 space-y-8">
-              <span className="reveal-item opacity-0 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest glass text-brand">
+            <HeroScrollReveal className="lg:col-span-6 space-y-8">
+              <span className="reveal-item opacity-0 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest bg-white/5 border border-white/10 text-brand">
                 <span className="w-2 h-2 rounded-full bg-brand animate-pulse" />
                 Next-Gen Enterprise Software
               </span>
 
-              <h1 className="reveal-item opacity-0 text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-bold leading-[1.08] tracking-tight">
+              <h1 className="reveal-item opacity-0 text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-bold leading-[1.08] tracking-tight">
                 Build Smarter.{" "}
                 <span className="text-gradient-brand">Ship Faster.</span>
                 <br />
-                <span className="text-text-muted text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-medium mt-2 block">
+                <span className="text-text-muted text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-medium mt-2 block">
                   Enterprise Platforms That Scale.
                 </span>
               </h1>
@@ -203,31 +204,44 @@ export default function HomePage() {
               </div>
             </HeroScrollReveal>
 
-            {/* Right — Hero image placeholder */}
-            <div className="lg:col-span-5 relative hidden lg:block">
-              <ParallaxSection speed={-30}>
-                <div className="relative">
-                  {/* Main dashboard mockup placeholder */}
-                  <div className="img-placeholder-dark rounded-2xl aspect-[4/3] border border-white/10 shadow-2xl overflow-hidden">
-                    <span className="text-white/30 text-sm">[ Dashboard Preview Image ]</span>
+            {/* Right — Hero Showcase Image (Responsive on Mobile, Tablet & Desktop) */}
+            <div className="lg:col-span-6 relative mt-12 lg:mt-0 block">
+              <ParallaxSection speed={-20}>
+                <div className="relative w-full max-w-lg lg:max-w-2xl mx-auto lg:ml-auto">
+                  {/* Ultra Intense Red Ambient Glow (Fluid Scaling) */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] sm:w-[500px] sm:h-[500px] lg:w-[650px] lg:h-[650px] xl:w-[800px] xl:h-[800px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-brand via-brand/80 to-transparent blur-[60px] sm:blur-[80px] opacity-100 pointer-events-none z-0 animate-pulse-glow" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] sm:w-[350px] sm:h-[350px] bg-brand-light blur-[40px] sm:blur-[55px] opacity-90 pointer-events-none z-0" />
+
+                  {/* Large Showcase Image */}
+                  <div className="relative z-10 w-full lg:w-[115%] xl:w-[130%] lg:-ml-6 xl:-ml-12 overflow-visible">
+                    <Image
+                      src="/heroImage.png"
+                      alt="Dashboard Preview"
+                      width={1200}
+                      height={800}
+                      className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(255,0,0,0.3)] sm:drop-shadow-[0_30px_70px_rgba(255,0,0,0.35)] transform-gpu transition-transform duration-500 hover:scale-[1.02]"
+                      priority
+                    />
                   </div>
+
                   {/* Floating card */}
-                  <div className="absolute -bottom-6 -left-6 glass rounded-xl p-4 animate-float shadow-xl">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-brand/20 flex items-center justify-center text-brand font-bold text-sm">
-                        <Cpu className="w-5 h-5" />
+                  <div className="absolute -bottom-4 left-2 sm:-bottom-6 sm:-left-6 bg-dark-secondary/95 border border-white/10 rounded-xl p-2.5 sm:p-3.5 shadow-2xl animate-float z-20 backdrop-blur-md">
+                    <div className="flex items-center gap-2.5 sm:gap-3">
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-brand/20 flex items-center justify-center text-brand font-bold text-xs sm:text-sm">
+                        <Cpu className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                       </div>
                       <div>
-                        <p className="text-xs font-bold text-white">1688 Sync Active</p>
-                        <p className="text-[10px] text-text-muted">2,847 products synced</p>
+                        <p className="text-[11px] sm:text-xs font-bold text-white">1688 Sync Active</p>
+                        <p className="text-[9px] sm:text-[10px] text-text-muted">2,847 products synced</p>
                       </div>
                     </div>
                   </div>
+
                   {/* Floating metric */}
-                  <div className="absolute -top-4 -right-4 glass rounded-xl p-4 animate-float" style={{ animationDelay: "3s" }}>
+                  <div className="absolute -top-4 right-2 sm:-top-6 sm:-right-6 bg-dark-secondary/95 border border-white/10 rounded-xl p-2.5 sm:p-3.5 shadow-2xl animate-float z-20 backdrop-blur-md" style={{ animationDelay: "3s" }}>
                     <div className="text-center">
-                      <p className="text-xl font-bold text-white">99.9%</p>
-                      <p className="text-[10px] text-text-muted">Uptime SLA</p>
+                      <p className="text-base sm:text-lg font-bold text-white">99.9%</p>
+                      <p className="text-[9px] sm:text-[10px] text-text-muted">Uptime SLA</p>
                     </div>
                   </div>
                 </div>

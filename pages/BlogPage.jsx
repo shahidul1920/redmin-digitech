@@ -40,7 +40,7 @@ export default function BlogPage({ categories = [], posts = [] }) {
 
   return (
     <div className="bg-light-secondary/40">
-      
+
       {/* ═══════ 1. HERO BANNER ═══════ */}
       <section className="relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20">
@@ -86,39 +86,41 @@ export default function BlogPage({ categories = [], posts = [] }) {
               const IconComponent = meta.Icon;
               const accentColor = meta.accent;
               return (
-                <div
+                <Link
                   key={cat.id || cat.slug}
-                  className={`sr-item opacity-0 bg-white p-6 rounded-2xl border border-border flex flex-col justify-between shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group glow-border-${accentColor} relative overflow-hidden`}
+                  href={`/blog/category/${cat.slug}`}
                 >
-                  {/* Accent top stripe */}
-                  <div className={`absolute top-0 left-0 right-0 h-0.5 bg-${accentColor}`} />
+                  <div
 
-                  <div>
-                    {/* Icon Badge */}
-                    <div className={`w-10 h-10 rounded-lg bg-${accentColor}/5 border border-${accentColor}/15 flex items-center justify-center mb-4`}>
-                      <IconComponent className={`w-4.5 h-4.5 text-${accentColor}`} />
+                    className={`sr-item opacity-0 bg-white p-6 rounded-2xl border border-border flex flex-col justify-between shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group glow-border-${accentColor} relative overflow-hidden`}
+                  >
+                    {/* Accent top stripe */}
+                    <div className={`absolute top-0 left-0 right-0 h-0.5 bg-${accentColor}`} />
+
+                    <div>
+                      {/* Icon Badge */}
+                      <div className={`w-10 h-10 rounded-lg bg-${accentColor}/5 border border-${accentColor}/15 flex items-center justify-center mb-4`}>
+                        <IconComponent className={`w-4.5 h-4.5 text-${accentColor}`} />
+                      </div>
+
+                      <span className="text-[10px] font-bold text-text-muted uppercase tracking-wider block mb-1">
+                        {cat.count !== null && cat.count !== undefined
+                          ? `${cat.count} ${cat.count === 1 ? "article" : "articles"}`
+                          : "Featured Category"}
+                      </span>
+                      <h3 className="font-bold text-dark mb-2 text-lg group-hover:text-brand transition-colors">
+                        {cat.name}
+                      </h3>
+                      <p className="text-xs text-text-secondary leading-relaxed mb-6">{meta.desc}</p>
                     </div>
 
-                    <span className="text-[10px] font-bold text-text-muted uppercase tracking-wider block mb-1">
-                      {cat.count !== null && cat.count !== undefined
-                        ? `${cat.count} ${cat.count === 1 ? "article" : "articles"}`
-                        : "Featured Category"}
-                    </span>
-                    <h3 className="font-bold text-dark mb-2 text-lg group-hover:text-brand transition-colors">
-                      {cat.name}
-                    </h3>
-                    <p className="text-xs text-text-secondary leading-relaxed mb-6">{meta.desc}</p>
+                    <div className="pt-2">
+                      <span className="inline-flex items-center text-brand text-xs font-bold group-hover:translate-x-1 transition-transform">
+                        Explore Category <ArrowRight className="w-4 h-4 ml-1" />
+                      </span>
+                    </div>
                   </div>
-
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    href={`/blog/category/${cat.slug}`}
-                    className="justify-start pl-0 text-brand text-xs font-bold"
-                  >
-                    Explore Category <ArrowRight className="w-4 h-4 ml-1" />
-                  </Button>
-                </div>
+                </Link>
               );
             })}
           </div>
@@ -185,7 +187,7 @@ export default function BlogPage({ categories = [], posts = [] }) {
         <div className="sr-item opacity-0 bg-dark text-white rounded-3xl p-8 md:p-12 relative overflow-hidden border border-border-dark text-center">
           <div className="absolute inset-0 dot-grid-dark pointer-events-none" />
           <div className="absolute -top-12 -right-12 w-52 h-52 bg-primary opacity-10 rounded-full blur-3xl pointer-events-none" />
-          
+
           <div className="relative z-10">
             <div className="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center mx-auto mb-5">
               <Mail className="w-5 h-5 text-brand" />
@@ -228,10 +230,10 @@ function FeaturedArticleHero({ post }) {
 
   const formattedDate = post.date
     ? new Date(post.date).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
     : "July 2026";
 
   const subTitle =
