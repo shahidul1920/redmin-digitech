@@ -193,7 +193,7 @@ a {
 
 /* Image placeholder area */
 .img-placeholder {
-  background: linear-gradient(135deg, var(--color-light-secondary) 0%, var(--color-light-tertiary) 100%);
+  /* background: linear-gradient(135deg, var(--color-light-secondary) 0%, var(--color-light-tertiary) 100%); */
   display: flex;
   align-items: center;
   justify-content: center;

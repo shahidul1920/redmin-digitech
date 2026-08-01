@@ -48,6 +48,7 @@ export default function HomePage() {
       solutionTag: "Content Solution",
       tag: "Media",
       Icon: Newspaper,
+      image: "/1-lap-web.png",
       features: [
         "Real-time News Management",
         "SEO Optimized & Fast",
@@ -62,6 +63,7 @@ export default function HomePage() {
       solutionTag: "Brand Solution",
       tag: "Corporate",
       Icon: Building2,
+      image: "/company-profile.png",
       features: [
         "Modern & Unique Design",
         "SEO & Speed Optimized",
@@ -76,6 +78,7 @@ export default function HomePage() {
       solutionTag: "Ecommerce Solution",
       tag: "Retail",
       Icon: ShoppingCart,
+      image: "/general-e-commerce.png",
       features: [
         "Product & Inventory Management",
         "Multiple Payment Gateway",
@@ -90,6 +93,7 @@ export default function HomePage() {
       solutionTag: "China Sourcing Solution",
       tag: "Import",
       Icon: Globe,
+      image: "/1688-api-intragration.png",
       features: [
         "1688 API Real-time Integration",
         "Product Import & Auto Update",
@@ -340,35 +344,42 @@ export default function HomePage() {
               return (
                 <div
                   key={idx}
-                  className="sr-item opacity-0 group relative flex flex-col p-6 rounded-2xl border border-border bg-white hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                  className="sr-item opacity-0 group relative flex flex-col p-0 rounded-2xl border border-border bg-white hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
-                  {/* Row 1: Icon badge + Solution tag */}
-                  <div className="flex items-start justify-between gap-3 mb-5">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <ProdIcon className="w-6 h-6" />
+                  {/* Illustration mockup area — full width at top with overlays */}
+                  <div className="relative overflow-hidden rounded-t-2xl">
+                    <div className="img-placeholder w-full aspect-[16/10] overflow-hidden rounded-t-2xl bg-gray-50 relative">
+                      <Image src={prod?.image} alt={prod.title} fill className="object-cover" />
                     </div>
-                    <span className="inline-block text-[9px] font-extrabold uppercase tracking-widest text-primary bg-primary/8 px-3 py-1.5 rounded-full whitespace-nowrap">
-                      {prod.solutionTag}
-                    </span>
+
+                    {/* Icon badge (overlay) */}
+                    <div className="absolute top-4 left-4">
+                      <div className="w-12 h-12 rounded-xl bg-brand/10 text-brand flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
+                        <ProdIcon className="w-6 h-6" />
+                      </div>
+                    </div>
+
+                    {/* Solution tag (overlay) */}
+                    <div className="absolute top-4 right-4">
+                      <span className="inline-block text-[9px] font-extrabold uppercase tracking-widest text-brand bg-brand/8 px-3 py-1.5 rounded-full whitespace-nowrap">
+                        {prod.solutionTag}
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Illustration mockup area */}
-                  <div className="img-placeholder rounded-xl aspect-[16/10] mb-5 overflow-hidden border border-border relative">
-                    <span className="text-text-muted text-[11px]">[ {prod.title} ]</span>
-                  </div>
+                  <div className="p-6 flex-1 flex flex-col">
+                    {/* Title */}
+                    <h3 className="text-lg font-bold text-dark mb-2 leading-snug group-hover:text-primary transition-colors duration-300">
+                      {prod.title}
+                    </h3>
 
-                  {/* Title */}
-                  <h3 className="text-lg font-bold text-dark mb-2 leading-snug group-hover:text-primary transition-colors duration-300">
-                    {prod.title}
-                  </h3>
+                    {/* Short description */}
+                    <p className="text-xs text-text-secondary leading-relaxed mb-5">
+                      {prod.desc}
+                    </p>
 
-                  {/* Short description */}
-                  <p className="text-xs text-text-secondary leading-relaxed mb-5">
-                    {prod.desc}
-                  </p>
-
-                  {/* Feature checklist */}
-                  <ul className="space-y-2.5 mb-6">
+                    {/* Feature checklist */}
+                    <ul className="space-y-2.5 mb-6">
                     {prod.features.map((feat, fIdx) => (
                       <li key={fIdx} className="flex items-start gap-2 text-xs text-dark">
                         <span className="w-4 h-4 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
@@ -379,11 +390,12 @@ export default function HomePage() {
                     ))}
                   </ul>
 
-                  {/* Learn More link */}
-                  <div className="mt-auto">
-                    <Button variant="ghost" size="sm" href={prod.href} className="justify-start pl-0 text-primary font-bold text-xs group-hover:translate-x-1 transition-transform duration-200">
-                      Learn More <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                    </Button>
+                    {/* Learn More link */}
+                    <div className="mt-auto">
+                      <Button variant="ghost" size="sm" href={prod.href} className="justify-start pl-0 text-primary font-bold text-xs group-hover:translate-x-1 transition-transform duration-200">
+                        Learn More <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                      </Button>
+                    </div>
                   </div>
                 </div>
               );
@@ -562,7 +574,8 @@ export default function HomePage() {
 
                 {/* Image placeholder for office/team — flex-1 fills vertical height */}
                 <div className="sr-item opacity-0 img-placeholder rounded-2xl flex-1 min-h-[240px] border border-border overflow-hidden shadow-sm flex items-center justify-center p-6">
-                  <span>[ Team / Office Image ]</span>
+                  <Image src="/team.svg" alt="Our Team" className="w-full h-full object-cover" fill />
+                  {/* <span>[ Team / Office Image ]</span> */}
                 </div>
               </ScrollReveal>
             </div>
