@@ -2,11 +2,11 @@ import BlogPage from "@/pages/BlogPage";
 import { getCategories, getAllPosts } from "@/lib/wp-api";
 
 export const metadata = {
-  title: "Blog & Technical Articles — Redmun Digitech",
+  title: "Blog & Technical Articles | Redmun Digitech",
   description:
-    "Read technical articles, system blueprints, and digital supply guides written by our software developers and logistics architects.",
+    "Insights on Headless WordPress, Next.js engineering, 1688 API integrations, logistics software, and e-commerce scaling.",
   openGraph: {
-    title: "Blog & Technical Articles — Redmun Digitech",
+    title: "Blog & Technical Articles | Redmun Digitech",
     description:
       "Technical documentations and system blueprints powered by Headless WordPress & Next.js ISR.",
   },

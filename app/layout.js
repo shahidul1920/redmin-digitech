@@ -16,7 +16,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: "Redmun Digitech — Enterprise Management Platform",
+  title: "Redmun Digitech | Enterprise Management Platform",
   description:
     "Enterprise management platform built for growing businesses. Specialized digital solutions for e-commerce, shipping, restaurants, and more.",
 };

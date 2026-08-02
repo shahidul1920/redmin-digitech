@@ -14,14 +14,14 @@ export async function generateMetadata({ params }) {
 
   if (!post) {
     return {
-      title: "Post Not Found — Redmun Digitech",
+      title: "Post Not Found | Redmun Digitech",
       description: "The requested news article could not be found.",
     };
   }
 
   const { seo, title, excerpt, featuredImage } = post;
 
-  const metaTitle = seo?.title || `${title} — Redmun Digitech`;
+  const metaTitle = seo?.title || `${title} | Redmun Digitech`;
   const metaDescription =
     seo?.metaDesc ||
     excerpt?.replace(/<[^>]+>/g, "").trim().slice(0, 160) ||

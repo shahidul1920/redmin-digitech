@@ -160,7 +160,7 @@ export default function HomePage() {
   ];
 
   const valueChecklist = [
-    { title: "Industry-Optimized Architecture", desc: "Pre-configured database schemas and workflows tailored to your sector — not generic templates." },
+    { title: "Industry-Optimized Architecture", desc: "Pre-configured database schemas and workflows tailored to your sector, not generic templates." },
     { title: "Enterprise Security Standards", desc: "Decoupled frontend eliminates direct DB exposure. HTTPS-only, encrypted APIs, and role-based access controls." },
     { title: "Sub-Second Performance", desc: "Server-side rendering, edge caching, and code splitting deliver loading speeds under 1.2 seconds globally." },
     { title: "SEO-First Engineering", desc: "Semantic HTML, structured data, dynamic meta tags, and server-rendered pages for maximum search visibility." },
@@ -180,13 +180,13 @@ export default function HomePage() {
   ];
 
   const faqs = [
-    { q: "What is a Headless WordPress architecture?", a: "It separates the backend content editor (WordPress) from the frontend display layer (Next.js). Editors get the familiar WordPress admin panel, while visitors experience a lightning-fast, ultra-secure React interface with zero WordPress vulnerabilities exposed." },
-    { q: "How does the 1688 API platform automate product sourcing?", a: "Our system pulls raw product data — images, specifications, and pricing — directly from 1688.com's API, translates everything automatically using premium language models, applies your margin rules, and publishes catalog-ready listings in seconds." },
-    { q: "Can the Shipping Management System integrate with courier APIs?", a: "Yes. It supports plug-in integrations with DHL, FedEx, Aramex, and custom freight APIs. Tracking coordinates, delivery statuses, and customer notifications are updated in real-time across all carriers." },
-    { q: "Do you offer flexible pricing for growing businesses?", a: "Absolutely. Every platform is modular — you can launch with core features and incrementally unlock advanced modules (analytics, multi-warehouse, API access) as your operations scale." },
+    { q: "How does the 1688 API platform automate product sourcing?", a: "Our system pulls raw product data (images, specifications, and pricing) directly from 1688.com's API, translates everything automatically using premium language models, applies your margin rules, and publishes catalog-ready listings in seconds." },
+    { q: "Can Headless WordPress handle high-traffic surges?", a: "Yes. By separating the frontend (Next.js 16) from the backend (WordPress), static pages are served directly from Cloudflare edge caches in under 50ms, while WordPress only handles authenticated API requests." },
+    { q: "Do you offer flexible pricing for growing businesses?", a: "Absolutely. Every platform is modular, allowing you to launch with core features and incrementally unlock advanced modules (analytics, multi-warehouse, API access) as your operations scale." },
+    { q: "What security measures protect customer and order data?", a: "We implement zero-trust API architecture, SSL encryption, rate limiting, automated cloud backups, and isolate WordPress from public web traffic." },
     { q: "Is every platform fully mobile responsive?", a: "All components are built mobile-first using fluid grid systems and tested across iOS, Android, tablets, and high-DPI desktop displays. Touch interactions and viewport scaling are tuned for each breakpoint." },
     { q: "How secure are your deployed platforms?", a: "By decoupling the frontend from the database via server-side rendering, direct SQL injection vectors are eliminated. All communication uses HTTPS with encrypted API handshakes, and admin panels are IP-restricted." },
-    { q: "What is a typical project timeline?", a: "A corporate profile site takes 2–3 weeks. A complex 1688 sourcing platform or shipping ERP takes 6–8 weeks. Enterprise custom builds with multiple integrations typically take 10–14 weeks." },
+    { q: "What is a typical project timeline?", a: "A corporate profile site takes 2 to 3 weeks. A complex 1688 sourcing platform or shipping ERP takes 6 to 8 weeks. Enterprise custom builds with multiple integrations typically take 10 to 14 weeks." },
     { q: "Can restaurant orders print to thermal receipt printers?", a: "Yes. Our restaurant management system integrates directly with ESC/POS thermal printers over local network gateways, supporting instant kitchen ticket printing and receipt generation." },
     { q: "Do you provide hosting and post-launch maintenance?", a: "We deploy to modern cloud infrastructure (Vercel, AWS, or Docker hosts) and offer tiered SLA support packages including uptime monitoring, security patches, and feature iterations." },
     { q: "Can existing website content be migrated without losing SEO?", a: "Yes. We write custom migration scripts that safely transfer databases, media assets, and URL structures while preserving existing search rankings through proper 301 redirect mapping." },
@@ -228,7 +228,7 @@ export default function HomePage() {
               </h1>
 
               <p className="reveal-item opacity-0 text-base md:text-lg text-text-muted max-w-xl leading-relaxed">
-                Redmun Digitech engineers high-performance headless platforms — from automated 1688 sourcing portals and shipping ERPs to custom branded e-commerce systems — designed to eliminate operational bottlenecks and accelerate revenue growth.
+                Redmun Digitech engineers high-performance headless platforms, from automated 1688 sourcing portals and shipping ERPs to custom branded e-commerce systems, designed to eliminate operational bottlenecks and accelerate revenue growth.
               </p>
 
               <div className="reveal-item opacity-0 flex flex-wrap gap-4">
@@ -243,9 +243,27 @@ export default function HomePage() {
               {/* Trust bar */}
               <div className="reveal-item opacity-0 pt-8 border-t border-white/10">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-text-muted mb-4">Trusted by industry leaders</p>
-                <div className="flex flex-wrap gap-6 items-center">
-                  {["SINO CARGO GROUP", "PRO LOGISTICS BD", "NEWSNET INC.", "RETAILGRID CO."].map((name, i) => (
-                    <span key={i} className="text-xs font-bold text-white/25 tracking-wider uppercase">{name}</span>
+                <div className="flex flex-wrap gap-6 sm:gap-8 items-center">
+                  {[
+                    { name: "B2G Soft", src: "/b2g.png" },
+                    { name: "Cell Repair", src: "/cell-repair1.png" },
+                    { name: "Fresh Pizza", src: "/fresh-pizza1.png" },
+                    { name: "Hasen", src: "/hasen1.png" },
+                    { name: "Oven Fresh", src: "/oven-fresh.png" },
+                    { name: "Xeniusoft", src: "/xeniusoft.png" },
+                  ].map((logo, i) => (
+                    <div
+                      key={i}
+                      className="relative h-7 sm:h-8 w-20 sm:w-24 opacity-60 hover:opacity-100 transition-all duration-300 group/logo"
+                      title={logo.name}
+                    >
+                      <Image
+                        src={logo.src}
+                        alt={logo.name}
+                        fill
+                        className="object-contain brightness-0 invert group-hover/logo:scale-105 transition-transform duration-300"
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
@@ -336,7 +354,7 @@ export default function HomePage() {
               <span className="text-text-tertiary">One Engineering Team.</span>
             </h2>
             <p className="sr-item opacity-0 text-text-secondary text-base md:text-lg leading-relaxed">
-              Purpose-built software systems designed to automate operations, control supply chains, and scale digital revenue — not generic templates.
+              Purpose-built software systems designed to automate operations, control supply chains, and scale digital revenue without generic templates.
             </p>
           </ScrollReveal>
 
@@ -456,21 +474,15 @@ export default function HomePage() {
                   <span className="text-gradient-primary">Ecommerce</span>
                 </h2>
 
-                <p className="sr-item opacity-0 text-text-muted leading-relaxed">
-                  Connect directly to China's largest wholesale marketplace. Automate what used to take your team days — product discovery, translation, pricing, and catalog publishing — into a single seamless workflow.
+                <p className="sr-item opacity-0 text-text-muted text-sm md:text-base leading-relaxed">
+                  Connect directly to China's largest wholesale marketplace. Automate what used to take your team days: product discovery, translation, pricing, and catalog publishing into a single seamless workflow.
                 </p>
 
-                <div className="sr-item opacity-0 space-y-5 pt-6 border-t border-white/10">
-                  <div>
-                    <h4 className="text-sm font-bold text-brand uppercase tracking-wider mb-1.5">The Problem</h4>
-                    <p className="text-sm text-text-muted leading-relaxed">
-                      Manually sourcing products from Chinese sites takes days of copy-pasting, translating, and price-calculating. Stock levels go stale within hours, and margin errors cost thousands.
-                    </p>
-                  </div>
-                  <div>
+                <div className="sr-item opacity-0 space-y-4 pt-2">
+                  <div className="p-4 rounded-xl bg-white/[0.04] border border-white/[0.06]">
                     <h4 className="text-sm font-bold text-primary-light uppercase tracking-wider mb-1.5">The Solution</h4>
                     <p className="text-sm text-text-muted leading-relaxed">
-                      An automated API bridge that syncs product images, specifications, weight-based shipping rates, and translated descriptions — with live margin calculations and one-click catalog publishing.
+                      An automated API bridge that syncs product images, specifications, weight-based shipping rates, and translated descriptions with live margin calculations and one-click catalog publishing.
                     </p>
                   </div>
                 </div>

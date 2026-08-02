@@ -15,28 +15,28 @@ export default function SLAPage() {
 
   const severityTiers = [
     {
-      level: "P1 — Critical Outage",
+      level: "P1: Critical Outage",
       target: "< 15 Minutes Response",
       desc: "Complete storefront rendering failure, checkout gateway down, or total database disconnection affecting all users.",
       action: "Immediate engineer dispatch, emergency bridge call, hourly status updates to client ops team.",
       color: "brand",
     },
     {
-      level: "P2 — Major Degradation",
+      level: "P2: Major Degradation",
       target: "< 1 Hour Response",
       desc: "Partial API pipeline delay (e.g. 1688 price sync queue latency), background batch job delays, or single payment gateway failure.",
       action: "Senior backend developer assigned, queue rerouting, patch deployment within 4 hours.",
       color: "primary",
     },
     {
-      level: "P3 — Minor Technical Bug",
+      level: "P3: Minor Technical Bug",
       target: "< 4 Hours Response",
       desc: "Non-critical admin UI glitch, minor translation string formatting error, or secondary report export issue.",
-      action: "Scheduled fix in next staging build release (within 24–48 hours).",
+      action: "Scheduled fix in next staging build release (within 24 to 48 hours).",
       color: "dark",
     },
     {
-      level: "P4 — Feature Request / Query",
+      level: "P4: Feature Request / Query",
       target: "< 24 Hours Response",
       desc: "General technical questions, optional configuration tweaks, or new feature scoping discussions.",
       action: "Account architect review & scheduled consultation call.",
@@ -61,8 +61,8 @@ export default function SLAPage() {
       content:
         "In the event monthly uptime falls below 99.9% due to infrastructure or codebase issues under our direct management, clients are eligible for service credits applied to their next billing cycle according to the credit tier schedule:",
       table: [
-        { uptime: "99.0% – 99.8%", credit: "10% Billing Credit" },
-        { uptime: "95.0% – 98.9%", credit: "25% Billing Credit" },
+        { uptime: "99.0% to 99.8%", credit: "10% Billing Credit" },
+        { uptime: "95.0% to 98.9%", credit: "25% Billing Credit" },
         { uptime: "< 95.0%", credit: "50% Billing Credit" },
       ],
     },
@@ -72,7 +72,7 @@ export default function SLAPage() {
       title: "3. Scheduled Maintenance Windows",
       icon: Clock,
       content:
-        "Routine database index optimization, security patch application, and edge deployment updates are conducted during low-traffic maintenance windows (Sundays 2:00 AM – 4:00 AM GMT+6). Clients receive a minimum of 48 hours advance notice prior to any scheduled maintenance.",
+        "Routine database index optimization, security patch application, and edge deployment updates are conducted during low-traffic maintenance windows (Sundays 2:00 AM to 4:00 AM GMT+6). Clients receive a minimum of 48 hours advance notice prior to any scheduled maintenance.",
     },
     {
       id: "disaster-recovery",

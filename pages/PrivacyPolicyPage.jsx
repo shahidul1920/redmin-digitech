@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
       title: "2. Client Data Sovereignty & Headless Architecture",
       icon: Lock,
       content:
-        "By utilizing a decoupled Headless WordPress architecture, your core business data — including customer databases, order histories, product catalog listings, and pricing rules — remains strictly under your direct database ownership. Redmun Digitech does not sell, license, or monetize client transactional data to third parties.",
+        "By utilizing a decoupled Headless WordPress architecture, your core business data, including customer databases, order histories, product catalog listings, and pricing rules, remains strictly under your direct database ownership. Redmun Digitech does not sell, license, or monetize client transactional data to third parties.",
     },
     {
       id: "api-payloads",

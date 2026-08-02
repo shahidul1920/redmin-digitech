@@ -1,7 +1,7 @@
 import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 
 export const metadata = {
-  title: "Privacy Policy — Redmun Digitech",
+  title: "Privacy Policy | Redmun Digitech",
   description: "Read how Redmun Digitech protects client data, ensures database sovereignty, and handles API payload security.",
 };
 

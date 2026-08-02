@@ -7,13 +7,13 @@ export async function generateMetadata({ params }) {
 
   if (!post) {
     return {
-      title: "Article Not Found — Redmun Digitech Blog",
+      title: "Article Not Found | Redmun Digitech Blog",
     };
   }
 
   const { seo, title, excerpt, featuredImage } = post;
 
-  const metaTitle = seo?.title || `${title} — Redmun Digitech Blog`;
+  const metaTitle = seo?.title || `${title} | Redmun Digitech Blog`;
   const metaDesc =
     seo?.metaDesc ||
     excerpt?.replace(/<[^>]+>/g, "").slice(0, 160) ||

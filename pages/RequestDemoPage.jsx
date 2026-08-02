@@ -87,7 +87,7 @@ export default function RequestDemoPage() {
               <span>Direct Developer Access</span>
             </div>
             <p className="text-xs text-text-muted leading-relaxed">
-              Every demo is conducted directly by a lead engineer — no sales representatives, no automated bot loops.
+              Every demo is conducted directly by a lead engineer with no sales representatives or automated bot loops.
             </p>
           </div>
         </div>

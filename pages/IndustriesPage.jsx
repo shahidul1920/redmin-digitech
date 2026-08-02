@@ -133,7 +133,7 @@ export default function IndustriesPage() {
               Engineering Platforms for High-Growth Industries
             </h1>
             <p className="text-text-muted text-base md:text-lg leading-relaxed">
-              From automated 1688 import portals to zero-latency restaurant POS thermal printing and enterprise media platforms — discover how Redmun Digitech builds software tailored to your industry.
+              From automated 1688 import portals to zero-latency restaurant POS thermal printing and enterprise media platforms, discover how Redmun Digitech builds software tailored to your industry.
             </p>
           </div>
           <div className="absolute -bottom-16 -right-16 w-80 h-80 bg-primary opacity-15 rounded-full blur-3xl" />

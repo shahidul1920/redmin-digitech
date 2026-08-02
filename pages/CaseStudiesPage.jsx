@@ -107,7 +107,7 @@ export default function CaseStudiesPage() {
                     "{cs.feedback}"
                   </blockquote>
                   <cite className="block text-[10px] not-italic font-bold text-dark uppercase tracking-wider">
-                    — {cs.author}
+                    {cs.author}
                   </cite>
                 </div>
 

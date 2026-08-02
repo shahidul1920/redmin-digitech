@@ -71,7 +71,7 @@ export default function PricingPage() {
               Modular Pricing Tiers Built for Scale
             </h1>
             <p className="text-text-muted text-base md:text-lg leading-relaxed">
-              No hidden fees. Choose a transparent, modular investment plan designed for your operational scale — from starter digital platforms to full custom enterprise automation.
+              No hidden fees. Choose a transparent, modular investment plan designed for your operational scale, from starter digital platforms to full custom enterprise automation.
             </p>
           </div>
           <div className="absolute -bottom-16 -right-16 w-80 h-80 bg-primary opacity-15 rounded-full blur-3xl" />
