@@ -63,7 +63,7 @@ export default function HomePage() {
       solutionTag: "Brand Solution",
       tag: "Corporate",
       Icon: Building2,
-      image: "/company-profile.png",
+      image: "/company-profile1.png",
       features: [
         "Modern & Unique Design",
         "SEO & Speed Optimized",
@@ -93,7 +93,7 @@ export default function HomePage() {
       solutionTag: "China Sourcing Solution",
       tag: "Import",
       Icon: Globe,
-      image: "/1688-api-intragration.png",
+      image: "/1688-api-intragration (1).png",
       features: [
         "1688 API Real-time Integration",
         "Product Import & Auto Update",
@@ -108,6 +108,7 @@ export default function HomePage() {
       solutionTag: "Logistics Solution",
       tag: "Logistics",
       Icon: Truck,
+      image: "/shipping-management.png",
       features: [
         "Shipment & Tracking Management",
         "Courier & Route Optimization",
@@ -122,6 +123,7 @@ export default function HomePage() {
       solutionTag: "Custom Solution",
       tag: "Retail",
       Icon: Gem,
+      image: "/custom-e-commerce.png",
       features: [
         "Custom Design & Branding",
         "Multi-vendor Support",
@@ -136,6 +138,7 @@ export default function HomePage() {
       solutionTag: "Restaurant Solution",
       tag: "Hospitality",
       Icon: UtensilsCrossed,
+      image: "/Restaurant-Chain-Management.png",
       features: [
         "Multi-outlet Management",
         "Digital Menu & Ordering",
