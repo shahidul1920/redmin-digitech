@@ -389,15 +389,15 @@ export default function HomePage() {
 
                     {/* Feature checklist */}
                     <ul className="space-y-2.5 mb-6">
-                    {prod.features.map((feat, fIdx) => (
-                      <li key={fIdx} className="flex items-start gap-2 text-xs text-dark">
-                        <span className="w-4 h-4 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
-                          <Check className="w-2.5 h-2.5" />
-                        </span>
-                        <span className="font-medium">{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
+                      {prod.features.map((feat, fIdx) => (
+                        <li key={fIdx} className="flex items-start gap-2 text-xs text-dark">
+                          <span className="w-4 h-4 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                            <Check className="w-2.5 h-2.5" />
+                          </span>
+                          <span className="font-medium">{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
 
                     {/* Learn More link */}
                     <div className="mt-auto">
@@ -583,7 +583,7 @@ export default function HomePage() {
 
                 {/* Image placeholder for office/team — flex-1 fills vertical height */}
                 <div className="sr-item opacity-0 img-placeholder rounded-2xl flex-1 min-h-[240px] border border-border overflow-hidden shadow-sm flex items-center justify-center p-6">
-                  <Image src="/team.svg" alt="Our Team" className="w-full h-full object-cover" fill />
+                  <Image src="/team-work.jpg" alt="Our Team" className="w-full h-full object-cover" fill />
                   {/* <span>[ Team / Office Image ]</span> */}
                 </div>
               </ScrollReveal>
