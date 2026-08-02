@@ -344,12 +344,18 @@ export default function HomePage() {
               return (
                 <div
                   key={idx}
-                  className="sr-item opacity-0 group relative flex flex-col p-0 rounded-2xl border border-border bg-white hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                  className="sr-item opacity-0 group relative flex flex-col p-0 rounded-2xl border border-border bg-white hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
                 >
                   {/* Illustration mockup area — full width at top with overlays */}
                   <div className="relative overflow-hidden rounded-t-2xl">
                     <div className="img-placeholder w-full aspect-[16/10] overflow-hidden rounded-t-2xl relative">
-                      <Image src={prod?.image} alt={prod.title} fill className="object-cover" />
+                      {prod?.image ? (
+                        <Image src={prod.image} alt={prod.title} fill className="object-cover rounded-t-2xl" />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center bg-light/50 text-text-secondary">
+                          <span className="text-sm font-medium">Image unavailable</span>
+                        </div>
+                      )}
                     </div>
 
                     {/* Icon badge (overlay) */}

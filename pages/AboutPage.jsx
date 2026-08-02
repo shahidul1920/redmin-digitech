@@ -26,6 +26,7 @@ import HeroScrollReveal from "@/components/HeroScrollReveal";
 import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import ParallaxSection from "@/components/ParallaxSection";
+import Image from "next/image";
 
 export default function AboutPage() {
   /* ──────────────────── Data ──────────────────── */
@@ -155,19 +156,20 @@ export default function AboutPage() {
               <ParallaxSection speed={-25}>
                 <div className="relative">
                   <div className="img-placeholder-dark rounded-3xl aspect-[4/3] border border-white/10 shadow-2xl overflow-hidden p-6 flex flex-col justify-between">
-                    <span className="text-white/30 text-sm font-semibold tracking-wider text-center my-auto">
+                    <Image src="/hero-abt.jpg" alt="Corporate HQ & Engineering Lab" className="w-full h-full object-cover rounded-xl" fill />
+                    {/* <span className="text-white/30 text-sm font-semibold tracking-wider text-center my-auto">
                       [ Corporate HQ & Engineering Lab Image ]
-                    </span>
+                    </span> */}
                   </div>
                   {/* Floating Metric Badge */}
                   <div className="absolute -bottom-6 -left-6 glass rounded-2xl p-5 animate-float shadow-2xl">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-brand/20 flex items-center justify-center text-brand font-bold">
+                      <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary font-bold">
                         <ShieldCheck className="w-6 h-6" />
                       </div>
                       <div>
-                        <p className="text-xs font-bold text-white uppercase tracking-wider">Zero-Downtime Architecture</p>
-                        <p className="text-[11px] text-text-muted">Edge-cached Next.js 16 deployments</p>
+                        <p className="text-xs font-bold text-primary uppercase tracking-wider">Zero-Downtime Architecture</p>
+                        <p className="text-[11px] text-black">Edge-cached Next.js 16 deployments</p>
                       </div>
                     </div>
                   </div>
@@ -229,9 +231,9 @@ export default function AboutPage() {
 
           <ScrollReveal stagger={0.15}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-              
+
               {/* Mission Card */}
-              <div className="sr-item opacity-0 bg-white p-8 md:p-12 rounded-3xl border border-border shadow-sm hover:shadow-lg transition-all duration-500 flex flex-col justify-between space-y-6 glow-border-brand">
+              <div className="sr-item opacity-0 bg-white p-8 md:p-12 rounded-3xl border border-border shadow-sm hover:shadow-lg transition-all duration-500 flex flex-col justify-between space-y-6 glow-border-brand overflow-hidden">
                 <div>
                   <div className="w-12 h-12 rounded-2xl bg-brand/10 text-brand flex items-center justify-center mb-6">
                     <Target className="w-6 h-6" />
@@ -243,14 +245,34 @@ export default function AboutPage() {
                   </p>
                 </div>
 
-                {/* Mission Image Placeholder */}
-                <div className="img-placeholder rounded-2xl aspect-[16/9] border border-border overflow-hidden">
-                  <span>[ Automated API Architecture Diagram Placeholder ]</span>
+                {/* Mission Image Section */}
+                <div className="relative rounded-2xl h-64 sm:h-72 md:h-80 w-full border border-brand/20 overflow-hidden bg-gradient-to-br from-red-500/10 via-brand/5 to-rose-500/15 shadow-inner group/img">
+                  {/* Tech Pattern Grid */}
+                  <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
+                  {/* Ambient Glow Orbs */}
+                  <div className="absolute -top-12 -right-12 w-56 h-56 bg-brand/25 rounded-full blur-2xl pointer-events-none group-hover/img:bg-brand/35 transition-all duration-700" />
+                  <div className="absolute -bottom-12 -left-12 w-56 h-56 bg-rose-400/25 rounded-full blur-2xl pointer-events-none" />
+                  {/* Radial Highlight */}
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,0,0,0.15)_0%,transparent_75%)] pointer-events-none" />
+                  {/* Corner Badge */}
+                  <div className="absolute top-3 left-3 z-20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/90 text-brand border border-brand/20 backdrop-blur-md shadow-xs flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
+                    Automated Pipelines
+                  </div>
+                  {/* 3D Illustration */}
+                  <div className="absolute inset-0 flex items-center justify-center p-2 pt-6">
+                    <Image 
+                      src="/b (2).png" 
+                      alt="Automated API Architecture Diagram" 
+                      className="object-contain mix-blend-multiply scale-125 sm:scale-130 md:scale-135 group-hover/img:scale-140 transition-transform duration-500 relative z-10" 
+                      fill 
+                    />
+                  </div>
                 </div>
               </div>
 
               {/* Vision Card */}
-              <div className="sr-item opacity-0 bg-white p-8 md:p-12 rounded-3xl border border-border shadow-sm hover:shadow-lg transition-all duration-500 flex flex-col justify-between space-y-6 glow-border-primary">
+              <div className="sr-item opacity-0 bg-white p-8 md:p-12 rounded-3xl border border-border shadow-sm hover:shadow-lg transition-all duration-500 flex flex-col justify-between space-y-6 glow-border-primary overflow-hidden">
                 <div>
                   <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-6">
                     <Globe className="w-6 h-6" />
@@ -262,9 +284,29 @@ export default function AboutPage() {
                   </p>
                 </div>
 
-                {/* Vision Image Placeholder */}
-                <div className="img-placeholder rounded-2xl aspect-[16/9] border border-border overflow-hidden">
-                  <span>[ Global Supply Chain Network Mockup Placeholder ]</span>
+                {/* Vision Image Section */}
+                <div className="relative rounded-2xl h-64 sm:h-72 md:h-80 w-full border border-primary/20 overflow-hidden bg-gradient-to-br from-primary/10 via-blue-500/5 to-indigo-500/15 shadow-inner group/img">
+                  {/* Tech Pattern Grid */}
+                  <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
+                  {/* Ambient Glow Orbs */}
+                  <div className="absolute -top-12 -right-12 w-56 h-56 bg-primary/25 rounded-full blur-2xl pointer-events-none group-hover/img:bg-primary/35 transition-all duration-700" />
+                  <div className="absolute -bottom-12 -left-12 w-56 h-56 bg-blue-400/25 rounded-full blur-2xl pointer-events-none" />
+                  {/* Radial Highlight */}
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,87,255,0.15)_0%,transparent_75%)] pointer-events-none" />
+                  {/* Corner Badge */}
+                  <div className="absolute top-3 left-3 z-20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/90 text-primary border border-primary/20 backdrop-blur-md shadow-xs flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                    Global Ecosystem
+                  </div>
+                  {/* 3D Illustration */}
+                  <div className="absolute inset-0 flex items-center justify-center p-2 pt-6">
+                    <Image 
+                      src="/b (1).png" 
+                      alt="Global Supply Chain Network Mockup" 
+                      className="object-contain mix-blend-multiply scale-125 sm:scale-130 md:scale-135 group-hover/img:scale-140 transition-transform duration-500 relative z-10" 
+                      fill 
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -450,13 +492,20 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              {/* Interactive Office / Map Placeholder */}
-              <div className="w-full lg:w-[480px] h-80 img-placeholder rounded-2xl border border-border shadow-sm overflow-hidden flex flex-col items-center justify-center text-center p-6">
-                <MapPin className="w-8 h-8 text-brand mb-2" />
-                <span className="font-bold text-xs uppercase tracking-wider text-text-secondary">
-                  [ Interactive HQ Office Map Container ]
+              {/* Interactive Office / Map Section */}
+              <div className="w-full lg:w-[480px] h-80 rounded-2xl border border-brand/20 bg-gradient-to-br from-red-500/5 via-light to-brand/10 shadow-inner overflow-hidden flex flex-col items-center justify-center text-center p-6 relative group">
+                <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
+                <div className="absolute -top-12 -right-12 w-40 h-40 bg-brand/15 rounded-full blur-2xl pointer-events-none" />
+                <div className="w-14 h-14 rounded-2xl bg-brand/10 text-brand flex items-center justify-center mb-3 shadow-xs border border-brand/20 relative z-10 group-hover:scale-110 transition-transform duration-300">
+                  <MapPin className="w-7 h-7" />
+                </div>
+                <span className="font-bold text-xs uppercase tracking-wider text-dark relative z-10">
+                  Central Operations Hub
                 </span>
-                <span className="text-[10px] text-text-tertiary mt-1">Road 13, Sector 14, Uttara, Dhaka | Open: 11AM-8PM (Sat-Thu)</span>
+                <span className="text-xs text-text-secondary mt-1 relative z-10">Road 13, Sector 14, Uttara, Dhaka</span>
+                <span className="text-[11px] font-semibold text-brand mt-2 px-3 py-1 rounded-full bg-white/80 border border-brand/20 shadow-xs relative z-10">
+                  Open: 11:00 AM – 8:00 PM (Sat–Thu)
+                </span>
               </div>
             </div>
           </ScrollReveal>
