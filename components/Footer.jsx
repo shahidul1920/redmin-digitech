@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Linkedin, Facebook, Instagram, Check, Phone, MapPin, Mail, Clock } from "@/components/Icons";
 import Button from "./Button";
+import CopyableText from "./CopyableText";
 import { subscribeNewsletter } from "@/utils/actions";
 
 export default function Footer() {
@@ -124,15 +125,15 @@ export default function Footer() {
             <div className="space-y-2 text-xs text-text-muted border-t border-border-dark pt-4">
               <div className="flex items-center gap-2">
                 <MapPin className="w-3.5 h-3.5 text-brand shrink-0" />
-                <span>Road 13, Sector 14, Uttara, Dhaka</span>
+                <span>House 20, Road 12, Sector 03, Uttara, Dhaka</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-brand shrink-0" />
-                <a href="tel:+8801711994608" className="hover:text-white transition-colors">+880 1711 994608</a>
+                <CopyableText text="+880 1711 994608" valueToCopy="+8801711994608" className="hover:text-white transition-colors" />
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-brand shrink-0" />
-                <a href="mailto:contact@redmun.com" className="hover:text-white transition-colors">contact@redmun.com</a>
+                <CopyableText text="contact@redmun.com" className="hover:text-white transition-colors" />
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-3.5 h-3.5 text-brand shrink-0" />

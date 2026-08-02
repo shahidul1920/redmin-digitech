@@ -27,6 +27,8 @@ import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import ParallaxSection from "@/components/ParallaxSection";
 import Image from "next/image";
+import CopyableText from "@/components/CopyableText";
+import LocationMap from "@/components/LocationMap";
 
 export default function AboutPage() {
   /* ──────────────────── Data ──────────────────── */
@@ -88,22 +90,29 @@ export default function AboutPage() {
 
   const team = [
     {
-      name: "Rahat Chowdhury",
-      role: "Founder & Principal Architect",
-      bio: "Ex-logistics systems lead specialized in wholesale data schemas, cross-border API protocols, and high-concurrency database design.",
-      experience: "8+ Yrs Software Architecture",
+      name: "Redwanul Haque",
+      role: "Creative Head",
+      image: "/redwan.jpeg",
     },
     {
-      name: "Imran Hossain",
-      role: "Head of Integrations & APIs",
-      bio: "API specialist focused on high-volume data scraping queues, automated translation pipelines, and ESC/POS hardware print drivers.",
-      experience: "6+ Yrs Backend Engineering",
+      name: "Murtaza Kamal Pasha",
+      role: "Project Manager",
+      image: "/murtaza.jpeg",
     },
     {
-      name: "Lina Tasnim",
-      role: "Lead UI/UX Engineer",
-      bio: "Design technologist dedicated to micro-interactions, responsive design systems, and semantic frontend performance optimization.",
-      experience: "5+ Yrs Frontend Engineering",
+      name: "Arif Hossain",
+      role: "Project Lead",
+      image: "/arif.jpeg",
+    },
+    {
+      name: "Shahidul Shakil",
+      role: "Lead Developer",
+      image: "/shahidul.jpeg",
+    },
+    {
+      name: "Jahidul Islam",
+      role: "Lead Designer",
+      image: "/jahidul.jpeg",
     },
   ];
 
@@ -261,11 +270,11 @@ export default function AboutPage() {
                   </div>
                   {/* 3D Illustration */}
                   <div className="absolute inset-0 flex items-center justify-center p-2 pt-6">
-                    <Image 
-                      src="/b (2).png" 
-                      alt="Automated API Architecture Diagram" 
-                      className="object-contain mix-blend-multiply scale-125 sm:scale-130 md:scale-135 group-hover/img:scale-140 transition-transform duration-500 relative z-10" 
-                      fill 
+                    <Image
+                      src="/b (2).png"
+                      alt="Automated API Architecture Diagram"
+                      className="object-contain mix-blend-multiply scale-125 sm:scale-130 md:scale-135 group-hover/img:scale-140 transition-transform duration-500 relative z-10"
+                      fill
                     />
                   </div>
                 </div>
@@ -300,11 +309,11 @@ export default function AboutPage() {
                   </div>
                   {/* 3D Illustration */}
                   <div className="absolute inset-0 flex items-center justify-center p-2 pt-6">
-                    <Image 
-                      src="/b (1).png" 
-                      alt="Global Supply Chain Network Mockup" 
-                      className="object-contain mix-blend-multiply scale-125 sm:scale-130 md:scale-135 group-hover/img:scale-140 transition-transform duration-500 relative z-10" 
-                      fill 
+                    <Image
+                      src="/b (1).png"
+                      alt="Global Supply Chain Network Mockup"
+                      className="object-contain mix-blend-multiply scale-125 sm:scale-130 md:scale-135 group-hover/img:scale-140 transition-transform duration-500 relative z-10"
+                      fill
                     />
                   </div>
                 </div>
@@ -406,42 +415,50 @@ export default function AboutPage() {
       </section>
 
       {/* ═══════════════════════════════════════════
-          SECTION 6 — ENGINEERING TEAM
+          SECTION 6 — TEAM SECTION
           ═══════════════════════════════════════════ */}
-      <section className="py-24 lg:py-36 bg-dark text-white relative overflow-hidden">
-        <div className="absolute inset-0 line-grid pointer-events-none" />
-        <div className="absolute -top-32 left-1/3 w-[500px] h-[500px] bg-brand opacity-8 rounded-full blur-[130px] pointer-events-none" />
-
+      <section className="py-24 lg:py-36 bg-light-secondary/40 relative overflow-hidden border-y border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <ScrollReveal className="mb-20 text-center max-w-3xl mx-auto">
-            <span className="sr-item opacity-0 text-xs font-bold uppercase tracking-widest text-brand block mb-3">Architects & Developers</span>
-            <h2 className="sr-item opacity-0 text-3xl md:text-5xl font-bold mb-5 leading-tight">
-              Meet Our Core{" "}
-              <span className="text-gradient-brand">Engineering Team</span>
+          <ScrollReveal className="mb-16 text-center max-w-3xl mx-auto">
+            <h2 className="sr-item opacity-0 text-3xl md:text-5xl font-bold text-dark mb-4 leading-tight">
+              Meet Our Team
             </h2>
-            <p className="sr-item opacity-0 text-text-muted text-base md:text-lg leading-relaxed">
-              The software architects, API integrators, and UI developers behind the Redmun Digitech platform.
+            <p className="sr-item opacity-0 text-text-secondary text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+              As a team, we move forward with deep trust in our vision, believing that with focus, dedication, and heart, meaningful success is always within reach.
             </p>
           </ScrollReveal>
 
-          <ScrollReveal stagger={0.12} scale>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <ScrollReveal stagger={0.1} scale>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
               {team.map((t, idx) => (
                 <div
                   key={idx}
-                  className="sr-item opacity-0 glass p-8 rounded-3xl border border-white/10 hover:bg-white/[0.08] transition-all duration-500 flex flex-col justify-between text-center group"
+                  className="sr-item opacity-0 bg-white rounded-2xl p-3 pb-6 border border-border/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 flex flex-col justify-between group"
                 >
                   <div>
-                    {/* Team Member Avatar Placeholder */}
-                    <div className="w-24 h-24 img-placeholder-dark rounded-full border-2 border-brand/40 mx-auto mb-6 flex items-center justify-center font-bold text-brand text-2xl overflow-hidden shadow-lg group-hover:scale-105 transition-transform duration-300">
-                      <span>[ {t.name.split(" ")[0]} Photo ]</span>
+                    {/* Image Container */}
+                    <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-slate-100 mb-4">
+                      <Image
+                        src={t.image}
+                        alt={t.name}
+                        fill
+                        className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                      />
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-1 group-hover:text-brand transition-colors">{t.name}</h3>
-                    <p className="text-xs text-brand font-semibold mb-4 uppercase tracking-wider">{t.role}</p>
-                    <p className="text-xs text-text-muted leading-relaxed mb-6">{t.bio}</p>
-                  </div>
-                  <div className="pt-4 border-t border-white/10 text-[11px] font-bold text-white/50 tracking-wider uppercase">
-                    {t.experience}
+
+                    {/* Details */}
+                    <div className="px-1 space-y-1">
+                      <h3 className="text-base sm:text-lg font-bold text-dark leading-snug group-hover:text-brand transition-colors">
+                        {t.name}
+                      </h3>
+                      <p className="text-xs font-medium text-text-secondary">
+                        {t.role}
+                      </p>
+                      {/* Accent Line */}
+                      <div className="pt-2">
+                        <div className="w-6 h-0.5 bg-dark group-hover:w-10 group-hover:bg-brand transition-all duration-300 rounded-full" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -470,19 +487,19 @@ export default function AboutPage() {
                     <span className="w-8 h-8 rounded-lg bg-light flex items-center justify-center text-brand">
                       <MapPin className="w-4 h-4" />
                     </span>
-                    <span>Road 13, Sector 14, Uttara, Dhaka, Bangladesh</span>
+                    <span>House 20, Road 12, Sector 03, Uttara, Dhaka</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="w-8 h-8 rounded-lg bg-light flex items-center justify-center text-brand">
                       <Mail className="w-4 h-4" />
                     </span>
-                    <a href="mailto:contact@redmun.com" className="hover:text-brand transition-colors">contact@redmun.com</a>
+                    <CopyableText text="contact@redmun.com" className="hover:text-brand transition-colors" />
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="w-8 h-8 rounded-lg bg-light flex items-center justify-center text-brand">
                       <Phone className="w-4 h-4" />
                     </span>
-                    <a href="tel:+8801711994608" className="hover:text-brand transition-colors">+880 1711 994608</a>
+                    <CopyableText text="+880 1711 994608" valueToCopy="+8801711994608" className="hover:text-brand transition-colors" />
                   </div>
                 </div>
                 <div className="pt-4">
@@ -493,19 +510,8 @@ export default function AboutPage() {
               </div>
 
               {/* Interactive Office / Map Section */}
-              <div className="w-full lg:w-[480px] h-80 rounded-2xl border border-brand/20 bg-gradient-to-br from-red-500/5 via-light to-brand/10 shadow-inner overflow-hidden flex flex-col items-center justify-center text-center p-6 relative group">
-                <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
-                <div className="absolute -top-12 -right-12 w-40 h-40 bg-brand/15 rounded-full blur-2xl pointer-events-none" />
-                <div className="w-14 h-14 rounded-2xl bg-brand/10 text-brand flex items-center justify-center mb-3 shadow-xs border border-brand/20 relative z-10 group-hover:scale-110 transition-transform duration-300">
-                  <MapPin className="w-7 h-7" />
-                </div>
-                <span className="font-bold text-xs uppercase tracking-wider text-dark relative z-10">
-                  Central Operations Hub
-                </span>
-                <span className="text-xs text-text-secondary mt-1 relative z-10">Road 13, Sector 14, Uttara, Dhaka</span>
-                <span className="text-[11px] font-semibold text-brand mt-2 px-3 py-1 rounded-full bg-white/80 border border-brand/20 shadow-xs relative z-10">
-                  Open: 11:00 AM – 8:00 PM (Sat–Thu)
-                </span>
+              <div className="w-full lg:w-[480px] h-80">
+                <LocationMap className="w-full h-80 rounded-2xl" />
               </div>
             </div>
           </ScrollReveal>

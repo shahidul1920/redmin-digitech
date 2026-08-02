@@ -2,6 +2,8 @@ import React from "react";
 import { Phone, MapPin, Mail } from "@/components/Icons";
 import ContactForm from "@/components/ContactForm";
 import CTASection from "@/components/CTASection";
+import CopyableText from "@/components/CopyableText";
+import LocationMap from "@/components/LocationMap";
 
 export default function ContactPage() {
   return (
@@ -42,7 +44,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-dark uppercase tracking-wider mb-1">Direct Phone</h4>
-                <a href="tel:+8801711994608" className="text-base text-dark font-bold hover:text-brand transition-colors block">+880 1711 994608</a>
+                <CopyableText text="+880 1711 994608" valueToCopy="+8801711994608" className="text-base text-dark font-bold hover:text-brand transition-colors block" />
                 <p className="text-xs text-text-tertiary mt-0.5">11:00 AM - 8:00 PM (Saturday - Thursday)</p>
               </div>
             </div>
@@ -54,7 +56,7 @@ export default function ContactPage() {
               <div>
                 <h4 className="text-xs font-bold text-dark uppercase tracking-wider mb-1">Office Address</h4>
                 <p className="text-base text-dark font-bold">Redmun Digitech HQ</p>
-                <p className="text-xs text-text-secondary leading-relaxed">Road 13, Sector 14, Uttara, Dhaka, Bangladesh</p>
+                <p className="text-xs text-text-secondary leading-relaxed">House 20, Road 12, Sector 03, Uttara, Dhaka</p>
               </div>
             </div>
 
@@ -64,17 +66,14 @@ export default function ContactPage() {
               </div>
               <div>
                 <h4 className="text-xs font-bold text-dark uppercase tracking-wider mb-1">Email Desk</h4>
-                <a href="mailto:contact@redmun.com" className="text-base text-dark font-bold hover:text-brand transition-colors block">contact@redmun.com</a>
+                <CopyableText text="contact@redmun.com" className="text-base text-dark font-bold hover:text-brand transition-colors block" />
                 <p className="text-xs text-text-tertiary mt-0.5">Guaranteed 24-hour response SLA</p>
               </div>
             </div>
           </div>
 
-          {/* Map placeholder */}
-          <div className="h-64 img-placeholder border border-border rounded-3xl overflow-hidden shadow-sm flex flex-col items-center justify-center text-xs font-semibold text-text-muted p-4">
-            <MapPin className="w-8 h-8 text-brand mb-2" />
-            <span>[ Interactive Location Map Container ]</span>
-          </div>
+          {/* Interactive Google Map */}
+          <LocationMap className="w-full h-80 rounded-3xl" />
 
         </div>
 
