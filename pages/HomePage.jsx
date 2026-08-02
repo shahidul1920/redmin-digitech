@@ -48,7 +48,7 @@ export default function HomePage() {
       solutionTag: "Content Solution",
       tag: "Media",
       Icon: Newspaper,
-      image: "/1-lap-web.png",
+      image: "/mockup-laptop---.png",
       features: [
         "Real-time News Management",
         "SEO Optimized & Fast",
@@ -78,7 +78,7 @@ export default function HomePage() {
       solutionTag: "Ecommerce Solution",
       tag: "Retail",
       Icon: ShoppingCart,
-      image: "/general-e-commerce.png",
+      image: "/general-e-commerce--.png",
       features: [
         "Product & Inventory Management",
         "Multiple Payment Gateway",
@@ -348,20 +348,20 @@ export default function HomePage() {
                 >
                   {/* Illustration mockup area — full width at top with overlays */}
                   <div className="relative overflow-hidden rounded-t-2xl">
-                    <div className="img-placeholder w-full aspect-[16/10] overflow-hidden rounded-t-2xl bg-gray-50 relative">
+                    <div className="img-placeholder w-full aspect-[16/10] overflow-hidden rounded-t-2xl relative">
                       <Image src={prod?.image} alt={prod.title} fill className="object-cover" />
                     </div>
 
                     {/* Icon badge (overlay) */}
                     <div className="absolute top-4 left-4">
-                      <div className="w-12 h-12 rounded-xl bg-brand/10 text-brand flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-12 h-12 rounded-xl bg-dark/10 text-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
                         <ProdIcon className="w-6 h-6" />
                       </div>
                     </div>
 
                     {/* Solution tag (overlay) */}
                     <div className="absolute top-4 right-4">
-                      <span className="inline-block text-[9px] font-extrabold uppercase tracking-widest text-brand bg-brand/8 px-3 py-1.5 rounded-full whitespace-nowrap">
+                      <span className="inline-block text-[9px] font-extrabold uppercase tracking-widest text-primary bg-dark/10 px-3 py-1.5 rounded-full whitespace-nowrap">
                         {prod.solutionTag}
                       </span>
                     </div>
