@@ -660,7 +660,7 @@ export default function HomePage() {
                   industry: "Media & Digital Publishing",
                   desc: "High-traffic editorial CMS network powered by Next.js edge caching and Headless WordPress for sub-second page loads.",
                   image: "/mockup-laptop---.png",
-                  url: "https://freebird digest.com",
+                  url: "https://freebirddigest.com",
                 },
                 {
                   title: "Astha News",
