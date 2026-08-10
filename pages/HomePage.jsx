@@ -655,22 +655,61 @@ export default function HomePage() {
           <ScrollReveal stagger={0.1} scale>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
-                { title: "Sino Cargo Shipping Portal", industry: "Logistics & Freight", desc: "Multi-carrier tracking dashboard with automated manifest generation and customs documentation workflows." },
-                { title: "BanglaPress News Network", industry: "Media & Publishing", desc: "High-traffic editorial CMS serving 500K+ daily readers with real-time content indexing and ad optimization." },
-                { title: "DragonMart BD Sourcing", industry: "Import & Wholesale", desc: "1688 API-integrated wholesale catalog with auto-translation, margin calculators, and bulk order management." },
+                {
+                  title: "Freebird Digest",
+                  industry: "Media & Digital Publishing",
+                  desc: "High-traffic editorial CMS network powered by Next.js edge caching and Headless WordPress for sub-second page loads.",
+                  image: "/mockup-laptop---.png",
+                  url: "https://freebird digest.com",
+                },
+                {
+                  title: "Astha News",
+                  industry: "News & Media Portal",
+                  desc: "Lightning-fast newsroom portal handling high reader concurrency with instant Google News schema pings and viewable ad placements.",
+                  image: "/mockup-laptop---.png",
+                  url: "https://astha.news",
+                },
+                {
+                  title: "Astha Creatives",
+                  industry: "Corporate & Brand System",
+                  desc: "Bespoke corporate web platform built with Next.js, React, and GSAP micro-animations for high-end digital brand representation.",
+                  image: "/company-profile1.png",
+                  url: "https://asthacreatives.com",
+                },
               ].map((project, idx) => (
-                <div key={idx} className="sr-item opacity-0 group rounded-2xl border border-border overflow-hidden bg-white hover:shadow-xl transition-all duration-500">
-                  {/* Project Image Placeholder */}
-                  <div className="img-placeholder aspect-[16/10] border-b border-border">
-                    <span>[ {project.title} Mockup ]</span>
+                <div key={idx} className="sr-item opacity-0 group rounded-2xl border border-border overflow-hidden bg-white hover:shadow-xl transition-all duration-500 flex flex-col justify-between">
+                  <div>
+                    {/* Project Image */}
+                    <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border bg-light">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        width={600}
+                        height={375}
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-6 space-y-3">
+                      <span className="text-[10px] font-bold text-primary uppercase tracking-wider block">{project.industry}</span>
+                      <h3 className="text-lg font-bold text-dark group-hover:text-primary transition-colors">{project.title}</h3>
+                      <p className="text-sm text-text-secondary leading-relaxed">{project.desc}</p>
+                    </div>
                   </div>
-                  <div className="p-6 space-y-3">
-                    <span className="text-[10px] font-bold text-primary uppercase tracking-wider">{project.industry}</span>
-                    <h3 className="text-lg font-bold text-dark group-hover:text-primary transition-colors">{project.title}</h3>
-                    <p className="text-sm text-text-secondary leading-relaxed">{project.desc}</p>
-                    <Button variant="ghost" size="sm" href="/portfolio" className="pl-0 text-primary font-bold">
-                      View Case <ArrowRight className="w-4 h-4 ml-1" />
-                    </Button>
+                  <div className="px-6 pb-6 pt-0">
+                    {project.url.startsWith("http") ? (
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-dark transition-colors"
+                      >
+                        Visit Live Site ({project.url.replace(/^https?:\/\//, '')}) <ArrowRight className="w-3.5 h-3.5" />
+                      </a>
+                    ) : (
+                      <Button variant="ghost" size="sm" href={project.url} className="pl-0 text-primary font-bold">
+                        View Details <ArrowRight className="w-4 h-4 ml-1" />
+                      </Button>
+                    )}
                   </div>
                 </div>
               ))}
