@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPostBySlug } from "@/lib/wp-api";
 import PostContent from "@/components/PostContent";
-import { Clock, Calendar, ArrowLeft, Tag } from "lucide-react";
+import { Clock, Calendar, ArrowLeft, Tag } from "@/components/Icons";
 
 /**
  * Generate Dynamic SEO Metadata from WPGraphQL post.seo object
