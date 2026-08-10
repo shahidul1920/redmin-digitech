@@ -1,123 +1,157 @@
 "use client";
 
-import React, { useState } from "react";
-import { ArrowRight } from "@/components/Icons";
+import React from "react";
+import Image from "next/image";
+import { ArrowRight, Globe } from "@/components/Icons";
 import Button from "./Button";
 
 export default function PortfolioFilters() {
-  const [activeFilter, setActiveFilter] = useState("all");
-
-  const categories = [
-    { id: "all", label: "All Cases" },
-    { id: "corporate", label: "Corporate" },
-    { id: "restaurant", label: "Restaurant" },
-    { id: "shipping", label: "Shipping" },
-    { id: "news", label: "News" },
-    { id: "ecommerce", label: "Ecommerce" },
-    { id: "china", label: "China Import" },
-  ];
-
   const projects = [
     {
-      title: "FastExpress Global Cargo Manifest",
-      desc: "An automated cargo routing matrix that compiles freight lists, tracks coordinates, and schedules manifests behind Cloudflare edge nodes.",
-      category: "shipping",
-      tag: "Shipping Logistics",
+      title: "Wholesale Hub BD",
+      tag: "China Import & 1688 Sourcing",
+      desc: "Automated wholesale product sourcing platform connected directly to China's 1688.com catalog with real-time stock sync and dual-warehouse tracking.",
+      url: "https://wholesalehub.com.bd",
+      image: "/1688-api-intragration (1).png",
     },
     {
-      title: "SinoCargo 1688 Sourcing Portal",
-      desc: "Bulk supplier integration system syncing wholesale inventories, item translation arrays, and direct order placements.",
-      category: "china",
-      tag: "China Sourcing",
+      title: "Deal Ghor",
+      tag: "China Sourcing & Wholesale",
+      desc: "Smart import platform with automated currency conversion, item spec translations, and Bangladesh warehouse barcode tracking.",
+      url: "https://dealghor.com",
+      image: "/1688-api-intragration (1).png",
     },
     {
-      title: "DineSmart Central POS Engine",
-      desc: "Kitchen workflow POS software synchronization system with ESC/POS printer driver triggers for national restaurant chains.",
-      category: "restaurant",
-      tag: "Restaurant Tech",
+      title: "Freebird Digest",
+      tag: "News & Media Portal",
+      desc: "High-traffic digital editorial media platform powered by Next.js SSR/SSG and Headless CMS for sub-second page loads and instant Google News indexation.",
+      url: "https://freebird digest.com",
+      image: "/mockup-laptop---.png",
     },
     {
-      title: "DailyChronicle Media Portal",
-      desc: "AMP-optimized publishing portal capable of managing 10M monthly views with direct Algolia search integrations.",
-      category: "news",
-      tag: "News Editorial",
+      title: "Astha News",
+      tag: "Digital Newspaper & Media",
+      desc: "Lightning-fast digital newsroom handling high reader concurrency with structured NewsArticle JSON-LD schema and dynamic monetization ad spaces.",
+      url: "https://astha.news",
+      image: "/mockup-laptop---.png",
     },
     {
-      title: "Zenith Luxury Apparel Cart",
-      desc: "Bespoke checkout layout designed for jewelry and luxury retailers. Features sub-second payment gateways.",
-      category: "ecommerce",
+      title: "BDeshi Shop",
+      tag: "General E-Commerce",
+      desc: "High-performance single-vendor e-commerce application built on Node.js, Next.js, and MongoDB with Pathao/Steadfast courier API dispatch.",
+      url: "https://bdeshishop.com",
+      image: "/general-e-commerce--.png",
+    },
+    {
+      title: "SellMart BD",
       tag: "Retail E-Commerce",
+      desc: "Scalable e-commerce storefront featuring abandoned cart recovery, server-side Facebook Conversion API tracking, and bulk SMS messaging.",
+      url: "https://sellmart.com.bd",
+      image: "/general-e-commerce--.png",
     },
     {
-      title: "Apex Logistics Corporate Brand",
-      desc: "Corporate branding portal with multi-language setups, structured SEO schema, and customer booking panels.",
-      category: "corporate",
+      title: "Cell Phone Repair",
       tag: "Corporate Profile",
+      desc: "Corporate website redesign built with Next.js, React, and GSAP micro-animations for high conversion and modern brand positioning.",
+      url: "https://cellphonerepair.com",
+      image: "/company-profile1.png",
     },
     {
-      title: "YumChain Kitchen Tickets",
-      desc: "Real-time orders queue display panels mapped to central databases with instant SMS delivery notices for customers.",
-      category: "restaurant",
-      tag: "Restaurant Tech",
+      title: "Astha Creatives",
+      tag: "Corporate Brand System",
+      desc: "Bespoke corporate branding portal with multi-language setups, structured SEO schema, and fast-loading team & service portfolio showcases.",
+      url: "https://asthacreatives.com",
+      image: "/company-profile1.png",
     },
     {
-      title: "Beijing Wholesale Direct Gateway",
-      desc: "Marginal markup automator pulling item specs from 1688 and converting pricing logs directly into local rates.",
-      category: "china",
-      tag: "China Sourcing",
+      title: "Sky Force Shipping",
+      tag: "Shipping Logistics",
+      desc: "International freight forwarding portal supporting dual product sourcing and logistics-only cargo booking workflows from China to BD.",
+      url: "https://skyforceshipping.com",
+      image: "/shipping-management.png",
+    },
+    {
+      title: "China Doting",
+      tag: "Wholesale Sourcing",
+      desc: "Automated 1688 API order placement system with integrated user panels, reseller margin rules, and OTP phone verification.",
+      url: "https://chinadoting.com",
+      image: "/1688-api-intragration (1).png",
+    },
+    {
+      title: "LumiSea BD",
+      tag: "Single-Vendor Commerce",
+      desc: "Modern e-commerce platform with intuitive customer checkout, multi-gateway payments, and automated courier parcel creation.",
+      url: "https://lumiseabd.com",
+      image: "/general-e-commerce--.png",
+    },
+    {
+      title: "Omnichannel Restaurant Ecosystem",
+      tag: "Restaurant Chain POS",
+      desc: "All-in-one POS, digital Kitchen Display System (KDS), automated recipe ingredient stock deduction, and multi-outlet central dashboard.",
+      url: "/products/restaurant-management",
+      image: "/Restaurant-Chain-Management.png",
     },
   ];
 
-  const filteredProjects =
-    activeFilter === "all"
-      ? projects
-      : projects.filter((p) => p.category === activeFilter);
-
   return (
-    <div className="space-y-12">
-      {/* Filters Navigation Panel */}
-      <div className="flex flex-wrap gap-2.5 justify-center md:justify-start border-b border-border pb-6">
-        {categories.map((cat) => {
-          const isActive = activeFilter === cat.id;
+    <div className="space-y-8">
+      {/* Portfolio Grid List */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((proj, idx) => {
+          const isExternal = proj.url && proj.url.startsWith("http");
           return (
-            <button
-              key={cat.id}
-              onClick={() => setActiveFilter(cat.id)}
-              className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-colors duration-200 cursor-pointer ${
-                isActive
-                  ? "bg-brand text-white shadow-sm"
-                  : "bg-white text-text-secondary border border-border hover:border-dark hover:text-dark"
-              }`}
+            <div
+              key={idx}
+              className="group flex flex-col justify-between bg-white rounded-2xl border border-border p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
             >
-              {cat.label}
-            </button>
+              <div>
+                {/* Project Image */}
+                <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-light mb-6 border border-border/60">
+                  <Image
+                    src={proj.image}
+                    alt={proj.title}
+                    width={600}
+                    height={340}
+                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-3 left-3">
+                    <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-brand bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-full border border-brand/20 shadow-xs">
+                      {proj.tag}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <h3 className="text-xl font-bold text-dark mb-2 group-hover:text-brand transition-colors">
+                  {proj.title}
+                </h3>
+                <p className="text-sm text-text-secondary leading-relaxed mb-6">
+                  {proj.desc}
+                </p>
+              </div>
+
+              {/* Action Button */}
+              <div>
+                {isExternal ? (
+                  <a
+                    href={proj.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl border border-border text-xs font-bold text-dark hover:text-brand hover:border-brand hover:bg-light transition-all"
+                  >
+                    <Globe className="w-3.5 h-3.5 text-brand" />
+                    Visit Live Site ({proj.url.replace(/^https?:\/\//, '')})
+                    <ArrowRight className="w-3.5 h-3.5 ml-auto" />
+                  </a>
+                ) : (
+                  <Button variant="outline" size="sm" className="w-full" href={proj.url}>
+                    View System Details <ArrowRight className="w-4 h-4 ml-1" />
+                  </Button>
+                )}
+              </div>
+            </div>
           );
         })}
-      </div>
-
-      {/* Grid List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredProjects.map((proj, idx) => (
-          <div
-            key={idx}
-            className="group flex flex-col justify-between bg-white rounded-2xl border border-border p-8 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
-          >
-            <div>
-              <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-brand bg-brand/5 px-2.5 py-1 rounded-full mb-6">
-                {proj.tag}
-              </span>
-              <h3 className="text-xl font-bold text-dark mb-3 group-hover:text-brand transition-colors">
-                {proj.title}
-              </h3>
-              <p className="text-sm text-text-secondary leading-relaxed mb-6">
-                {proj.desc}
-              </p>
-            </div>
-            <Button variant="outline" size="sm" className="w-full mt-4">
-              View Case Study <ArrowRight className="w-4 h-4 ml-1" />
-            </Button>
-          </div>
-        ))}
       </div>
     </div>
   );
