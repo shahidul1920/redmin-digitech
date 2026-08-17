@@ -11,10 +11,11 @@
   --color-brand-dark: #CC0000;
   --color-brand-deeper: #990000;
 
-  /* — Primary Blue (CTAs, links, interactive) — */
-  --color-primary: #0057FF;
-  --color-primary-light: #3378FF;
-  --color-primary-dark: #0044CC;
+  /* — Primary Crimson Accent (CTAs, links, interactive) — */
+  --color-primary: #DC2626;
+  --color-primary-light: #EF4444;
+  --color-primary-dark: #B91C1C;
+  --color-primary-black: #0F172A;
 
   /* — Neutrals (from the black "Mun." in logo) — */
   --color-dark: #0B1220;
@@ -46,7 +47,7 @@
 
   /* — Shadows — */
   --shadow-glow-brand: 0 0 24px rgba(255, 0, 0, 0.2);
-  --shadow-glow-primary: 0 0 24px rgba(0, 87, 255, 0.25);
+  --shadow-glow-primary: 0 0 24px rgba(220, 38, 38, 0.25);
 }
 
 /* ========================================

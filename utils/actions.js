@@ -117,7 +117,7 @@ export async function sendDemoRequestEmail(formData) {
       reply_to: email,
       html: `
         <div style="font-family: Arial, sans-serif; padding: 20px; color: #0B1220;">
-          <h2 style="color: #0057FF;">New Demo Scoping Request</h2>
+          <h2 style="color: #DC2626;">New Demo Scoping Request</h2>
           <hr style="border: 0; border-top: 1px solid #E2E7EF; margin: 15px 0;" />
           <p><strong>Full Name:</strong> ${name}</p>
           <p><strong>Work Email:</strong> ${email}</p>

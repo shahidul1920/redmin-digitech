@@ -54,9 +54,9 @@ export default function ProjectLifecycle() {
       name: "Requirement Discovery",
       desc: "We understand your business goals, audience, and requirements in depth.",
       icon: DiscoveryIcon,
-      color: "from-blue-500 to-cyan-500",
-      glowColor: "rgba(59, 130, 246, 0.15)",
-      borderColor: "border-blue-500/30",
+      color: "from-rose-500 to-red-500",
+      glowColor: "rgba(244, 63, 94, 0.15)",
+      borderColor: "border-rose-500/30",
       image: "/Requirement-Discovery.png"
     },
     {
@@ -104,9 +104,9 @@ export default function ProjectLifecycle() {
       name: "Deployment",
       desc: "We deploy your platform seamlessly to ensure a smooth and successful launch.",
       icon: LaunchIcon,
-      color: "from-blue-600 to-indigo-600",
-      glowColor: "rgba(79, 70, 229, 0.15)",
-      borderColor: "border-blue-600/30",
+      color: "from-red-600 to-rose-600",
+      glowColor: "rgba(220, 38, 38, 0.15)",
+      borderColor: "border-red-600/30",
       image: "/Deployment.png"
     },
     {
@@ -114,9 +114,9 @@ export default function ProjectLifecycle() {
       name: "Support & Growth",
       desc: "We provide ongoing support and continuous improvements to help you grow.",
       icon: SupportIcon,
-      color: "from-cyan-500 to-blue-500",
-      glowColor: "rgba(6, 182, 212, 0.15)",
-      borderColor: "border-cyan-500/30",
+      color: "from-rose-600 to-red-600",
+      glowColor: "rgba(225, 29, 72, 0.15)",
+      borderColor: "border-rose-600/30",
       image: "/Support-&-Growth.png"
     }
   ];
@@ -240,7 +240,7 @@ export default function ProjectLifecycle() {
                   </div>
                   <p className="text-[10px] uppercase font-bold tracking-wider text-text-muted mb-1.5">On-Time Delivery</p>
                   <div className="w-24 h-1.5 rounded-full bg-white/5 overflow-hidden">
-                    <div className="h-full bg-blue-500 rounded-full" style={{ width: "98%" }} />
+                    <div className="h-full bg-red-500 rounded-full" style={{ width: "98%" }} />
                   </div>
                 </div>
 

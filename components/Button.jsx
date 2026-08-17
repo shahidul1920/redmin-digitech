@@ -46,7 +46,7 @@ export default function Button({
           boxShadow: variant === "brand" 
             ? "0 10px 20px -5px rgba(255, 0, 0, 0.3)"
             : variant === "primary"
-            ? "0 10px 20px -5px rgba(0, 87, 255, 0.3)"
+            ? "0 10px 20px -5px rgba(220, 38, 38, 0.3)"
             : "0 10px 20px -5px rgba(11, 18, 32, 0.15)",
         });
       };

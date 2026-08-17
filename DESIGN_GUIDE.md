@@ -21,9 +21,10 @@ Colors are registered as custom Tailwind utility classes and CSS variables in [g
 * **Brand Red**: `#FF0000` (derived from the "Red" and dot in the RedMun logo)
   * CSS variable: `--color-brand`
   * Tailwind classes: `bg-brand`, `text-brand`, `border-brand`
-* **Primary Blue**: `#0057FF` (used as the primary action/interactive color)
+* **Primary Crimson Accent**: `#DC2626` (used as the primary action/interactive color)
   * CSS variable: `--color-primary`
   * Tailwind classes: `bg-primary`, `text-primary`, `border-primary`
+  * Additional variants: `--color-primary-light` (`#EF4444`), `--color-primary-dark` (`#B91C1C`), `--color-primary-black` (`#0F172A`)
 
 ### Neutral Colors
 * **Dark (Enterprise Dark)**: `#0B1220` (derived from the "Mun." text in the logo)

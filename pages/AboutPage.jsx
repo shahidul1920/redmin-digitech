@@ -294,14 +294,14 @@ export default function AboutPage() {
                 </div>
 
                 {/* Vision Image Section */}
-                <div className="relative rounded-2xl h-64 sm:h-72 md:h-80 w-full border border-primary/20 overflow-hidden bg-gradient-to-br from-primary/10 via-blue-500/5 to-indigo-500/15 shadow-inner group/img">
+                <div className="relative rounded-2xl h-64 sm:h-72 md:h-80 w-full border border-primary/20 overflow-hidden bg-gradient-to-br from-primary/10 via-red-500/5 to-rose-500/15 shadow-inner group/img">
                   {/* Tech Pattern Grid */}
                   <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
                   {/* Ambient Glow Orbs */}
                   <div className="absolute -top-12 -right-12 w-56 h-56 bg-primary/25 rounded-full blur-2xl pointer-events-none group-hover/img:bg-primary/35 transition-all duration-700" />
-                  <div className="absolute -bottom-12 -left-12 w-56 h-56 bg-blue-400/25 rounded-full blur-2xl pointer-events-none" />
+                  <div className="absolute -bottom-12 -left-12 w-56 h-56 bg-red-400/25 rounded-full blur-2xl pointer-events-none" />
                   {/* Radial Highlight */}
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,87,255,0.15)_0%,transparent_75%)] pointer-events-none" />
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(220,38,38,0.15)_0%,transparent_75%)] pointer-events-none" />
                   {/* Corner Badge */}
                   <div className="absolute top-3 left-3 z-20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/90 text-primary border border-primary/20 backdrop-blur-md shadow-xs flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />

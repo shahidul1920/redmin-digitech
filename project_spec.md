@@ -6,7 +6,7 @@
 * **Brand/Company Name:** Redmun Digitech
 * **Color Palette / Theme:**
   * **Brand (Logo Red):** `#FF0000` — core identity color from the "Red" in RedMun logo
-  * **Primary (Action Blue):** `#0057FF` — CTAs, links, interactive elements
+  * **Primary (Crimson Accent):** `#DC2626` — CTAs, links, interactive elements
   * **Dark:** `#0B1220` — from the "Mun." in the logo, used for text and dark backgrounds
   * **Light:** `#F7F9FC` — page backgrounds and light surfaces
 
