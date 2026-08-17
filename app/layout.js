@@ -27,8 +27,13 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${inter.variable} ${plusJakartaSans.variable}`}
+      suppressHydrationWarning
     >
-      <body className="flex flex-col min-h-screen">
+      <head suppressHydrationWarning>
+        <meta name="darkreader-lock" content="true" />
+        <meta name="color-scheme" content="light dark" />
+      </head>
+      <body className="flex flex-col min-h-screen" suppressHydrationWarning>
         <Header />
         <div className="flex-grow">{children}</div>
         <Footer />

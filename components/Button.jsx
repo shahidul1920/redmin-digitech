@@ -96,10 +96,10 @@ export default function Button({
 
   // Variant Classes
   const variantStyles = {
-    brand: "bg-brand text-white border-2 border-transparent",
-    primary: "bg-primary text-white border-2 border-transparent",
-    secondary: "bg-dark text-white border-2 border-transparent hover:bg-dark-secondary",
-    outline: "bg-transparent text-dark border-2 border-border hover:border-dark hover:text-dark",
+    brand: "bg-brand !text-white border-2 border-transparent hover:bg-brand-dark",
+    primary: "bg-primary !text-white border-2 border-transparent hover:bg-primary-dark",
+    secondary: "bg-dark !text-white border-2 border-transparent hover:bg-dark-tertiary",
+    outline: "bg-transparent text-dark border-2 border-border hover:border-primary hover:text-primary",
     ghost: "bg-transparent text-text-secondary hover:bg-light hover:text-dark border-2 border-transparent",
   };
 
